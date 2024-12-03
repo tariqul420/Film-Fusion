@@ -6,6 +6,7 @@ import AddMovie from "../Pages/AddMovie";
 import MyFavorites from "../Pages/MyFavorites";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
+import Private from "./Private";
 
 const router = createBrowserRouter([
     {
@@ -22,7 +23,10 @@ const router = createBrowserRouter([
             },
             {
                 path: '/add-movie',
-                element: <AddMovie />
+                element:
+                    <Private>
+                        <AddMovie />
+                    </Private>
             },
             {
                 path: 'my-favorites',

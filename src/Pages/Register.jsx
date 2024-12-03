@@ -94,7 +94,7 @@ const Register = () => {
     return (
         <>
             <section className="w-full h-auto flex items-center justify-center sm:py-12 p-6 bg-[#1F2937]">
-                <div className="w-full sm:w-[900px] sm:max-w-[1000px] bg-[#F4F4F9] shadow-md backdrop-blur-3xl rounded-lg sm:py-6 sm:px-8 p-4 flex flex-col gap-5">
+                <div className="w-full sm:w-[900px] sm:max-w-[1000px] bg-gray-700 shadow-md backdrop-blur-3xl rounded-lg sm:py-6 sm:px-8 p-4 flex flex-col gap-5">
                     <form onSubmit={handleRegister} className="w-full flex flex-col gap-5">
                         <h3 className="text-[1.8rem] font-[700] text-[#1F2937] text-center">
                             Register

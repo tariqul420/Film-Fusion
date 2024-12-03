@@ -59,9 +59,9 @@ const Login = () => {
             {
                 location.pathname === '/login' ? (
                     <section className="w-full h-auto flex items-center justify-center sm:py-12 p-6">
-                        <div className="w-full lg:w-[40%] md:w-[60%] bg-color-bg rounded-lg sm:py-6 sm:px-8 p-4 flex flex-col gap-5 shadow-md">
+                        <div className="w-full lg:w-[40%] md:w-[60%] bg-gray-700 rounded-lg sm:py-6 sm:px-8 p-4 flex flex-col gap-5 shadow-md">
                             <form onSubmit={handelSignIn} className="w-full flex flex-col gap-5">
-                                <h3 className="text-[1.8rem] font-[700] text-gray-900 text-center">
+                                <h3 className="text-[1.8rem] font-[700] text-center">
                                     Login
                                 </h3>
 
@@ -72,7 +72,7 @@ const Login = () => {
                                         required
                                         onChange={(e) => setEmail(e.target.value)}
                                         placeholder="Email"
-                                        className="py-3 px-4 border focus:outline-blue-500 border-gray-300 rounded-lg w-full"
+                                        className="py-3 px-4 border focus:outline-blue-500 border-gray-300 rounded-lg bg-color-primary w-full"
                                     />
                                 </div>
 
@@ -82,7 +82,7 @@ const Login = () => {
                                         placeholder="Password"
                                         required
                                         name="password"
-                                        className="py-3 px-4 border focus:outline-blue-500 border-gray-300 rounded-lg w-full"
+                                        className="py-3 px-4 border focus:outline-blue-500 border-gray-300 rounded-lg w-full bg-color-primary"
                                     />
                                     {active ? (
                                         <BsEyeSlash
@@ -109,13 +109,13 @@ const Login = () => {
 
                                 <button
                                     type="submit"
-                                    className="w-full py-3 px-4 bg-[#d2b48c] font-bold text-white border-none outline-none rounded-lg mt-3">
+                                    className="w-full py-3 px-4 bg-color-accent font-bold border-none outline-none rounded-lg mt-3">
                                     Login
                                 </button>
                             </form>
 
                             <div className="flex items-center justify-center w-full gap-1">
-                                <span className="text-[1rem] text-gray-600 font-[500]">
+                                <span className="text-[1rem] text-gray-400 font-[500]">
                                     Don&apos;t have an account?{" "}
                                 </span>
                                 <span>
@@ -131,7 +131,7 @@ const Login = () => {
                                 <hr className="w-[45%] bg-gray-400 h-[2px]" />
                             </div>
 
-                            <button onClick={() => { socialAuth(googleProvider), navigate(location.state ? location.state : '/') }} className="flex items-center justify-center py-2 px-4 gap-4 border border-gray-300 rounded-lg w-full text-[1rem] font-[500] text-gray-600">
+                            <button onClick={() => { socialAuth(googleProvider), navigate(location.state ? location.state : '/') }} className="flex items-center justify-center py-2 px-4 gap-4 border border-gray-300 rounded-lg w-full text-[1rem] font-medium">
                                 <FcGoogle className="text-[2rem]" />
                                 Sign Up with Google
                             </button>
