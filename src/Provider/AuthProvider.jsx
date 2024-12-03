@@ -4,6 +4,7 @@ import auth from "../Firebase/Firebase";
 import { toast } from "react-toastify";
 import PropTypes from "prop-types";
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext()
 
 const AuthProvider = ({ children }) => {
@@ -75,9 +76,9 @@ const AuthProvider = ({ children }) => {
     }
 
     return (
-        <AuthProvider.prototype value={authData}>
+        <AuthContext.Provider value={authData}>
             {children}
-        </AuthProvider.prototype>
+        </AuthContext.Provider>
     );
 };
 
