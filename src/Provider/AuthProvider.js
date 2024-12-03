@@ -2,6 +2,7 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEm
 import { createContext, useEffect, useState } from "react";
 import auth from "../Firebase/Firebase";
 import { toast } from "react-toastify";
+import PropTypes from "prop-types";
 
 export const AuthContext = createContext()
 
@@ -79,5 +80,9 @@ const AuthProvider = ({ children }) => {
         </AuthProvider.prototype>
     );
 };
+
+AuthProvider.propTypes = {
+    children: PropTypes.array.isRequired
+}
 
 export default AuthProvider;
