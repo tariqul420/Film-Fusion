@@ -1,0 +1,20 @@
+import { Link } from "react-router-dom";
+
+const AuthBtn = () => {
+    return (
+        <div className="flex gap-4">
+            <Link to='/register'>
+                <button className="border-2 px-5 py-2 rounded-full border-solid border-color-accent font-semibold text-lg">
+                    Register
+                </button>
+            </Link>
+            <Link to='/login'>
+                <button className="border-2 px-5 py-2 rounded-full border-solid border-color-accent font-semibold text-lg bg-color-accent shadow-md hover:text-color-text">
+                    Login
+                </button>
+            </Link>
+        </div>
+    );
+};
+
+export default AuthBtn;
