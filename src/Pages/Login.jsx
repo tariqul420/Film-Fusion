@@ -131,7 +131,7 @@ const Login = () => {
                                 <hr className="w-[45%] bg-gray-400 h-[2px]" />
                             </div>
 
-                            <button onClick={() => { socialAuth(googleProvider), navigate(location.state ? location.state : '/') }} className="flex items-center justify-center py-2 px-4 gap-4 border border-gray-300 rounded-lg w-full text-[1rem] font-medium">
+                            <button onClick={() => { socialAuth(googleProvider) }} className="flex items-center justify-center py-2 px-4 gap-4 border border-gray-300 rounded-lg w-full text-[1rem] font-medium">
                                 <FcGoogle className="text-[2rem]" />
                                 Sign Up with Google
                             </button>
