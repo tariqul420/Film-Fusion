@@ -9,7 +9,6 @@ const MovieCart = ({ movie, setFavorite, favorite }) => {
 
     const navigate = useNavigate()
     const { pathname } = useLocation()
-    console.log(pathname);
 
     const totalStars = 5
 
@@ -114,8 +113,8 @@ const MovieCart = ({ movie, setFavorite, favorite }) => {
 
 MovieCart.propTypes = {
     movie: PropTypes.object.isRequired,
-    favorite: PropTypes.object.isRequired,
-    setFavorite: PropTypes.array.isRequired
+    favorite: PropTypes.array.isRequired,
+    setFavorite: PropTypes.func.isRequired
 }
 
 export default MovieCart;

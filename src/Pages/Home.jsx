@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Banner from "../Components/Home/Banner";
 import MovieCart from "../Components/Others/MovieCart";
 
@@ -17,6 +17,12 @@ const Home = () => {
                         moviesData.map(movie => <MovieCart key={movie._id} movie={movie} />)
                     }
                 </div>
+
+                <Link to='all-movies'>
+                    <button className="border-2 px-5 py-2 rounded-full border-solid border-color-accent font-semibold text-lg bg-color-accent mt-12 block mx-auto">
+                        See All Movies
+                    </button>
+                </Link>
             </div>
         </div>
     );
