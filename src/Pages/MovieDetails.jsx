@@ -1,16 +1,12 @@
-import { useContext } from "react";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { MdOutlineTimer } from "react-icons/md";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { AuthContext } from "../Provider/AuthProvider";
 
 const MovieDetails = () => {
     const detailsMovie = useLoaderData()
     const navigate = useNavigate()
     const totalStars = 5
-    const { movies, setMovies } = useContext(AuthContext)
-    const { setTopMovies } = useContext(AuthContext)
 
     const handelDeleteMovie = (id) => {
         Swal.fire({
@@ -23,7 +19,7 @@ const MovieDetails = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://film-fusion-0.vercel.app/movies/${_id}`, {
+                fetch(`https://film-fusion-0.vercel.app/movies/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -36,10 +32,6 @@ const MovieDetails = () => {
                                 icon: "success"
                             })
                         }
-                        
-                        const remaining = movies.filter(movie => movie._id !== id)
-                        setMovies(remaining)
-                        setTopMovies(remaining)
                         navigate('/all-movies')
                     }))
             }

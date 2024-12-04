@@ -1,12 +1,9 @@
-// import { useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router-dom";
 import Banner from "../Components/Home/Banner";
 import MovieCart from "../Components/Others/MovieCart";
-import { useContext } from "react";
-import { AuthContext } from "../Provider/AuthProvider";
 
 const Home = () => {
-    // const moviesData = useLoaderData()
-    const { topMovies } = useContext(AuthContext)
+    const moviesData = useLoaderData()
 
     return (
         <div>
@@ -17,7 +14,7 @@ const Home = () => {
 
                 <div className="grid grid-cols-3 gap-8 mt-20">
                     {
-                        topMovies.map(movie => <MovieCart key={movie._id} movie={movie} />)
+                        moviesData.map(movie => <MovieCart key={movie._id} movie={movie} />)
                     }
                 </div>
             </div>

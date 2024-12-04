@@ -57,7 +57,7 @@ const MovieCart = ({ movie }) => {
                             </span>
                         );
                     })}
-                    <span className="ml-2 text-lg text-gray-700">{rating} / 10</span>
+                    <span className="ml-2 text-lg font-bold">{rating} / 10</span>
                 </div>
 
                 <button

@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { MdErrorOutline } from "react-icons/md";
 import { AuthContext } from "../Provider/AuthProvider";
-import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const AddMovie = () => {
     const genresList = ["Action", "Drama", "Comedy", "Horror", "Sci-Fi", "Adventure", "Romance", "Thriller"];
@@ -126,10 +126,14 @@ const AddMovie = () => {
         })
             .then((res) => res.json())
             .then((result) => {
-                if (result) {
-                    toast.success('Successful add movie')
-                } else {
-                    toast.error('Failed to add movie')
+                if (result.insertedId) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Your work has been saved",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                 }
             })
 
