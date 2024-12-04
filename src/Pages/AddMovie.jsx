@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { MdErrorOutline } from "react-icons/md";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const AddMovie = () => {
     const genresList = ["Action", "Drama", "Comedy", "Horror", "Sci-Fi", "Adventure", "Romance", "Thriller"];
@@ -11,6 +12,8 @@ const AddMovie = () => {
     const [rating, setRating] = useState('')
     const [summary, setSummary] = useState('')
     const [genres, setGenres] = useState('')
+    const { user } = useContext(AuthContext)
+
 
 
     const movieUrl = new RegExp('^https?:\\/\\/.+\\.(png|jpg|jpeg|bmp|gif|webp)$', 'i');
@@ -31,7 +34,6 @@ const AddMovie = () => {
         const releaseYear = form.ReleaseYear.value;
         const rating = form.Rating.value;
         const summary = form.Summary.value;
-        const selectedGenres = form.Genres ? form.Genres.value.split(',') : [];
 
         setMoviePoster('');
         setMovieTitle('');
@@ -92,6 +94,13 @@ const AddMovie = () => {
             return
         }
 
+        if (selectedGenres.length < 2) {
+            setGenres('Genres is required.')
+            return
+        }
+
+        const email = user.email
+
         const newMovie = {
             moviePoster,
             movieTitle,
@@ -99,6 +108,7 @@ const AddMovie = () => {
             releaseYear,
             rating,
             summary,
+            email,
             genres: selectedGenres,
         };
 
@@ -258,21 +268,31 @@ const AddMovie = () => {
                         <label className="block mb-3 text-sm font-medium text-white">
                             Select Genres:
                         </label>
+
                         <div className="flex flex-wrap gap-3">
                             {genresList.map((genre, index) => (
                                 <label
                                     key={index}
                                     onClick={() => handleGenreClick(genre)}
-                                    className={`flex items-center gap-2 py-2 px-4 rounded-lg cursor-pointer transition 
-                                    ${selectedGenres.includes(genre)
-                                            ? "bg-blue-500 text-white"
-                                            : "bg-gray-600 text-white hover:bg-gray-500"
+                                    className={`flex items-center gap-2 py-2 px-4 rounded-lg cursor-pointer transition ${selectedGenres.includes(genre)
+                                        ? "bg-blue-500 text-white"
+                                        : "bg-gray-600 text-white hover:bg-gray-500"
                                         }`}
                                 >
                                     {genre}
                                 </label>
                             ))}
+
+                            {genres && (
+                                <p className="text-[0.9rem] mt-1">
+                                    <span className="text-red-500 flex items-center gap-[5px]">
+                                        <MdErrorOutline className="text-[1.1rem]" />
+                                        {genres}
+                                    </span>
+                                </p>
+                            )}
                         </div>
+
                     </div>
 
 
