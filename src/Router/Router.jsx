@@ -30,7 +30,10 @@ const router = createBrowserRouter([
             },
             {
                 path: 'my-favorites',
-                element: <MyFavorites />
+                element:
+                    <Private>
+                        <MyFavorites />
+                    </Private>
             },
             {
                 path: '/login',

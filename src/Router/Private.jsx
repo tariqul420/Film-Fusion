@@ -31,7 +31,7 @@ const Private = ({ children }) => {
 };
 
 Private.propTypes = {
-    children: PropTypes.array.isRequired
+    children: PropTypes.object.isRequired
 }
 
 export default Private;

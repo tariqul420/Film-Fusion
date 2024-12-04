@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import { FaPlayCircle } from "react-icons/fa";
 
 const Banner = () => {
     const imageUrls = [
@@ -46,11 +47,28 @@ const Banner = () => {
             >
                 {imageUrls.map((url, index) => (
                     <SwiperSlide key={index}>
-                        <img
-                            src={url}
-                            alt={`Image ${index + 1}`}
-                            className="w-full h-[473px] object-cover rounded-lg"
-                        />
+
+                        <div
+                            className="w-full sm:w-[80%] lg:w-full h-[473px] relative overflow-hidden group cursor-pointer rounded-md">
+
+                            {/*  image  */}
+                            <img
+                                src={url}
+                                alt="animated_card"
+                                className="w-full h-full object-cover rounded-lg group-hover:scale-[1.1] transition-all duration-700" />
+
+                            {/*  text  */}
+                            <div
+                                className="absolute top-[55%] transform group-hover:translate-y-[-50%] transition-all duration-500 w-full h-full left-0 z-20 right-0 flex items-center justify-center flex-col">
+                                <button>
+                                    <FaPlayCircle size={50} color="#3B82F6" />
+                                </button>
+                            </div>
+
+                            {/*  bottom shadow  */}
+                            <div
+                                className="w-full opacity-0 z-[-1] group-hover:opacity-100 group-hover:z-10 transition-all duration-500 bg-gradient-to-b from-[rgb(0,0,0,0.001)] to-[rgb(0,0,0)] h-[100%] absolute bottom-0 left-0 right-0"></div>
+                        </div>
                     </SwiperSlide>
                 ))}
             </Swiper>
