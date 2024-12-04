@@ -3,7 +3,6 @@ import { useLoaderData } from "react-router-dom";
 
 const AllMovies = () => {
     const allMovie = useLoaderData()
-    console.log(allMovie);
 
     return (
         <div className="w-10/12 mx-auto my-12">

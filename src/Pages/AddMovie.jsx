@@ -1,6 +1,5 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { MdErrorOutline } from "react-icons/md";
-import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 
 const AddMovie = () => {
@@ -13,7 +12,6 @@ const AddMovie = () => {
     const [rating, setRating] = useState('')
     const [summary, setSummary] = useState('')
     const [genres, setGenres] = useState('')
-    const { user } = useContext(AuthContext)
 
     const movieUrl = new RegExp('^https?:\\/\\/.+\\.(png|jpg|jpeg|bmp|gif|webp)$', 'i');
 
@@ -101,8 +99,6 @@ const AddMovie = () => {
             return
         }
 
-        const email = user.email
-
         const newMovie = {
             moviePoster,
             movieTitle,
@@ -110,11 +106,8 @@ const AddMovie = () => {
             releaseYear,
             rating,
             summary,
-            email,
             genres: selectedGenres,
         };
-
-        console.log(newMovie);
 
         // Post the movie data
         fetch('https://film-fusion-0.vercel.app/movies', {
@@ -130,7 +123,7 @@ const AddMovie = () => {
                     Swal.fire({
                         position: "center",
                         icon: "success",
-                        title: "Your work has been saved",
+                        title: "Successful add movie",
                         showConfirmButton: false,
                         timer: 1500
                     });

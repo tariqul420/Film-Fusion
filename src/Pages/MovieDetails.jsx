@@ -1,14 +1,21 @@
+import { useContext } from "react";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { MdOutlineTimer } from "react-icons/md";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const MovieDetails = () => {
     const detailsMovie = useLoaderData()
     const navigate = useNavigate()
+    const { user } = useContext(AuthContext)
     const totalStars = 5
 
-    const handelDeleteMovie = (id) => {
+
+
+    const { _id, moviePoster, movieTitle, duration, releaseYear, rating, summary, genres } = detailsMovie
+
+    const handelDeleteMovie = () => {
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -19,12 +26,11 @@ const MovieDetails = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://film-fusion-0.vercel.app/movies/${id}`, {
+                fetch(`https://film-fusion-0.vercel.app/movies/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
                     .then((data => {
-                        console.log(data);
                         if (data.deletedCount > 0) {
                             Swal.fire({
                                 title: "Deleted!",
@@ -38,7 +44,41 @@ const MovieDetails = () => {
         })
     }
 
-    const { _id, moviePoster, movieTitle, duration, releaseYear, rating, summary, genres } = detailsMovie
+    const email = user?.email
+
+    const favoriteMovie = {
+        moviePoster,
+        movieTitle,
+        duration,
+        releaseYear,
+        rating,
+        summary,
+        genres,
+        email
+    }
+
+    const handelAddFavorite = () => {
+        fetch('https://film-fusion-0.vercel.app/favorite', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(favoriteMovie)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.insertedId) {
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "Add to favorite successful",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+    }
 
     return (
         <div>
@@ -96,12 +136,14 @@ const MovieDetails = () => {
 
                     <div className="flex gap-4 mt-12">
                         <button
-                            onClick={() => handelDeleteMovie(_id)}
+                            onClick={handelDeleteMovie}
                             className="border-2 px-5 py-2 rounded-full border-solid border-color-accent font-semibold text-lg bg-color-accent">
                             Delete Movie
                         </button>
 
-                        <button className="border-2 px-5 py-2 rounded-full border-solid border-color-accent font-semibold text-lg bg-color-accent shadow-md hover:text-color-text">
+                        <button
+                            onClick={handelAddFavorite}
+                            className="border-2 px-5 py-2 rounded-full border-solid border-color-accent font-semibold text-lg bg-color-accent shadow-md hover:text-color-text">
                             Add to Favorite
                         </button>
                     </div>

@@ -44,7 +44,6 @@ const MovieCart = ({ movie }) => {
                 <div className="flex items-center gap-2">
                     {[...Array(totalStars)].map((_, index) => {
                         const starValue = index + 1;
-
                         return (
                             <span key={index}>
                                 {rating >= starValue ? (
