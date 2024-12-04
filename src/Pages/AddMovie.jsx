@@ -1,6 +1,14 @@
 import { useState } from "react";
 import { MdErrorOutline } from "react-icons/md";
+import Select from "react-select";
 import Swal from "sweetalert2";
+
+const genresItems = [
+    { value: "Action", label: "Action" },
+    { value: "Drama", label: "Drama" },
+    { value: "Comedy", label: "Comedy" },
+    { value: "Horror", label: "Horror" },
+];
 
 const AddMovie = () => {
     const genresList = ["Action", "Drama", "Comedy", "Horror", "Sci-Fi", "Adventure", "Romance", "Thriller"];
@@ -135,6 +143,13 @@ const AddMovie = () => {
         setSelectedGenres([])
     };
 
+    const [selectedOptions, setSelectedOptions] = useState([]);
+    console.log(selectedOptions);
+
+    const handleChange = (selected) => {
+        setSelectedOptions(selected);
+    };
+
     return (
         <section className="w-full h-auto flex items-center justify-center sm:py-12 p-6 bg-[#1F2937]">
             <div className="w-full sm:w-[900px] sm:max-w-[1000px] bg-gray-700 shadow-md backdrop-blur-3xl rounded-lg sm:py-6 sm:px-8 p-4 flex flex-col gap-5">
@@ -247,12 +262,15 @@ const AddMovie = () => {
                             )}
                         </div>
                         <div className="w-full relative">
-                            <input
-                                type="text"
-                                name="Summary"
-                                placeholder="Summary"
-                                className="py-3 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
+                            <Select
+                                isMulti
+                                name="genres"
+                                options={genresList}
+                                className="react-select-container"
+                                classNamePrefix="react-select"
+                                onChange={handleChange}
                             />
+
                             {summary && (
                                 <p className="text-[0.9rem] mt-1">
                                     <span className="text-red-500 flex items-center gap-[5px]">
@@ -294,6 +312,22 @@ const AddMovie = () => {
                             )}
                         </div>
 
+                    </div>
+
+                    <div className="w-full">
+                        <textarea
+                            name="Summary"
+                            placeholder="Please enter movie Summary / details"
+                            className="py-3 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
+                        />
+                        {summary && (
+                            <p className="text-[0.9rem] mt-1">
+                                <span className="text-red-500 flex items-center gap-[5px]">
+                                    <MdErrorOutline className="text-[1.1rem]" />
+                                    {summary}
+                                </span>
+                            </p>
+                        )}
                     </div>
 
 
