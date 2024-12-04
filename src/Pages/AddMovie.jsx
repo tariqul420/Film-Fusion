@@ -14,8 +14,6 @@ const AddMovie = () => {
     const [genres, setGenres] = useState('')
     const { user } = useContext(AuthContext)
 
-
-
     const movieUrl = new RegExp('^https?:\\/\\/.+\\.(png|jpg|jpeg|bmp|gif|webp)$', 'i');
 
     const handleGenreClick = (genre) => {
@@ -97,6 +95,9 @@ const AddMovie = () => {
         if (selectedGenres.length < 2) {
             setGenres('Genres is required.')
             return
+        } else if (selectedGenres.length < 2 || selectedGenres.length > 3) {
+            setGenres('Max selected genres 3')
+            return
         }
 
         const email = user.email
@@ -115,7 +116,7 @@ const AddMovie = () => {
         console.log(newMovie);
 
         // Post the movie data
-        fetch('http://localhost:5000/movies', {
+        fetch('https://film-fusion-0.vercel.app/movies', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -131,8 +132,11 @@ const AddMovie = () => {
                 console.error("Error adding movie:", error);
                 alert("Failed to add movie.");
             });
-    };
 
+
+        form.reset()
+        setSelectedGenres([])
+    };
 
     return (
         <section className="w-full h-auto flex items-center justify-center sm:py-12 p-6 bg-[#1F2937]">

@@ -1,81 +1,75 @@
 import PropTypes from "prop-types";
-import { FaPlayCircle } from "react-icons/fa";
-import { MdInfoOutline } from "react-icons/md";
+import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
+import { MdOutlineTimer } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const MovieCart = ({ movie }) => {
-    const { moviePoster, movieTitle, genres, duration, releaseYear, rating } = movie
+    const { _id, moviePoster, movieTitle, genres, duration, releaseYear, rating } = movie
+
+    const navigate = useNavigate()
+
+    const totalStars = 5
+
     return (
-        // <div className="max-w-sm rounded-lg shadow-lg bg-color-primary/50 p-4 flex flex-col gap-4 mb-12">
-        //     <div className="relative w-full h-64 rounded-lg overflow-hidden">
-        //         <img
-        //             src={moviePoster}
-        //             alt={movieTitle}
-        //             className="w-full h-full object-cover rounded-lg"
-        //         />
-        //     </div>
-
-        //     <div className="text-white">
-        //         <h3 className="text-2xl font-bold">{movieTitle}</h3>
-        //         <p className="text-sm text-gray-400 mt-2">
-        //             <span className="font-medium">Genre: </span>
-        //             {genres}
-        //         </p>
-
-        //         <p className="text-sm text-gray-400 mt-1">
-        //             <span className="font-medium">Duration: </span>
-        //             {duration} min
-        //         </p>
-
-        //         <p className="text-sm text-gray-400 mt-1">
-        //             <span className="font-medium">Release Year: </span>
-        //             {releaseYear}
-        //         </p>
-
-        //         <p className="text-sm text-gray-400 mt-1">
-        //             <span className="font-medium">Rating: </span>
-        //             {rating} / 10
-        //         </p>
-        //     </div>
-
-        //     <button
-        //         onClick={() => alert(`Details for ${movieTitle}`)}
-        //         className="flex items-center gap-2 mt-4 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors duration-300"
-        //     >
-        //         <MdInfoOutline className="text-lg" />
-        //         See Details
-        //     </button>
-        // </div>
-
         <div
-            className="w-full sm:w-[80%] lg:w-full h-[473px] relative overflow-hidden group cursor-pointer rounded-md">
+            className="w-full sm:w-[80%] lg:w-full shadow-md h-[470px] hover:scale-[1.05] transition-all duration-300 overflow-hidden rounded-md relative cursor-pointer group bg-gray-700">
 
-            {/*  image  */}
-            <img
-                src={moviePoster}
-                alt="animated_card"
-                className="w-full h-full object-cover rounded-lg group-hover:scale-[1.1] transition-all duration-700" />
-
-            {/*  text  */}
+            {/*  icons  */}
             <div
-                className="absolute top-[55%] transform group-hover:translate-y-[-50%] transition-all duration-500 w-full h-full left-0 z-20 right-0 flex items-center justify-center flex-col">
-                <button>
-                    <FaPlayCircle size={50} color="#3B82F6" />
-                </button>
-                <h1 className="text-2xl font-bold mt-3">{movieTitle}</h1>
-                <p className="text-sm text-gray-400 mt-2">
-                    <span className="font-medium">Genre: </span>
-                    {genres}
-                </p>
+                className="absolute top-0 left-0 opacity-100 z-[-1] group-hover:opacity-100 group-hover:z-[1] ease-out transition-all duration-300 flex items-center justify-between w-full p-[15px]">
+                <span className="font-semibold">{releaseYear}</span>
+                <div className="flex items-center gap-[5px]">
+                    <MdOutlineTimer className="text-color-text text-[1.1rem]" />
+                    <p className="text-[1rem] font-semibold">{duration} min</p>
+                </div>
             </div>
 
-            <div
-                className="w-full opacity-0 z-[-1] group-hover:opacity-100 group-hover:z-10 transition-all duration-500 bg-gradient-to-b from-[rgb(0,0,0,0.001)] to-[rgb(0,0,0)] h-[100%] absolute bottom-0 left-0 right-0"></div>
+            <img
+                src={moviePoster}
+                alt={movieTitle}
+                className="w-full h-[60%] object-cover group-hover:opacity-40 group-hover:h-full transition-all duration-300 ease-out" />
+
+            <div className="absolute bottom-0 left-0 py-[20px]  px-[20px] w-full">
+                <h3 className="text-[1.4rem] font-bold">{movieTitle}</h3>
+                <div className="flex gap-2 flex-wrap items-start my-1">
+                    {
+                        genres.map((gen, i) => <p
+                            className="bg-gray-500 text-color-text/50 px-2 py-0 rounded-[6px] font-medium"
+                            key={i}>
+                            {gen}
+                        </p>)
+                    }
+                </div>
+
+                <div className="flex items-center gap-2">
+                    {[...Array(totalStars)].map((_, index) => {
+                        const starValue = index + 1;
+
+                        return (
+                            <span key={index}>
+                                {rating >= starValue ? (
+                                    <FaStar className="text-yellow-500 text-xl" />
+                                ) : rating >= starValue - 0.5 ? (
+                                    <FaStarHalfAlt className="text-yellow-500 text-xl" />
+                                ) : (
+                                    <FaRegStar className="text-gray-400 text-xl" />
+                                )}
+                            </span>
+                        );
+                    })}
+                    <span className="ml-2 text-lg text-gray-700">{rating} / 10</span>
+                </div>
+
+                <button
+                    onClick={() => navigate(`/movies/${_id}`)}
+                    className="border-2 border-solid border-color-accent px-4 py-2 rounded-full mt-3 font-bold hover:bg-color-accent text-color-text transition-all duration-300 ease-out">See Details</button>
+            </div>
         </div>
     );
 };
 
 MovieCart.propTypes = {
-    movie: PropTypes.object.isRequired
+    movie: PropTypes.object.isRequired,
 }
 
 export default MovieCart;
