@@ -1,14 +1,50 @@
 import PropTypes from "prop-types";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { MdOutlineTimer } from "react-icons/md";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
-const MovieCart = ({ movie }) => {
+const MovieCart = ({ movie, setFavorite, favorite }) => {
     const { _id, moviePoster, movieTitle, genres, duration, releaseYear, rating } = movie
 
     const navigate = useNavigate()
+    const { pathname } = useLocation()
+    console.log(pathname);
 
     const totalStars = 5
+
+    const handelFavoriteDelete = (id) => {
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`https://film-fusion-0.vercel.app/favorite/${id}`, {
+                    method: "DELETE"
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount) {
+                            Swal.fire({
+                                position: "center",
+                                icon: "success",
+                                title: "Successful delete movie",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                        }
+                        const remaining = favorite.filter(favorite => favorite._id !== id)
+                        setFavorite(remaining)
+                    })
+            }
+        })
+    }
 
     return (
         <div
@@ -59,9 +95,18 @@ const MovieCart = ({ movie }) => {
                     <span className="ml-2 text-lg font-bold">{rating} / 10</span>
                 </div>
 
-                <button
-                    onClick={() => navigate(`/movie-details/${_id}`)}
-                    className="border-2 border-solid border-color-accent px-4 py-2 rounded-full mt-3 font-bold hover:bg-color-accent text-color-text transition-all duration-300 ease-out">See Details</button>
+                <div>
+                    {
+                        pathname === '/my-favorites' ? (
+                            <button
+                                onClick={() => handelFavoriteDelete(_id)}
+                                className="border-2 border-solid border-color-accent px-4 py-2 rounded-full mt-3 font-bold hover:bg-color-accent text-color-text transition-all duration-300 ease-out">Delete Favorite</button>
+                        ) : (<button
+                            onClick={() => navigate(`/movie-details/${_id}`)}
+                            className="border-2 border-solid border-color-accent px-4 py-2 rounded-full mt-3 font-bold hover:bg-color-accent text-color-text transition-all duration-300 ease-out">See Details</button>
+                        )
+                    }
+                </div>
             </div>
         </div>
     );
@@ -69,6 +114,8 @@ const MovieCart = ({ movie }) => {
 
 MovieCart.propTypes = {
     movie: PropTypes.object.isRequired,
+    favorite: PropTypes.object.isRequired,
+    setFavorite: PropTypes.array.isRequired
 }
 
 export default MovieCart;
