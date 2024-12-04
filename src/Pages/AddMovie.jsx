@@ -1,18 +1,9 @@
 import { useState } from "react";
 import { MdErrorOutline } from "react-icons/md";
-import Select from "react-select";
 import Swal from "sweetalert2";
-
-const genresItems = [
-    { value: "Action", label: "Action" },
-    { value: "Drama", label: "Drama" },
-    { value: "Comedy", label: "Comedy" },
-    { value: "Horror", label: "Horror" },
-];
+import SelectGenre from "../Components/AddMovie/SelectGenre";
 
 const AddMovie = () => {
-    const genresList = ["Action", "Drama", "Comedy", "Horror", "Sci-Fi", "Adventure", "Romance", "Thriller"];
-    const [selectedGenres, setSelectedGenres] = useState([]);
     const [movieProser, setMoviePoster] = useState('')
     const [movieTitle, setMovieTitle] = useState('')
     const [duration, setDuration] = useState('')
@@ -20,14 +11,9 @@ const AddMovie = () => {
     const [rating, setRating] = useState('')
     const [summary, setSummary] = useState('')
     const [genres, setGenres] = useState('')
+    const [selectedOptions, setSelectedOptions] = useState([]);
 
     const movieUrl = new RegExp('^https?:\\/\\/.+\\.(png|jpg|jpeg|bmp|gif|webp)$', 'i');
-
-    const handleGenreClick = (genre) => {
-        setSelectedGenres((prev) =>
-            prev.includes(genre) ? prev.filter((item) => item !== genre) : [...prev, genre]
-        );
-    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -99,10 +85,10 @@ const AddMovie = () => {
             return
         }
 
-        if (selectedGenres.length < 2) {
+        if (selectedOptions.length < 2) {
             setGenres('Genres is required.')
             return
-        } else if (selectedGenres.length < 2 || selectedGenres.length > 3) {
+        } else if (selectedOptions.length < 2 || selectedOptions.length > 3) {
             setGenres('Max selected genres 3')
             return
         }
@@ -114,7 +100,7 @@ const AddMovie = () => {
             releaseYear,
             rating,
             summary,
-            genres: selectedGenres,
+            genres: selectedOptions,
         };
 
         // Post the movie data
@@ -140,14 +126,7 @@ const AddMovie = () => {
 
 
         form.reset()
-        setSelectedGenres([])
-    };
-
-    const [selectedOptions, setSelectedOptions] = useState([]);
-    console.log(selectedOptions);
-
-    const handleChange = (selected) => {
-        setSelectedOptions(selected);
+        setSelectedOptions([])
     };
 
     return (
@@ -262,45 +241,9 @@ const AddMovie = () => {
                             )}
                         </div>
                         <div className="w-full relative">
-                            <Select
-                                isMulti
-                                name="genres"
-                                options={genresList}
-                                className="react-select-container"
-                                classNamePrefix="react-select"
-                                onChange={handleChange}
-                            />
-
-                            {summary && (
-                                <p className="text-[0.9rem] mt-1">
-                                    <span className="text-red-500 flex items-center gap-[5px]">
-                                        <MdErrorOutline className="text-[1.1rem]" />
-                                        {summary}
-                                    </span>
-                                </p>
-                            )}
-                        </div>
-                    </div>
-
-                    {/* Genre Selection */}
-                    <div className="w-full">
-                        <label className="block mb-3 text-sm font-medium text-white">
-                            Select Genres:
-                        </label>
-
-                        <div className="flex flex-wrap gap-3">
-                            {genresList.map((genre, index) => (
-                                <label
-                                    key={index}
-                                    onClick={() => handleGenreClick(genre)}
-                                    className={`flex items-center gap-2 py-2 px-4 rounded-lg cursor-pointer transition ${selectedGenres.includes(genre)
-                                        ? "bg-blue-500 text-white"
-                                        : "bg-gray-600 text-white hover:bg-gray-500"
-                                        }`}
-                                >
-                                    {genre}
-                                </label>
-                            ))}
+                            <SelectGenre
+                                selectedOptions={selectedOptions}
+                                setSelectedOptions={setSelectedOptions} />
 
                             {genres && (
                                 <p className="text-[0.9rem] mt-1">
@@ -311,7 +254,6 @@ const AddMovie = () => {
                                 </p>
                             )}
                         </div>
-
                     </div>
 
                     <div className="w-full">
