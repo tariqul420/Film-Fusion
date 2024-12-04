@@ -7,11 +7,10 @@ import { AuthContext } from "../Provider/AuthProvider";
 
 const MovieDetails = () => {
     const detailsMovie = useLoaderData()
-    console.log(detailsMovie);
     const navigate = useNavigate()
-    const { _id, moviePoster, movieTitle, duration, releaseYear, rating, summary, genres } = detailsMovie
     const totalStars = 5
     const { movies, setMovies } = useContext(AuthContext)
+    const { setTopMovies } = useContext(AuthContext)
 
     const handelDeleteMovie = (id) => {
         Swal.fire({
@@ -24,9 +23,12 @@ const MovieDetails = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://film-fusion-0.vercel.app/movies/${_id}`)
+                fetch(`https://film-fusion-0.vercel.app/movies/${_id}`, {
+                    method: 'DELETE'
+                })
                     .then(res => res.json())
                     .then((data => {
+                        console.log(data);
                         if (data.deletedCount > 0) {
                             Swal.fire({
                                 title: "Deleted!",
@@ -34,13 +36,17 @@ const MovieDetails = () => {
                                 icon: "success"
                             })
                         }
+                        
                         const remaining = movies.filter(movie => movie._id !== id)
                         setMovies(remaining)
+                        setTopMovies(remaining)
                         navigate('/all-movies')
                     }))
             }
         })
     }
+
+    const { _id, moviePoster, movieTitle, duration, releaseYear, rating, summary, genres } = detailsMovie
 
     return (
         <div>

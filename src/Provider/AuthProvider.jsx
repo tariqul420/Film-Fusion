@@ -12,6 +12,23 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
     const [movies, setMovies] = useState()
+    const [topMovies, setTopMovies] = useState()
+
+    useEffect(() => {
+        fetch('https://film-fusion-0.vercel.app/movies')
+            .then(res => res.json())
+            .then(data => {
+                setMovies(data)
+            })
+    }, [])
+
+    useEffect(() => {
+        fetch('https://film-fusion-0.vercel.app/topMovies')
+            .then(res => res.json())
+            .then(result => {
+                setTopMovies(result)
+            })
+    }, [])
 
 
     const socialAuth = async (provider) => {
@@ -75,6 +92,8 @@ const AuthProvider = ({ children }) => {
         resetPassword,
         setUser,
         setMovies,
+        setTopMovies,
+        topMovies,
         user,
         loading,
         movies
