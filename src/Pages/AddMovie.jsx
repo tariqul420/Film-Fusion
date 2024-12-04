@@ -1,8 +1,19 @@
 import { useState } from "react";
+import { MdErrorOutline } from "react-icons/md";
 
 const AddMovie = () => {
     const genresList = ["Action", "Drama", "Comedy", "Horror", "Sci-Fi", "Adventure", "Romance", "Thriller"];
     const [selectedGenres, setSelectedGenres] = useState([]);
+    const [movieProser, setMoviePoster] = useState('')
+    const [movieTitle, setMovieTitle] = useState('')
+    const [duration, setDuration] = useState('')
+    const [releasedYear, setReleasedYear] = useState('')
+    const [rating, setRating] = useState('')
+    const [summary, setSummary] = useState('')
+    const [genres, setGenres] = useState('')
+
+
+    const movieUrl = new RegExp('^https?:\\/\\/.+\\.(png|jpg|jpeg|bmp|gif|webp)$', 'i');
 
     const handleGenreClick = (genre) => {
         setSelectedGenres((prev) =>
@@ -12,37 +23,104 @@ const AddMovie = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const form = e.target;
 
-        // Get form field values
-        const MoviePoster = form.MoviePoster.value;
-        const MovieTitle = form.MovieTitle.value;
-        const Duration = form.Duration.value;
-        const ReleaseYear = form.ReleaseYear.value;
-        const Rating = form.Rating.value;
-        const Summary = form.Summary.value;
+        const form = e.target;
+        const moviePoster = form.MoviePoster.value;
+        const movieTitle = form.MovieTitle.value;
+        const duration = form.Duration.value;
+        const releaseYear = form.ReleaseYear.value;
+        const rating = form.Rating.value;
+        const summary = form.Summary.value;
+        const selectedGenres = form.Genres ? form.Genres.value.split(',') : [];
+
+        setMoviePoster('');
+        setMovieTitle('');
+        setDuration('');
+        setReleasedYear('');
+        setRating('');
+        setSummary('');
+        setGenres('');
+
+        if (!moviePoster.trim()) {
+            setMoviePoster("Movie Poster is required");
+            return false;
+        } else if (!movieUrl.test(moviePoster)) {
+            setMoviePoster("Invalid Movie Poster URL");
+            return false;
+        }
+
+        if (!movieTitle) {
+            setMovieTitle('Movie Title is required.');
+            return;
+        } else if (movieTitle.length <= 2) {
+            setMovieTitle('Must have at least 2 characters');
+            return;
+        }
+
+        if (!duration) {
+            setDuration('Movie Duration is required.');
+            return;
+        } else if (duration < 60) {
+            setDuration('Duration must be greater than 60 minutes');
+            return;
+        }
+
+        if (!releaseYear) {
+            setReleasedYear('Release Year is required.');
+            return;
+        } else if (isNaN(releaseYear)) {
+            setReleasedYear('Release Year must be a valid number.')
+            return
+        }
+
+        if (!rating) {
+            setRating('Rating is required.');
+            return;
+        } else if (isNaN(rating)) {
+            setRating('Rating must be a valid number.')
+            return
+        } else if (rating < 1 || rating > 10) {
+            setRating('Rating must be between 1 and 10.');
+            return;
+        }
+
+        if (!summary) {
+            setSummary('Summary is required.');
+            return;
+        } else if (summary > 10) {
+            setSummary('Summary must be 10 characters')
+            return
+        }
 
         const newMovie = {
-            MoviePoster,
-            MovieTitle,
-            Duration,
-            ReleaseYear,
-            Rating,
-            Summary,
-            Genres: selectedGenres,
+            moviePoster,
+            movieTitle,
+            duration,
+            releaseYear,
+            rating,
+            summary,
+            genres: selectedGenres,
         };
 
+        console.log(newMovie);
+
+        // Post the movie data
         fetch('http://localhost:5000/movies', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
             },
-            body: JSON.stringify(newMovie)
+            body: JSON.stringify(newMovie),
         })
-            .then(res => res.json())
+            .then((res) => res.json())
             .then((result) => {
                 console.log(result);
+                alert("Movie added successfully!");
             })
+            .catch((error) => {
+                console.error("Error adding movie:", error);
+                alert("Failed to add movie.");
+            });
     };
 
 
@@ -55,54 +133,124 @@ const AddMovie = () => {
                     </h3>
 
                     <div className="flex items-center justify-between gap-4 w-full mt-5 sm:flex-row flex-col">
-                        <input
-                            required
-                            type="text"
-                            name="MoviePoster"
-                            placeholder="Movie Poster Url"
-                            className="py-3 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
-                        />
-                        <input
-                            required
-                            type="text"
-                            name="MovieTitle"
-                            placeholder="Movie Title"
-                            className="py-3 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
-                        />
+                        <div className="w-full relative">
+                            <input
+                                type="text"
+                                name="MoviePoster"
+                                placeholder="Movie Poster Url"
+                                className="py-3 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
+                            />
+
+                            {
+                                movieProser && (
+                                    <p className="text-[0.9rem] mt-1">
+                                        <span className="text-red-500 flex items-center gap-[5px]">
+                                            <MdErrorOutline className="text-[1.1rem]" />
+                                            {movieProser}
+                                        </span>
+                                    </p>
+                                )
+                            }
+                        </div>
+                        <div className="w-full relative">
+                            <input
+                                type="text"
+                                name="MovieTitle"
+                                placeholder="Movie Title"
+                                className="py-3 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
+                            />
+                            {
+                                movieTitle && (
+                                    <p className="text-[0.9rem] mt-1">
+                                        <span className="text-red-500 flex items-center gap-[5px]">
+                                            <MdErrorOutline className="text-[1.1rem]" />
+                                            {movieTitle}
+                                        </span>
+                                    </p>
+                                )
+                            }
+                        </div>
                     </div>
 
                     <div className="flex items-center justify-between gap-4 w-full mt-5 sm:flex-row flex-col">
-                        <input
-                            required
-                            type="text"
-                            name="Duration"
-                            placeholder="Duration (in minutes)"
-                            className="py-3 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
-                        />
-                        <input
-                            required
-                            type="text"
-                            name="ReleaseYear"
-                            placeholder="Release Year"
-                            className="py-3 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
-                        />
+                        <div className="w-full relative">
+                            <input
+                                type="text"
+                                name="Duration"
+                                placeholder="Duration (in minutes)"
+                                className="py-3 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
+                            />
+                            {
+                                duration && (
+                                    <p className="text-[0.9rem] mt-1">
+                                        <span className="text-red-500 flex items-center gap-[5px]">
+                                            <MdErrorOutline className="text-[1.1rem]" />
+                                            {duration}
+                                        </span>
+                                    </p>
+                                )
+                            }
+                        </div>
+                        <div className="w-full relative">
+                            <select
+                                name="ReleaseYear"
+                                className="py-3 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full">
+                                <option value="--Select Year--">--Select Year--</option>
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                                <option value="2020">2020</option>
+                                <option value="2019">2019</option>
+                                <option value="2018">2018</option>
+                                <option value="2017">2017</option>
+                            </select>
+                            {
+                                releasedYear && (
+                                    <p className="text-[0.9rem] mt-1">
+                                        <span className="text-red-500 flex items-center gap-[5px]">
+                                            <MdErrorOutline className="text-[1.1rem]" />
+                                            {releasedYear}
+                                        </span>
+                                    </p>
+                                )
+                            }
+                        </div>
                     </div>
 
                     <div className="flex items-center justify-between gap-4 w-full mt-5 sm:flex-row flex-col">
-                        <input
-                            required
-                            type="text"
-                            name="Rating"
-                            placeholder="Rating (1-10)"
-                            className="py-3 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
-                        />
-                        <input
-                            required
-                            type="text"
-                            name="Summary"
-                            placeholder="Summary"
-                            className="py-3 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
-                        />
+                        <div className="w-full relative ">
+                            <input
+                                type="text"
+                                name="Rating"
+                                placeholder="Rating (1-10)"
+                                className="py-3 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
+                            />
+                            {rating && (
+                                <p className="text-[0.9rem] mt-1">
+                                    <span className="text-red-500 flex items-center gap-[5px]">
+                                        <MdErrorOutline className="text-[1.1rem]" />
+                                        {rating}
+                                    </span>
+                                </p>
+                            )}
+                        </div>
+                        <div className="w-full relative">
+                            <input
+                                type="text"
+                                name="Summary"
+                                placeholder="Summary"
+                                className="py-3 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
+                            />
+                            {summary && (
+                                <p className="text-[0.9rem] mt-1">
+                                    <span className="text-red-500 flex items-center gap-[5px]">
+                                        <MdErrorOutline className="text-[1.1rem]" />
+                                        {summary}
+                                    </span>
+                                </p>
+                            )}
+                        </div>
                     </div>
 
                     {/* Genre Selection */}
