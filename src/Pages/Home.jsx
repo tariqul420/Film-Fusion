@@ -1,12 +1,13 @@
 import { useLoaderData } from "react-router-dom";
 import Banner from "../Components/Home/Banner";
 import MovieCart from "../Components/Others/MovieCart";
-import { useState } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const Home = () => {
+    const { movies, setMovies } = useContext(AuthContext)
     const moviesData = useLoaderData()
-    const [movies, setMovies] = useState(moviesData)
-
+    setMovies(moviesData)
     return (
         <div>
             <Banner />

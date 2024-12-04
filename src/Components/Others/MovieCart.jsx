@@ -33,10 +33,10 @@ const MovieCart = ({ movie }) => {
                 <h3 className="text-[1.4rem] font-bold">{movieTitle}</h3>
                 <div className="flex gap-2 flex-wrap items-start my-1">
                     {
-                        genres.map((gen, i) => <p
+                        genres.map((genres, i) => <p
                             className="bg-gray-500 text-color-text/50 px-2 py-0 rounded-[6px] font-medium"
                             key={i}>
-                            {gen}
+                            {genres}
                         </p>)
                     }
                 </div>
@@ -61,7 +61,7 @@ const MovieCart = ({ movie }) => {
                 </div>
 
                 <button
-                    onClick={() => navigate(`/movies/${_id}`)}
+                    onClick={() => navigate(`/movie-details/${_id}`)}
                     className="border-2 border-solid border-color-accent px-4 py-2 rounded-full mt-3 font-bold hover:bg-color-accent text-color-text transition-all duration-300 ease-out">See Details</button>
             </div>
         </div>

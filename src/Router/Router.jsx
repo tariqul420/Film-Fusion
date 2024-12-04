@@ -8,6 +8,7 @@ import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import Private from "./Private";
 import Error from "../Components/Others/Error";
+import MovieDetails from "../Pages/MovieDetails";
 
 const router = createBrowserRouter([
     {
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />,
-                loader: () => fetch('https://film-fusion-0.vercel.app/movies')
+                loader: () => fetch('https://film-fusion-0.vercel.app/topMovies')
             },
             {
                 path: 'all-movies',
@@ -45,6 +46,14 @@ const router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register />
+            },
+            {
+                path: '/movie-details/:id',
+                element:
+                    <Private>
+                        <MovieDetails />
+                    </Private>,
+                loader: ({ params }) => fetch(`https://film-fusion-0.vercel.app/movies/${params.id}`)
             }
         ]
     }

@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { MdErrorOutline } from "react-icons/md";
 import { AuthContext } from "../Provider/AuthProvider";
+import { toast } from "react-toastify";
 
 const AddMovie = () => {
     const genresList = ["Action", "Drama", "Comedy", "Horror", "Sci-Fi", "Adventure", "Romance", "Thriller"];
@@ -28,9 +29,9 @@ const AddMovie = () => {
         const form = e.target;
         const moviePoster = form.MoviePoster.value;
         const movieTitle = form.MovieTitle.value;
-        const duration = form.Duration.value;
-        const releaseYear = form.ReleaseYear.value;
-        const rating = form.Rating.value;
+        const duration = Number(form.Duration.value);
+        const releaseYear = Number(form.ReleaseYear.value);
+        const rating = Number(form.Rating.value);
         const summary = form.Summary.value;
 
         setMoviePoster('');
@@ -125,13 +126,12 @@ const AddMovie = () => {
         })
             .then((res) => res.json())
             .then((result) => {
-                console.log(result);
-                alert("Movie added successfully!");
+                if (result) {
+                    toast.success('Successful add movie')
+                } else {
+                    toast.error('Failed to add movie')
+                }
             })
-            .catch((error) => {
-                console.error("Error adding movie:", error);
-                alert("Failed to add movie.");
-            });
 
 
         form.reset()
