@@ -1,21 +1,45 @@
+import { useContext } from "react";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { MdOutlineTimer } from "react-icons/md";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { AuthContext } from "../Provider/AuthProvider";
 
 const MovieDetails = () => {
     const detailsMovie = useLoaderData()
     console.log(detailsMovie);
+    const navigate = useNavigate()
     const { _id, moviePoster, movieTitle, duration, releaseYear, rating, summary, genres } = detailsMovie
     const totalStars = 5
+    const { movies, setMovies } = useContext(AuthContext)
 
     const handelDeleteMovie = (id) => {
-        fetch(`https://film-fusion-0.vercel.app/movies/${id}`, {
-            method: 'DELETE'
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`https://film-fusion-0.vercel.app/movies/${_id}`)
+                    .then(res => res.json())
+                    .then((data => {
+                        if (data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            })
+                        }
+                        const remaining = movies.filter(movie => movie._id !== id)
+                        setMovies(remaining)
+                        navigate('/all-movies')
+                    }))
+            }
         })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-            })
     }
 
     return (

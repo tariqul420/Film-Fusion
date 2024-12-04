@@ -22,7 +22,7 @@ const router = createBrowserRouter([
                 loader: () => fetch('https://film-fusion-0.vercel.app/topMovies')
             },
             {
-                path: 'all-movies',
+                path: '/all-movies',
                 element: <AllMovies />
             },
             {
