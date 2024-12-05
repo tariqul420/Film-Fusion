@@ -1,78 +1,68 @@
-
-
 import { useContext } from "react";
-import { toast } from "react-toastify";
+import { useForm } from "react-hook-form";
 import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-
 const UpdateProfile = () => {
-    const { updateUserProfile, setUser, user } = useContext(AuthContext)
+    const { updateUserProfile, setUser, setLoading } = useContext(AuthContext)
     const navigate = useNavigate()
 
-    const handelUpdateProfile = (e) => {
-        e.preventDefault()
-
-        const fullName = e.target.fullName.value;
-        const photoUrl = e.target.photoUrl.value;
-        const email = user.email
+    const { register, handleSubmit } = useForm();
+    const onSubmit = ({ fullName, photoUrl }) => {
 
         updateUserProfile({ displayName: fullName, photoURL: photoUrl })
             .then(() => {
-                const updateProfile = { fullName, photoUrl, email }
-
-                fetch('https://espresso-emporium-server-theta.vercel.app/users/updateUserProfile', {
-                    method: 'PATCH',
-                    headers: {
-                        'content-type': 'application/json'
-                    },
-                    body: JSON.stringify(updateProfile)
-                })
-                    .then(res => res.json())
-                    .then(() => {
-                        setUser((prevUser) => ({
-                            ...prevUser,
-                            displayName: fullName,
-                            photoURL: photoUrl,
-                        }));
-                        toast.success('Update Your Profile')
-                        navigate("/my-profile")
-                    })
-                    .catch(() => {
-                        toast.error("Not update Your Profile.")
-                    })
+                setUser((prevUser) => ({
+                    ...prevUser,
+                    displayName: fullName,
+                    photoURL: photoUrl,
+                }));
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Successful Update Profile",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate('/my-profile')
+                setLoading(true)
             })
-    }
-
+            .catch(() => {
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "Failed Update Profile",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            })
+    };
     return (
         <section className="w-full h-auto flex items-center justify-center sm:py-12 p-6">
-            <div className="w-full sm:w-[40%] bg-white rounded-lg sm:py-6 sm:px-8 p-4 flex flex-col gap-5 shadow-md">
-
-                <form onSubmit={handelUpdateProfile} className="w-full flex flex-col gap-5">
-                    <h3 className="text-[1.8rem] font-[700] text-gray-900 text-center">
+            <div className="w-full sm:w-[40%] bg-gray-700 rounded-lg sm:py-6 sm:px-8 p-4 flex flex-col gap-5 shadow-md">
+                <form onSubmit={handleSubmit(onSubmit)} className="w-full flex flex-col gap-5">
+                    <h3 className="text-[1.8rem] font-[700]  text-center">
                         Update Profile
                     </h3>
 
                     <input
-                        required
-                        type="text"
-                        name="fullName"
-                        placeholder="Full name"
-                        className="py-3 px-4 border focus:outline-color-primary border-gray-300 rounded-lg w-full"
-                    />
+                        className="py-3 px-4 border focus:outline-color-primary border-gray-300 bg-color-primary rounded-lg w-full text-color-text"
+                        placeholder="Full Name"
+                        {...register("fullName", { required: true })} />
 
                     <input
-                        required
-                        type="text"
-                        name="photoUrl"
-                        placeholder="Photo URL"
-                        className="py-3 px-4 border focus:outline-color-primary border-gray-300 rounded-lg w-full"
-                    />
+                        className="py-3 px-4 border focus:outline-color-primary border-gray-300 bg-color-primary rounded-lg w-full text-color-text"
+                        placeholder="Photo Url"
+                        {...register("photoUrl", { required: true })} />
 
-                    <button
-                        type="submit"
-                        className="w-full py-3 px-4 border border-solid border-color-primary font-bold text-color-primary hover:text-white transition-all duration-300 hover:bg-color-primary outline-none rounded-lg mt-3">
-                        Update
-                    </button>
+                    <div className="w-full flex items-center justify-center">
+                        <button
+                            type="submit"
+                            className="w-full py-3 px-4 bg-[#3B82F6] text-white border-none font-bold outline-none rounded-lg mt-3"
+                        >
+                            Add Movie
+                        </button>
+                    </div>
                 </form>
             </div>
         </section>
@@ -80,3 +70,5 @@ const UpdateProfile = () => {
 };
 
 export default UpdateProfile;
+
+

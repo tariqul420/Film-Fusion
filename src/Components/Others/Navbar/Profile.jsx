@@ -20,7 +20,7 @@ const Profile = () => {
 
             {/*  tooltip  */}
             <div
-                className={` ${isProfileHovered ? "opacity-100 z-20 translate-y-0" : "opacity-0 z-[-1] translate-y-[20px]"} absolute bottom-[-210px] left-[50%] transform translate-x-[-50%] bg-gray-700 w-[250px] rounded-md p-[15px] shadow-md transition-all duration-300`}>
+                className={` ${isProfileHovered ? "opacity-100 z-20 translate-y-0" : "opacity-0 z-[-1] translate-y-[20px]"} absolute bottom-[-260px] left-[50%] transform translate-x-[-50%] bg-gray-700 w-[250px] rounded-md p-[15px] shadow-md transition-all duration-300`}>
 
                 {/*  account details  */}
                 <div className="flex items-center justify-center flex-col">
@@ -34,12 +34,17 @@ const Profile = () => {
                     </div>
                     <h4 className="text-[1.1rem] font-[600] mt-2">{user?.displayName}</h4>
 
+
+                    <button
+                        onClick={() => navigate('/my-profile')}
+                        className="border-2 px-5 py-1 hover:bg-color-accent hover:text-color-text rounded-full border-solid border-color-accent font-semibold text-lg mt-3">
+                        My Profile
+                    </button>
                     <button
                         onClick={logoutUser}
-                        className="border-2 px-5 py-1 hover:bg-color-accent hover:text-color-text rounded-full border-solid border-color-accent font-semibold text-lg mt-3">Log Out</button>
-                    <button
-                        onClick={()=>navigate('/my-profile')}
-                        className="border-2 px-5 py-1 hover:bg-color-accent hover:text-color-text rounded-full border-solid border-color-accent font-semibold text-lg mt-3">My Profile</button>
+                        className="border-2 px-5 py-1 hover:bg-color-accent hover:text-color-text rounded-full border-solid border-color-accent font-semibold text-lg mt-3">
+                        Log Out
+                    </button>
                 </div>
 
                 {/*  bottom arrow  */}

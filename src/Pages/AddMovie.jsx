@@ -12,7 +12,6 @@ const AddMovie = () => {
     const [summary, setSummary] = useState('')
     const [genres, setGenres] = useState('')
     const [selectedOptions, setSelectedOptions] = useState([]);
-    console.log(selectedOptions);
 
     const movieUrl = new RegExp('^https?:\\/\\/.+\\.(png|jpg|jpeg|bmp|gif|webp)$', 'i');
 

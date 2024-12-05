@@ -6,7 +6,6 @@ import Swal from "sweetalert2";
 
 const MovieCart = ({ movie, setFavorite, favorite }) => {
     const { _id, moviePoster, movieTitle, genres, duration, releaseYear, rating } = movie
-    console.log(movie);
 
     const navigate = useNavigate()
     const { pathname } = useLocation()
