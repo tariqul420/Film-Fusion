@@ -4,7 +4,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 const UpdateProfile = () => {
-    const { updateUserProfile, setUser, setLoading } = useContext(AuthContext)
+    const { updateUserProfile, setUser } = useContext(AuthContext)
     const navigate = useNavigate()
 
     const { register, handleSubmit } = useForm();
@@ -25,7 +25,6 @@ const UpdateProfile = () => {
                     timer: 1500
                 });
                 navigate('/my-profile')
-                setLoading(true)
             })
             .catch(() => {
                 Swal.fire({
