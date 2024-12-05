@@ -289,7 +289,7 @@ const AddMovie = () => {
                     <div className="w-full">
                         <textarea
                             name="Summary"
-                            placeholder="Please enter movie Summary / details"
+                            placeholder="Please enter movie details..."
                             className="py-3 min-h-[200px] bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
                         />
                         {summaryErr && (

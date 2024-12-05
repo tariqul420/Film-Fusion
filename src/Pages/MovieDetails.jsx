@@ -87,11 +87,11 @@ const MovieDetails = () => {
             </div>
 
             <div className="w-9/12 mx-auto bg-gray-700 p-8 rounded-xl my-12 flex gap-4">
-                <div>
-                    <img className="rounded-lg" src={moviePoster} alt={movieTitle} />
+                <div className="w-[30%]">
+                    <img className="rounded-lg h-full w-full" src={moviePoster} alt={movieTitle} />
                 </div>
                 <div className="border-2 border-solid border-color-accent"></div>
-                <div className="flex-grow px-8">
+                <div className="flex-grow w-[70%]">
                     <div
                         className="flex items-center justify-between w-full">
                         <span className="font-semibold">{releaseYear}</span>
@@ -129,7 +129,7 @@ const MovieDetails = () => {
                                 </span>
                             );
                         })}
-                        <span className="ml-2 text-lg font-bold">{rating} / 10</span>
+                        <span className="ml-2 text-lg font-bold">{rating} / 5</span>
                     </div>
 
                     <p className="mt-4">{summary}</p>

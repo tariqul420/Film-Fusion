@@ -11,6 +11,7 @@ export const AuthContext = createContext()
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [email, setEmail] = useState('')
 
     const socialAuth = async (provider) => {
         setLoading(true)
@@ -71,8 +72,10 @@ const AuthProvider = ({ children }) => {
         updateUserProfile,
         resetPassword,
         setUser,
+        setEmail,
         user,
-        loading
+        loading,
+        email
     }
 
     return (

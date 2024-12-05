@@ -51,7 +51,7 @@ const Login = () => {
     };
 
     const handelReset = () => {
-        navigate("/login/ForgetPassword")
+        navigate("/login/forgot-password")
     }
 
     return (

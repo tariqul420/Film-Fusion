@@ -8,7 +8,7 @@ import PopularCelebs from "../Components/Home/PopularCelebs";
 const Home = () => {
     const { allMovieData, upcomingData, userReviewsData } = useLoaderData()
     const [upcoming, setUpcoming] = useState(upcomingData)
-    console.log(userReviewsData);
+    
     return (
         <section>
             <Banner />

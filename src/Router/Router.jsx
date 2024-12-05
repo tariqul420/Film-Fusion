@@ -13,6 +13,7 @@ import MyProfile from "../Pages/MyProfile";
 import UpdateProfile from "../Pages/UpdateProfile";
 import UpdateMovie from "../Pages/UpdateMovie";
 import AddUpcoming from "../Pages/AddUpcoming";
+import ForgotPassword from "../Pages/ForgotPassword";
 
 const router = createBrowserRouter([
     {
@@ -57,7 +58,13 @@ const router = createBrowserRouter([
             },
             {
                 path: '/login',
-                element: <Login />
+                element: <Login />,
+                children: [
+                    {
+                        path: '/login/forgot-password',
+                        element: <ForgotPassword />
+                    }
+                ]
             },
             {
                 path: '/register',
