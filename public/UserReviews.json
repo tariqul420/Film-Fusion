@@ -1,0 +1,56 @@
+[
+    {
+        "id": 1,
+        "userName": "Alice Johnson",
+        "location": "New York, USA",
+        "review": "An absolute masterpiece! The acting, storyline, and direction were phenomenal. I couldn't stop watching from start to finish.",
+        "rating": 5,
+        "movieTitle": "The Adventure Begins",
+        "userImage": "https://i.postimg.cc/tRDPZ4Hc/images.jpg"
+    },
+    {
+        "id": 2,
+        "userName": "James Smith",
+        "location": "London, UK",
+        "review": "The movie was good, but I felt some parts were a bit slow. However, the visuals and soundtrack were top-notch.",
+        "rating": 4,
+        "movieTitle": "The Silent Forest",
+        "userImage": "https://i.postimg.cc/FRpfLDwS/channels4-profile.jpg"
+    },
+    {
+        "id": 3,
+        "userName": "Sophia Lee",
+        "location": "Toronto, Canada",
+        "review": "One of the best sci-fi films I've ever seen! It was both intellectually stimulating and emotionally touching. Highly recommend.",
+        "rating": 5,
+        "movieTitle": "Beyond the Stars",
+        "userImage": "https://i.postimg.cc/3NwkC2Hc/download.jpg"
+    },
+    {
+        "id": 4,
+        "userName": "Daniel Wright",
+        "location": "Sydney, Australia",
+        "review": "The plot was quite predictable, but it had its moments. Great for a casual movie night.",
+        "rating": 3,
+        "movieTitle": "City Lights",
+        "userImage": "https://i.postimg.cc/RhbNPqSV/download.jpg"
+    },
+    {
+        "id": 5,
+        "userName": "Olivia Brown",
+        "location": "Paris, France",
+        "review": "I enjoyed the action-packed scenes, but the character development felt lacking. Still, an entertaining movie overall.",
+        "rating": 4,
+        "movieTitle": "The Last Stand",
+        "userImage": "https://i.postimg.cc/4487426k/download.jpg"
+    },
+    {
+        "id": 6,
+        "userName": "Michael Davis",
+        "location": "Berlin, Germany",
+        "review": "A thrilling and thought-provoking movie that kept me on the edge of my seat. The special effects were mind-blowing!",
+        "rating": 5,
+        "movieTitle": "The Time Traveler",
+        "userImage": "https://i.postimg.cc/fRdJKw6D/download.jpg"
+    }
+]

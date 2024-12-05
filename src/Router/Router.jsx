@@ -30,7 +30,10 @@ const router = createBrowserRouter([
                     const upcomingJson = await fetch('https://film-fusion-0.vercel.app/upcomingMovies')
                     const upcomingData = await upcomingJson.json()
 
-                    return { allMovieData, upcomingData }
+                    const userReviews = await (fetch('/UserReviews.json'))
+                    const userReviewsData = await userReviews.json()
+
+                    return { allMovieData, upcomingData, userReviewsData }
                 }
             },
             {

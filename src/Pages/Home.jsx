@@ -3,12 +3,14 @@ import Banner from "../Components/Home/Banner";
 import MovieCart from "../Components/Others/MovieCart";
 import Upcoming from "../Components/Home/Upcoming";
 import { useState } from "react";
+import PopularCelebs from "../Components/Home/PopularCelebs";
 
 const Home = () => {
-    const { allMovieData, upcomingData } = useLoaderData()
+    const { allMovieData, upcomingData, userReviewsData } = useLoaderData()
     const [upcoming, setUpcoming] = useState(upcomingData)
+    console.log(userReviewsData);
     return (
-        <div>
+        <section>
             <Banner />
 
             <div className="w-10/12 mx-auto mb-20">
@@ -53,7 +55,17 @@ const Home = () => {
                     </div>
                 )
             }
-        </div>
+
+
+            <div className="w-10/12 mx-auto mb-20">
+                <h2 className="text-6xl font-bold text-center">User Reviews and Ratings</h2>
+                <div className="grid grid-cols-3 gap-8 mt-12">
+                    {
+                        userReviewsData.map(celebs => <PopularCelebs key={celebs.id} celebs={celebs} />)
+                    }
+                </div>
+            </div>
+        </section>
     );
 };
 

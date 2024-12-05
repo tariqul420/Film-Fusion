@@ -59,7 +59,7 @@ const UpdateProfile = () => {
                             type="submit"
                             className="w-full py-3 px-4 bg-[#3B82F6] text-white border-none font-bold outline-none rounded-lg mt-3"
                         >
-                            Add Movie
+                            Update Profile
                         </button>
                     </div>
                 </form>
