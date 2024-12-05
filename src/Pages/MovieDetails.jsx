@@ -146,6 +146,11 @@ const MovieDetails = () => {
                             className="border-2 px-5 py-2 rounded-full border-solid border-color-accent font-semibold text-lg bg-color-accent shadow-md hover:text-color-text">
                             Add to Favorite
                         </button>
+                        <button
+                            onClick={() => navigate(`/update-movie/${_id}`)}
+                            className="border-2 px-5 py-2 rounded-full border-solid border-color-accent font-semibold text-lg bg-color-accent shadow-md hover:text-color-text">
+                            Update Movie
+                        </button>
                     </div>
                 </div>
             </div>

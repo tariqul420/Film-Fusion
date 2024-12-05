@@ -11,6 +11,7 @@ import Error from "../Components/Others/Error";
 import MovieDetails from "../Pages/MovieDetails";
 import MyProfile from "../Pages/MyProfile";
 import UpdateProfile from "../Pages/UpdateProfile";
+import UpdateMovie from "../Pages/UpdateMovie";
 
 const router = createBrowserRouter([
     {
@@ -71,6 +72,14 @@ const router = createBrowserRouter([
                     <Private>
                         <UpdateProfile />
                     </Private>
+            },
+            {
+                path: '/update-movie/:id',
+                element:
+                    <Private>
+                        <UpdateMovie />
+                    </Private>,
+                loader: ({ params }) => fetch(`https://film-fusion-0.vercel.app/movies/${params.id}`)
             }
         ]
     }
