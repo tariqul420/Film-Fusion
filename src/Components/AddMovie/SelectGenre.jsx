@@ -52,10 +52,11 @@ const SelectGenre = ({ setSelectedOptions, selectedOptions, genres }) => {
 
     useEffect(() => {
         if (location.pathname === `/update-movie/${id}`) {
+            setSelectedOptions(genres)
             const selectedGenres = genres.map(option => option.name).join(", ");
             setSearch(selectedGenres);
         }
-    }, [genres, id]);
+    }, [genres, id, setSelectedOptions]);
 
     return (
         <div className="relative custom-select">

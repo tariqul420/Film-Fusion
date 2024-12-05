@@ -10,12 +10,13 @@ const UpdateMovie = () => {
     const [durationError, setDuration] = useState('')
     const [releasedYear, setReleasedYear] = useState('')
     const [ratingError, setRating] = useState('')
-    const [summary, setSummary] = useState('')
+    const [summaryErr, setSummary] = useState('')
     const [genresError, setGenres] = useState('')
     const [selectedOptions, setSelectedOptions] = useState([]);
     const movieSingleData = useLoaderData()
+    const [updateMovie, setUpdateMovie] = useState(movieSingleData)
 
-    const { moviePoster, movieTitle, duration, releaseYear, rating, genres } = movieSingleData
+    const { _id, moviePoster, movieTitle, duration, releaseYear, rating, genres, summary } = updateMovie
 
     const movieUrl = new RegExp('^https?:\\/\\/.+\\.(png|jpg|jpeg|bmp|gif|webp)$', 'i');
 
@@ -97,7 +98,7 @@ const UpdateMovie = () => {
             return
         }
 
-        const newMovie = {
+        const updateMovie = {
             moviePoster,
             movieTitle,
             duration,
@@ -108,29 +109,27 @@ const UpdateMovie = () => {
         };
 
         // Post the movie data
-        fetch('https://film-fusion-0.vercel.app/movies', {
-            method: 'POST',
+        fetch(`http://localhost:5000/movies/${_id}`, {
+            method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
             },
-            body: JSON.stringify(newMovie),
+            body: JSON.stringify(updateMovie),
         })
             .then((res) => res.json())
             .then((result) => {
-                if (result.insertedId) {
+                console.log(result);
+                if (result.modifiedCount) {
                     Swal.fire({
                         position: "center",
                         icon: "success",
-                        title: "Successful add movie",
+                        title: "Successful Update movie",
                         showConfirmButton: false,
                         timer: 1500
                     });
+                    setUpdateMovie(updateMovie)
                 }
             })
-
-
-        form.reset()
-        setSelectedOptions([])
     };
 
 
@@ -274,11 +273,11 @@ const UpdateMovie = () => {
                             placeholder="Please enter movie Summary / details"
                             className="py-3 min-h-[200px] bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
                         />
-                        {summary && (
+                        {summaryErr && (
                             <p className="text-[0.9rem] mt-1">
                                 <span className="text-red-500 flex items-center gap-[5px]">
                                     <MdErrorOutline className="text-[1.1rem]" />
-                                    {summary}
+                                    {summaryErr}
                                 </span>
                             </p>
                         )}
