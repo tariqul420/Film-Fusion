@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
+import { useParams } from "react-router-dom";
 
-const SelectGenre = ({ setSelectedOptions, selectedOptions }) => {
-
+const SelectGenre = ({ setSelectedOptions, selectedOptions, genres }) => {
+    const { id } = useParams()
     const [search, setSearch] = useState("");
     const [isOpen, setIsOpen] = useState(false);
 
@@ -48,6 +49,13 @@ const SelectGenre = ({ setSelectedOptions, selectedOptions }) => {
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
+
+    useEffect(() => {
+        if (location.pathname === `/update-movie/${id}`) {
+            const selectedGenres = genres.map(option => option.name).join(", ");
+            setSearch(selectedGenres);
+        }
+    }, [genres, id]);
 
     return (
         <div className="relative custom-select">
@@ -96,7 +104,8 @@ const SelectGenre = ({ setSelectedOptions, selectedOptions }) => {
 
 SelectGenre.propTypes = {
     selectedOptions: PropTypes.any.isRequired,
-    setSelectedOptions: PropTypes.func.isRequired
+    setSelectedOptions: PropTypes.func.isRequired,
+    genres: PropTypes.array.isRequired
 }
 
 export default SelectGenre;

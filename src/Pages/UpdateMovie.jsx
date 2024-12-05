@@ -11,12 +11,11 @@ const UpdateMovie = () => {
     const [releasedYear, setReleasedYear] = useState('')
     const [ratingError, setRating] = useState('')
     const [summary, setSummary] = useState('')
-    const [genres, setGenres] = useState('')
+    const [genresError, setGenres] = useState('')
     const [selectedOptions, setSelectedOptions] = useState([]);
     const movieSingleData = useLoaderData()
-    console.log(movieSingleData);
 
-    const { moviePoster, movieTitle, duration, releaseYear, rating } = movieSingleData
+    const { moviePoster, movieTitle, duration, releaseYear, rating, genres } = movieSingleData
 
     const movieUrl = new RegExp('^https?:\\/\\/.+\\.(png|jpg|jpeg|bmp|gif|webp)$', 'i');
 
@@ -254,13 +253,14 @@ const UpdateMovie = () => {
                         <div className="w-full relative">
                             <SelectGenre
                                 selectedOptions={selectedOptions}
-                                setSelectedOptions={setSelectedOptions} />
+                                setSelectedOptions={setSelectedOptions}
+                                genres={genres} />
 
-                            {genres && (
+                            {genresError && (
                                 <p className="text-[0.9rem] mt-1">
                                     <span className="text-red-500 flex items-center gap-[5px]">
                                         <MdErrorOutline className="text-[1.1rem]" />
-                                        {genres}
+                                        {genresError}
                                     </span>
                                 </p>
                             )}
