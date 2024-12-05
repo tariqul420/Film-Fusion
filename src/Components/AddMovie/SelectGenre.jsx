@@ -62,7 +62,7 @@ const SelectGenre = ({ setSelectedOptions, selectedOptions, genres }) => {
         <div className="relative custom-select">
             <input
                 type="text"
-                placeholder={selectedOptions.length > 0 ? selectedOptions.map(option => option.name).join(', ') : "Select genres (2-3)"}
+                placeholder={selectedOptions.length > 0 ? selectedOptions.map(option => option.name).join(', ') : "Select genres (1-3)"}
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 onFocus={() => setIsOpen(true)}

@@ -32,11 +32,25 @@ const AllMovies = () => {
 
             <h2 className="font-bold text-6xl text-center mt-12">All Movies</h2>
 
-            <div className="grid grid-cols-3 gap-8 mt-20">
-                {
-                    movie.map(movie => <MovieCart key={movie._id} movie={movie} />)
-                }
-            </div>
+
+            {
+                movie.length === 0 ? (
+                    <div
+                        className="boxShadow p-6 sm:px-20 sm:py-14 flex items-center justify-center flex-col gap-[4px] rounded-xl bg-gray-700 mt-12">
+                        <img src="https://i.ibb.co/cgfgxGH/Illustrations.png" alt="empty/image" className="w-full sm:w-[200px]" />
+
+                        <h1 className="text-[3rem] mt-6 font-[500]">Result Not Found</h1>
+
+                        <p className="text-[0.9rem] text-gray-300">Whoops ... this information is not available for a moment</p>
+                    </div>
+                ) : (
+                    <div className="grid grid-cols-3 gap-8 mt-20">
+                        {
+                            movie.map(movie => <MovieCart key={movie._id} movie={movie} />)
+                        }
+                    </div>
+                )
+            }
         </div>
     );
 };

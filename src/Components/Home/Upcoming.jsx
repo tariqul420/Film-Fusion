@@ -1,10 +1,37 @@
 import PropTypes from "prop-types";
+import Swal from "sweetalert2";
 
-const Upcoming = ({ movie }) => {
+const Upcoming = ({ movie, setUpcoming, upcoming }) => {
     const { _id, moviePoster, movieName, releaseDate, description } = movie
 
     const handelUpcomingDelete = (id) => {
-        console.log(id);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`https://film-fusion-0.vercel.app/upcomingMovies/${id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then((data => {
+                        if (data.deletedCount > 0) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            })
+                        }
+                        const remaining = upcoming.filter(movie => movie._id !== id)
+                        setUpcoming(remaining)
+                    }))
+            }
+        })
     }
     return (
         <div
@@ -29,6 +56,8 @@ const Upcoming = ({ movie }) => {
     );
 };
 Upcoming.propTypes = {
-    movie: PropTypes.object
+    movie: PropTypes.object,
+    upcoming: PropTypes.array,
+    setUpcoming: PropTypes.func
 }
 export default Upcoming;

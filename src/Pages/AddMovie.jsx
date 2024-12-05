@@ -82,10 +82,10 @@ const AddMovie = () => {
             return
         }
 
-        if (selectedOptions.length < 2) {
+        if (selectedOptions.length < 1) {
             setGenresErr('Genres is required.')
             return
-        } else if (selectedOptions.length < 2 || selectedOptions.length > 3) {
+        } else if (selectedOptions.length < 1 || selectedOptions.length > 3) {
             setGenresErr('Max selected genres 3')
             return
         }
