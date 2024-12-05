@@ -120,6 +120,15 @@ const AddMovie = () => {
                     });
                 }
             })
+            .catch(() => {
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "Failed add movie",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            })
 
 
         form.reset()

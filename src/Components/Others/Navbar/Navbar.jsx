@@ -36,6 +36,11 @@ const Navbar = () => {
                             My Favorites
                         </NavLink>
                     </li>
+                    <li className="navBarLink">
+                        <NavLink to='/add-upcoming'>
+                            Add Upcoming
+                        </NavLink>
+                    </li>
                 </ul>
             </div>
 

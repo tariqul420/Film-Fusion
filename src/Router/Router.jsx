@@ -12,6 +12,7 @@ import MovieDetails from "../Pages/MovieDetails";
 import MyProfile from "../Pages/MyProfile";
 import UpdateProfile from "../Pages/UpdateProfile";
 import UpdateMovie from "../Pages/UpdateMovie";
+import AddUpcoming from "../Pages/AddUpcoming";
 
 const router = createBrowserRouter([
     {
@@ -80,6 +81,13 @@ const router = createBrowserRouter([
                         <UpdateMovie />
                     </Private>,
                 loader: ({ params }) => fetch(`https://film-fusion-0.vercel.app/movies/${params.id}`)
+            },
+            {
+                path: '/add-upcoming',
+                element:
+                    <Private>
+                        <AddUpcoming />
+                    </Private>
             }
         ]
     }
