@@ -37,6 +37,10 @@ nav a.active:hover {
   text-decoration: none;
 }
 
+.rating svg {
+  display: inline;
+}
+
 @layer components {
   .navBarLink {
     @apply before:w-0 hover:before:w-full before:bg-[#3B82F6] before:h-[2px] before:transition-all before:duration-300 before:absolute relative before:rounded-full before:bottom-[-2px] hover:text-[#3B82F6] transition-all duration-300 before:left-0 cursor-pointer capitalize;

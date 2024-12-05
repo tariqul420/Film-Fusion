@@ -2,21 +2,24 @@ import { MdErrorOutline } from "react-icons/md";
 import SelectGenre from "../Components/AddMovie/SelectGenre";
 import { useState } from "react";
 import Swal from "sweetalert2";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import { Rating } from "react-simple-star-rating";
 
 const UpdateMovie = () => {
-    const [movieProser, setMoviePoster] = useState('')
-    const [movieTitleError, setMovieTitle] = useState('')
-    const [durationError, setDuration] = useState('')
-    const [releasedYear, setReleasedYear] = useState('')
-    const [ratingError, setRating] = useState('')
-    const [summaryErr, setSummary] = useState('')
-    const [genresError, setGenres] = useState('')
+    const [movieProserErr, setMoviePosterErr] = useState('')
+    const [movieTitleErr, setMovieTitleErr] = useState('')
+    const [durationErr, setDurationErr] = useState('')
+    const [releasedYearErr, setReleasedYearErr] = useState('')
+    const [ratingErr, setRatingErr] = useState('')
+    const [summaryErr, setSummaryErr] = useState('')
+    const [genresErr, setGenresErr] = useState('')
     const [selectedOptions, setSelectedOptions] = useState([]);
     const movieSingleData = useLoaderData()
+    const [rating, setRatingNum] = useState(0);
     const [updateMovie, setUpdateMovie] = useState(movieSingleData)
+    const navigate = useNavigate()
 
-    const { _id, moviePoster, movieTitle, duration, releaseYear, rating, genres, summary } = updateMovie
+    const { _id, moviePoster, movieTitle, duration, releaseYear, genres, summary, rating: ratingNum } = updateMovie
 
     const movieUrl = new RegExp('^https?:\\/\\/.+\\.(png|jpg|jpeg|bmp|gif|webp)$', 'i');
 
@@ -28,73 +31,66 @@ const UpdateMovie = () => {
         const movieTitle = form.MovieTitle.value;
         const duration = Number(form.Duration.value);
         const releaseYear = Number(form.ReleaseYear.value);
-        const rating = Number(form.Rating.value);
         const summary = form.Summary.value;
 
-        setMoviePoster('');
-        setMovieTitle('');
-        setDuration('');
-        setReleasedYear('');
-        setRating('');
-        setSummary('');
-        setGenres('');
+        setMoviePosterErr('');
+        setMovieTitleErr('');
+        setDurationErr('');
+        setReleasedYearErr('');
+        setRatingErr('');
+        setSummaryErr('');
+        setGenresErr('');
 
         if (!moviePoster.trim()) {
-            setMoviePoster("Movie Poster is required");
+            setMoviePosterErr("Movie Poster is required");
             return false;
         } else if (!movieUrl.test(moviePoster)) {
-            setMoviePoster("Invalid Movie Poster URL");
+            setMoviePosterErr("Invalid Movie Poster URL");
             return false;
         }
 
         if (!movieTitle) {
-            setMovieTitle('Movie Title is required.');
+            setMovieTitleErr('Movie Title is required.');
             return;
         } else if (movieTitle.length <= 2) {
-            setMovieTitle('Must have at least 2 characters');
+            setMovieTitleErr('Must have at least 2 characters');
             return;
         }
 
         if (!duration) {
-            setDuration('Movie Duration is required.');
+            setDurationErr('Movie Duration is required.');
             return;
         } else if (duration < 60) {
-            setDuration('Duration must be greater than 60 minutes');
+            setDurationErr('Duration must be greater than 60 minutes');
             return;
         }
 
         if (!releaseYear) {
-            setReleasedYear('Release Year is required.');
+            setReleasedYearErr('Release Year is required.');
             return;
         } else if (isNaN(releaseYear)) {
-            setReleasedYear('Release Year must be a valid number.')
+            setReleasedYearErr('Release Year must be a valid number.')
             return
         }
 
         if (!rating) {
-            setRating('Rating is required.');
-            return;
-        } else if (isNaN(rating)) {
-            setRating('Rating must be a valid number.')
-            return
-        } else if (rating < 1 || rating > 10) {
-            setRating('Rating must be between 1 and 10.');
+            setRatingErr('Rating is required.');
             return;
         }
 
         if (!summary) {
-            setSummary('Summary is required.');
+            setSummaryErr('Summary is required.');
             return;
         } else if (summary > 10) {
-            setSummary('Summary must be 10 characters')
+            setSummaryErr('Summary must be 10 characters')
             return
         }
 
         if (selectedOptions.length < 2) {
-            setGenres('Genres is required.')
+            setGenresErr('Genres is required.')
             return
         } else if (selectedOptions.length < 2 || selectedOptions.length > 3) {
-            setGenres('Max selected genres 3')
+            setGenresErr('Max selected genres 3')
             return
         }
 
@@ -107,7 +103,7 @@ const UpdateMovie = () => {
             summary,
             genres: selectedOptions,
         };
-
+        console.log(updateMovie);
         // Post the movie data
         fetch(`https://film-fusion-0.vercel.app/movies/${_id}`, {
             method: 'PATCH',
@@ -127,7 +123,16 @@ const UpdateMovie = () => {
                         timer: 1500
                     });
                     setUpdateMovie(updateMovie)
+                    navigate('/all-movies')
                 }
+            }).catch(() => {
+                Swal.fire({
+                    position: "center",
+                    icon: "error",
+                    title: "Failed Update movie",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
             })
     };
 
@@ -151,11 +156,11 @@ const UpdateMovie = () => {
                             />
 
                             {
-                                movieProser && (
+                                movieProserErr && (
                                     <p className="text-[0.9rem] mt-1">
                                         <span className="text-red-500 flex items-center gap-[5px]">
                                             <MdErrorOutline className="text-[1.1rem]" />
-                                            {movieProser}
+                                            {movieProserErr}
                                         </span>
                                     </p>
                                 )
@@ -170,11 +175,11 @@ const UpdateMovie = () => {
                                 className="py-3 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
                             />
                             {
-                                movieTitleError && (
+                                movieTitleErr && (
                                     <p className="text-[0.9rem] mt-1">
                                         <span className="text-red-500 flex items-center gap-[5px]">
                                             <MdErrorOutline className="text-[1.1rem]" />
-                                            {movieTitleError}
+                                            {movieTitleErr}
                                         </span>
                                     </p>
                                 )
@@ -192,11 +197,11 @@ const UpdateMovie = () => {
                                 className="py-3 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
                             />
                             {
-                                durationError && (
+                                durationErr && (
                                     <p className="text-[0.9rem] mt-1">
                                         <span className="text-red-500 flex items-center gap-[5px]">
                                             <MdErrorOutline className="text-[1.1rem]" />
-                                            {durationError}
+                                            {durationErr}
                                         </span>
                                     </p>
                                 )
@@ -218,11 +223,11 @@ const UpdateMovie = () => {
                                 <option value="2017">2017</option>
                             </select>
                             {
-                                releasedYear && (
+                                releasedYearErr && (
                                     <p className="text-[0.9rem] mt-1">
                                         <span className="text-red-500 flex items-center gap-[5px]">
                                             <MdErrorOutline className="text-[1.1rem]" />
-                                            {releasedYear}
+                                            {releasedYearErr}
                                         </span>
                                     </p>
                                 )
@@ -231,34 +236,57 @@ const UpdateMovie = () => {
                     </div>
 
                     <div className="flex items-center justify-between gap-4 w-full mt-5 sm:flex-row flex-col">
-                        <div className="w-full relative ">
-                            <input
-                                type="text"
-                                name="Rating"
-                                defaultValue={rating}
-                                placeholder="Rating (1-10)"
-                                className="py-3 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
-                            />
-                            {ratingError && (
+                        <div className="w-full">
+                            <div className="rating py-1 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full">
+                                <Rating
+                                    fillColorArray={[
+                                        '#f18845',
+                                        '#f19745',
+                                        '#f1b345',
+                                        '#f1c245',
+                                        '#f1d045',
+                                        '#f1de45'
+                                    ]}
+                                    iconsCount={5}
+                                    initialValue={ratingNum}
+                                    onClick={(rate) => setRatingNum(rate / 1)}
+                                    tooltipArray={[
+                                        'Terrible',
+                                        'Terrible+',
+                                        'Bad',
+                                        'Bad+',
+                                        'Average',
+                                        'Average+',
+                                        'Great',
+                                        'Great+',
+                                        'Awesome',
+                                        'Awesome+'
+                                    ]}
+                                    transition
+                                />
+                            </div>
+
+                            {ratingErr && (
                                 <p className="text-[0.9rem] mt-1">
                                     <span className="text-red-500 flex items-center gap-[5px]">
                                         <MdErrorOutline className="text-[1.1rem]" />
-                                        {ratingError}
+                                        {ratingErr}
                                     </span>
                                 </p>
                             )}
                         </div>
+
                         <div className="w-full relative">
                             <SelectGenre
                                 selectedOptions={selectedOptions}
                                 setSelectedOptions={setSelectedOptions}
                                 genres={genres} />
 
-                            {genresError && (
+                            {genresErr && (
                                 <p className="text-[0.9rem] mt-1">
                                     <span className="text-red-500 flex items-center gap-[5px]">
                                         <MdErrorOutline className="text-[1.1rem]" />
-                                        {genresError}
+                                        {genresErr}
                                     </span>
                                 </p>
                             )}

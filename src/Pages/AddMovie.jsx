@@ -3,6 +3,7 @@ import { MdErrorOutline } from "react-icons/md";
 import Swal from "sweetalert2";
 import SelectGenre from "../Components/AddMovie/SelectGenre";
 import { Rating } from "react-simple-star-rating";
+import { useNavigate } from "react-router-dom";
 
 const AddMovie = () => {
     const [movieProserErr, setMoviePosterErr] = useState('')
@@ -14,8 +15,7 @@ const AddMovie = () => {
     const [genresErr, setGenresErr] = useState('')
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [rating, setRating] = useState(0);
-
-    console.log(rating);
+    const navigate = useNavigate()
 
     const movieUrl = new RegExp('^https?:\\/\\/.+\\.(png|jpg|jpeg|bmp|gif|webp)$', 'i');
 
@@ -118,6 +118,7 @@ const AddMovie = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
+                    navigate('/all-movies')
                 }
             })
             .catch(() => {
@@ -231,7 +232,7 @@ const AddMovie = () => {
 
                     <div className="flex items-center justify-between gap-4 w-full mt-5 sm:flex-row flex-col">
                         <div className="w-full">
-                            <div className="">
+                            <div className="rating py-1 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full">
                                 <Rating
                                     fillColorArray={[
                                         '#f18845',

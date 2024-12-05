@@ -1,7 +1,11 @@
 import PropTypes from "prop-types";
 
 const Upcoming = ({ movie }) => {
-    const { moviePoster, movieName, releaseDate, description } = movie
+    const { _id, moviePoster, movieName, releaseDate, description } = movie
+
+    const handelUpcomingDelete = (id) => {
+        console.log(id);
+    }
     return (
         <div
             className="w-full sm:w-[80%] lg:w-full shadow-md h-[470px] hover:scale-[1.05] transition-all duration-300 overflow-hidden rounded-md relative cursor-pointer group bg-gray-700">
@@ -17,6 +21,7 @@ const Upcoming = ({ movie }) => {
 
                 <div>
                     <button
+                        onClick={() => handelUpcomingDelete(_id)}
                         className="border-2 border-solid border-color-accent px-4 py-2 rounded-full mt-3 font-bold hover:bg-color-accent text-color-text transition-all duration-300 ease-out">Delete Upcoming</button>
                 </div>
             </div>

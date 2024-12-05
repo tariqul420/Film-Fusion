@@ -90,7 +90,7 @@ const MovieCart = ({ movie, setFavorite, favorite }) => {
                             </span>
                         );
                     })}
-                    <span className="ml-2 text-lg font-bold">{rating} / 10</span>
+                    <span className="ml-2 text-lg font-bold">{rating} / 5</span>
                 </div>
 
                 <div>
