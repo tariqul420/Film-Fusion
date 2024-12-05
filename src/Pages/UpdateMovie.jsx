@@ -109,7 +109,7 @@ const UpdateMovie = () => {
         };
 
         // Post the movie data
-        fetch(`http://localhost:5000/movies/${_id}`, {
+        fetch(`https://film-fusion-0.vercel.app/movies/${_id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
@@ -118,7 +118,6 @@ const UpdateMovie = () => {
         })
             .then((res) => res.json())
             .then((result) => {
-                console.log(result);
                 if (result.modifiedCount) {
                     Swal.fire({
                         position: "center",
@@ -289,7 +288,7 @@ const UpdateMovie = () => {
                             type="submit"
                             className="w-full py-3 px-4 bg-[#3B82F6] text-white border-none font-bold outline-none rounded-lg mt-3"
                         >
-                            Add Movie
+                            Update Movie
                         </button>
                     </div>
                 </form>
