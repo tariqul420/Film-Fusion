@@ -8,7 +8,7 @@ import PopularCelebs from "../Components/Home/PopularCelebs";
 const Home = () => {
     const { allMovieData, upcomingData, userReviewsData } = useLoaderData()
     const [upcoming, setUpcoming] = useState(upcomingData)
-    
+
     return (
         <section>
             <Banner />
@@ -27,7 +27,7 @@ const Home = () => {
                             <p className="text-[0.9rem] text-gray-300">Whoops ... this information is not available for a moment</p>
                         </div>
                     ) : (
-                        <div className="grid grid-cols-3 gap-8 mt-20">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-20">
                             {
                                 allMovieData.map(movie => <MovieCart key={movie._id} movie={movie} />)
                             }
@@ -47,7 +47,7 @@ const Home = () => {
                     <div className="w-10/12 mx-auto mb-20">
                         <h2 className="text-6xl font-bold text-center">Upcoming Movies</h2>
 
-                        <div className="grid grid-cols-3 gap-8 mt-20">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-20">
                             {
                                 upcoming.map(movie => <Upcoming key={movie._id} movie={movie} upcoming={upcoming} setUpcoming={setUpcoming} />)
                             }
@@ -57,9 +57,9 @@ const Home = () => {
             }
 
 
-            <div className="w-10/12 mx-auto mb-20">
+            <div className="w-11/12 lg:w-10/12 mx-auto mb-20">
                 <h2 className="text-6xl font-bold text-center">User Reviews and Ratings</h2>
-                <div className="grid grid-cols-3 gap-8 mt-12">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
                     {
                         userReviewsData.map(celebs => <PopularCelebs key={celebs.id} celebs={celebs} />)
                     }

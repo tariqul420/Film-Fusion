@@ -5,7 +5,7 @@ import { IoSend } from "react-icons/io5";
 const Footer = () => {
     return (
         <div className="bg-gray-700 pt-12 text-white w-full">
-            <div className="w-11/12 mx-auto grid grid-cols-5 gap-10 mb-8">
+            <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-10 mb-8">
                 <div className="space-y-4">
                     <h2 className="font-extrabold text-2xl">Film Fusion</h2>
                     <p className="font-medium text-xl">Subscribe</p>

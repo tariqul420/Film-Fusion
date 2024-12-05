@@ -46,7 +46,7 @@ const MovieCart = ({ movie, setFavorite, favorite }) => {
 
     return (
         <div
-            className="w-full sm:w-[80%] lg:w-full shadow-md h-[470px] hover:scale-[1.05] transition-all duration-300 overflow-hidden rounded-md relative cursor-pointer group bg-gray-700">
+            className="w-full shadow-md h-[470px] hover:scale-[1.05] transition-all duration-300 overflow-hidden rounded-md relative cursor-pointer group bg-gray-700">
 
             {/*  icons  */}
             <div
@@ -112,8 +112,8 @@ const MovieCart = ({ movie, setFavorite, favorite }) => {
 
 MovieCart.propTypes = {
     movie: PropTypes.object.isRequired,
-    favorite: PropTypes.array.isRequired,
-    setFavorite: PropTypes.func.isRequired
+    favorite: PropTypes.array,
+    setFavorite: PropTypes.func
 }
 
 export default MovieCart;
