@@ -23,7 +23,15 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home />,
-                loader: () => fetch('https://film-fusion-0.vercel.app/topMovies')
+                loader: async () => {
+                    const allMoviesJson = await fetch('https://film-fusion-0.vercel.app/topMovies')
+                    const allMovieData = await allMoviesJson.json()
+
+                    const upcomingJson = await fetch('https://film-fusion-0.vercel.app/upcomingMovies')
+                    const upcomingData = await upcomingJson.json()
+
+                    return { allMovieData, upcomingData }
+                }
             },
             {
                 path: '/all-movies',

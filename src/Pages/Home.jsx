@@ -4,7 +4,7 @@ import MovieCart from "../Components/Others/MovieCart";
 import Upcoming from "../Components/Home/Upcoming";
 
 const Home = () => {
-    const moviesData = useLoaderData()
+    const { allMovieData, upcomingData } = useLoaderData()
 
     return (
         <div>
@@ -15,7 +15,7 @@ const Home = () => {
 
                 <div className="grid grid-cols-3 gap-8 mt-20">
                     {
-                        moviesData.map(movie => <MovieCart key={movie._id} movie={movie} />)
+                        allMovieData.map(movie => <MovieCart key={movie._id} movie={movie} />)
                     }
                 </div>
 
@@ -26,7 +26,15 @@ const Home = () => {
                 </Link>
             </div>
 
-            <Upcoming />
+            <div className="w-10/12 mx-auto mb-20">
+                <h2 className="text-6xl font-bold text-center">Upcoming Movies</h2>
+
+                <div className="grid grid-cols-3 gap-8 mt-20">
+                    {
+                        upcomingData.map(movie => <Upcoming key={movie._id} movie={movie} />)
+                    }
+                </div>
+            </div>
         </div>
     );
 };

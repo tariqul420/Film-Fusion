@@ -133,7 +133,7 @@ const Login = () => {
 
                             <button onClick={() => { socialAuth(googleProvider) }} className="flex items-center justify-center py-2 px-4 gap-4 border border-gray-300 rounded-lg w-full text-[1rem] font-medium">
                                 <FcGoogle className="text-[2rem]" />
-                                Sign Up with Google
+                                Sign In with Google
                             </button>
                         </div>
                     </section>
