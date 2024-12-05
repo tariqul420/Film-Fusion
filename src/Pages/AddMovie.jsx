@@ -12,6 +12,7 @@ const AddMovie = () => {
     const [summary, setSummary] = useState('')
     const [genres, setGenres] = useState('')
     const [selectedOptions, setSelectedOptions] = useState([]);
+    console.log(selectedOptions);
 
     const movieUrl = new RegExp('^https?:\\/\\/.+\\.(png|jpg|jpeg|bmp|gif|webp)$', 'i');
 
@@ -260,7 +261,7 @@ const AddMovie = () => {
                         <textarea
                             name="Summary"
                             placeholder="Please enter movie Summary / details"
-                            className="py-3 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
+                            className="py-3 min-h-[200px] bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
                         />
                         {summary && (
                             <p className="text-[0.9rem] mt-1">

@@ -101,7 +101,7 @@ const MovieDetails = () => {
                                 genres.map((genres, i) => <p
                                     className="bg-gray-500 text-color-text/50 px-2 py-0 rounded-[6px] font-medium"
                                     key={i}>
-                                    {genres}
+                                    {genres.name}
                                 </p>)
                             }
                         </div>

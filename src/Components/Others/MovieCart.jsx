@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 
 const MovieCart = ({ movie, setFavorite, favorite }) => {
     const { _id, moviePoster, movieTitle, genres, duration, releaseYear, rating } = movie
+    console.log(movie);
 
     const navigate = useNavigate()
     const { pathname } = useLocation()
@@ -13,7 +14,6 @@ const MovieCart = ({ movie, setFavorite, favorite }) => {
     const totalStars = 5
 
     const handelFavoriteDelete = (id) => {
-
         Swal.fire({
             title: "Are you sure?",
             text: "You won't be able to revert this!",
@@ -71,7 +71,7 @@ const MovieCart = ({ movie, setFavorite, favorite }) => {
                         genres.map((genres, i) => <p
                             className="bg-gray-500 text-color-text/50 px-2 py-0 rounded-[6px] font-medium"
                             key={i}>
-                            {genres}
+                            {genres.name}
                         </p>)
                     }
                 </div>
