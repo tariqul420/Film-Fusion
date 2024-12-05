@@ -2,18 +2,20 @@ import { useState } from "react";
 import { MdErrorOutline } from "react-icons/md";
 import Swal from "sweetalert2";
 import SelectGenre from "../Components/AddMovie/SelectGenre";
+import { Rating } from "react-simple-star-rating";
 
 const AddMovie = () => {
-    const [movieProser, setMoviePoster] = useState('')
-    const [movieTitle, setMovieTitle] = useState('')
-    const [duration, setDuration] = useState('')
-    const [releasedYear, setReleasedYear] = useState('')
-    const [rating, setRating] = useState('')
-    const [summary, setSummary] = useState('')
-    const [genres, setGenres] = useState('')
+    const [movieProserErr, setMoviePosterErr] = useState('')
+    const [movieTitleErr, setMovieTitleErr] = useState('')
+    const [durationErr, setDurationErr] = useState('')
+    const [releasedYearErr, setReleasedYearErr] = useState('')
+    const [ratingErr, setRatingErr] = useState('')
+    const [summaryErr, setSummaryErr] = useState('')
+    const [genresErr, setGenresErr] = useState('')
     const [selectedOptions, setSelectedOptions] = useState([]);
-    
-    console.log(selectedOptions);
+    const [rating, setRating] = useState(0);
+
+    console.log(rating);
 
     const movieUrl = new RegExp('^https?:\\/\\/.+\\.(png|jpg|jpeg|bmp|gif|webp)$', 'i');
 
@@ -25,73 +27,66 @@ const AddMovie = () => {
         const movieTitle = form.MovieTitle.value;
         const duration = Number(form.Duration.value);
         const releaseYear = Number(form.ReleaseYear.value);
-        const rating = Number(form.Rating.value);
         const summary = form.Summary.value;
 
-        setMoviePoster('');
-        setMovieTitle('');
-        setDuration('');
-        setReleasedYear('');
-        setRating('');
-        setSummary('');
-        setGenres('');
+        setMoviePosterErr('');
+        setMovieTitleErr('');
+        setDurationErr('');
+        setReleasedYearErr('');
+        setRatingErr('');
+        setSummaryErr('');
+        setGenresErr('');
 
         if (!moviePoster.trim()) {
-            setMoviePoster("Movie Poster is required");
+            setMoviePosterErr("Movie Poster is required");
             return false;
         } else if (!movieUrl.test(moviePoster)) {
-            setMoviePoster("Invalid Movie Poster URL");
+            setMoviePosterErr("Invalid Movie Poster URL");
             return false;
         }
 
         if (!movieTitle) {
-            setMovieTitle('Movie Title is required.');
+            setMovieTitleErr('Movie Title is required.');
             return;
         } else if (movieTitle.length <= 2) {
-            setMovieTitle('Must have at least 2 characters');
+            setMovieTitleErr('Must have at least 2 characters');
             return;
         }
 
         if (!duration) {
-            setDuration('Movie Duration is required.');
+            setDurationErr('Movie Duration is required.');
             return;
         } else if (duration < 60) {
-            setDuration('Duration must be greater than 60 minutes');
+            setDurationErr('Duration must be greater than 60 minutes');
             return;
         }
 
         if (!releaseYear) {
-            setReleasedYear('Release Year is required.');
+            setReleasedYearErr('Release Year is required.');
             return;
         } else if (isNaN(releaseYear)) {
-            setReleasedYear('Release Year must be a valid number.')
+            setReleasedYearErr('Release Year must be a valid number.')
             return
         }
 
         if (!rating) {
-            setRating('Rating is required.');
-            return;
-        } else if (isNaN(rating)) {
-            setRating('Rating must be a valid number.')
-            return
-        } else if (rating < 1 || rating > 10) {
-            setRating('Rating must be between 1 and 10.');
+            setRatingErr('Rating is required.');
             return;
         }
 
         if (!summary) {
-            setSummary('Summary is required.');
+            setSummaryErr('Summary is required.');
             return;
         } else if (summary > 10) {
-            setSummary('Summary must be 10 characters')
+            setSummaryErr('Summary must be 10 characters')
             return
         }
 
         if (selectedOptions.length < 2) {
-            setGenres('Genres is required.')
+            setGenresErr('Genres is required.')
             return
         } else if (selectedOptions.length < 2 || selectedOptions.length > 3) {
-            setGenres('Max selected genres 3')
+            setGenresErr('Max selected genres 3')
             return
         }
 
@@ -149,11 +144,11 @@ const AddMovie = () => {
                             />
 
                             {
-                                movieProser && (
+                                movieProserErr && (
                                     <p className="text-[0.9rem] mt-1">
                                         <span className="text-red-500 flex items-center gap-[5px]">
                                             <MdErrorOutline className="text-[1.1rem]" />
-                                            {movieProser}
+                                            {movieProserErr}
                                         </span>
                                     </p>
                                 )
@@ -167,11 +162,11 @@ const AddMovie = () => {
                                 className="py-3 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
                             />
                             {
-                                movieTitle && (
+                                movieTitleErr && (
                                     <p className="text-[0.9rem] mt-1">
                                         <span className="text-red-500 flex items-center gap-[5px]">
                                             <MdErrorOutline className="text-[1.1rem]" />
-                                            {movieTitle}
+                                            {movieTitleErr}
                                         </span>
                                     </p>
                                 )
@@ -188,11 +183,11 @@ const AddMovie = () => {
                                 className="py-3 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
                             />
                             {
-                                duration && (
+                                durationErr && (
                                     <p className="text-[0.9rem] mt-1">
                                         <span className="text-red-500 flex items-center gap-[5px]">
                                             <MdErrorOutline className="text-[1.1rem]" />
-                                            {duration}
+                                            {durationErr}
                                         </span>
                                     </p>
                                 )
@@ -213,11 +208,11 @@ const AddMovie = () => {
                                 <option value="2017">2017</option>
                             </select>
                             {
-                                releasedYear && (
+                                releasedYearErr && (
                                     <p className="text-[0.9rem] mt-1">
                                         <span className="text-red-500 flex items-center gap-[5px]">
                                             <MdErrorOutline className="text-[1.1rem]" />
-                                            {releasedYear}
+                                            {releasedYearErr}
                                         </span>
                                     </p>
                                 )
@@ -226,32 +221,55 @@ const AddMovie = () => {
                     </div>
 
                     <div className="flex items-center justify-between gap-4 w-full mt-5 sm:flex-row flex-col">
-                        <div className="w-full relative ">
-                            <input
-                                type="text"
-                                name="Rating"
-                                placeholder="Rating (1-10)"
-                                className="py-3 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
-                            />
-                            {rating && (
+                        <div className="w-full">
+                            <div className="">
+                                <Rating
+                                    fillColorArray={[
+                                        '#f18845',
+                                        '#f19745',
+                                        '#f1b345',
+                                        '#f1c245',
+                                        '#f1d045',
+                                        '#f1de45'
+                                    ]}
+                                    iconsCount={5}
+                                    onClick={(rate) => setRating(rate / 1)}
+                                    tooltipArray={[
+                                        'Terrible',
+                                        'Terrible+',
+                                        'Bad',
+                                        'Bad+',
+                                        'Average',
+                                        'Average+',
+                                        'Great',
+                                        'Great+',
+                                        'Awesome',
+                                        'Awesome+'
+                                    ]}
+                                    transition
+                                />
+                            </div>
+
+                            {ratingErr && (
                                 <p className="text-[0.9rem] mt-1">
                                     <span className="text-red-500 flex items-center gap-[5px]">
                                         <MdErrorOutline className="text-[1.1rem]" />
-                                        {rating}
+                                        {ratingErr}
                                     </span>
                                 </p>
                             )}
                         </div>
+
                         <div className="w-full relative">
                             <SelectGenre
                                 selectedOptions={selectedOptions}
                                 setSelectedOptions={setSelectedOptions} />
 
-                            {genres && (
+                            {genresErr && (
                                 <p className="text-[0.9rem] mt-1">
                                     <span className="text-red-500 flex items-center gap-[5px]">
                                         <MdErrorOutline className="text-[1.1rem]" />
-                                        {genres}
+                                        {genresErr}
                                     </span>
                                 </p>
                             )}
@@ -264,11 +282,11 @@ const AddMovie = () => {
                             placeholder="Please enter movie Summary / details"
                             className="py-3 min-h-[200px] bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
                         />
-                        {summary && (
+                        {summaryErr && (
                             <p className="text-[0.9rem] mt-1">
                                 <span className="text-red-500 flex items-center gap-[5px]">
                                     <MdErrorOutline className="text-[1.1rem]" />
-                                    {summary}
+                                    {summaryErr}
                                 </span>
                             </p>
                         )}
