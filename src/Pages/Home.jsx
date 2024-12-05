@@ -1,6 +1,7 @@
 import { Link, useLoaderData } from "react-router-dom";
 import Banner from "../Components/Home/Banner";
 import MovieCart from "../Components/Others/MovieCart";
+import Upcoming from "../Components/Home/Upcoming";
 
 const Home = () => {
     const moviesData = useLoaderData()
@@ -24,6 +25,8 @@ const Home = () => {
                     </button>
                 </Link>
             </div>
+
+            <Upcoming />
         </div>
     );
 };
