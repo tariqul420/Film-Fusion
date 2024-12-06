@@ -15,7 +15,7 @@ const Footer = () => {
                             <input
                                 type='email'
                                 placeholder='Enter Your Email'
-                                className='border bg-color-primary border-solid outline-none placeholder:text-white/80 border-white py-3 pl-4 pr-[50px]  w-full rounded-md' />
+                                className='border bg-color-primary-d border-solid outline-none placeholder:text-white/80 border-white py-3 pl-4 pr-[50px]  w-full rounded-md' />
 
                             <span className='absolute top-0 right-0 h-full px-5 flex items-center justify-center rounded-r-md cursor-pointer'>
                                 <IoSend />
@@ -48,7 +48,7 @@ const Footer = () => {
                 </div>
                 <div className="space-y-4">
                     <h2 className="font-semibold text-2xl">Download App</h2>
-                    <p className="text-color-text/50">Save $3 app new user only</p>
+                    <p className="text-color-text-d/50">Save $3 app new user only</p>
                     <div className="flex gap-4">
                         <div>
                             <img className="w-full h-full" src="https://i.postimg.cc/7h3hyqZC/download.png" alt="" />

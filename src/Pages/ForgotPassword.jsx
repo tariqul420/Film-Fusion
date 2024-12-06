@@ -32,7 +32,7 @@ const ForgotPassword = () => {
 
     return (
         <section className="w-full h-auto flex items-center justify-center sm:py-12 p-6">
-            <div className="w-full sm:w-[40%] bg-gray-700 rounded-lg sm:py-6 sm:px-8 p-4 flex flex-col gap-5 shadow-md">
+            <div className="w-full sm:w-[40%] dark:bg-gray-700 bg-gray-400 rounded-lg sm:py-6 sm:px-8 p-4 flex flex-col gap-5 shadow-md">
 
                 <form onSubmit={handelSendEmail} className="w-full flex flex-col gap-5">
                     <h3 className="text-[1.8rem] font-[700] text-center">
@@ -46,12 +46,12 @@ const ForgotPassword = () => {
                         name="Email"
                         value={email ? email : ''}
                         placeholder="Email"
-                        className="py-3 px-4 border focus:outline-color-primary2 border-gray-300 bg-color-primary rounded-lg w-full"
+                        className="py-3 px-4 border focus:outline-color-primary2 border-gray-300 dark:bg-color-primary-d bg-gray-200 rounded-lg w-full"
                     />
 
                     <button
                         type="submit"
-                        className="w-full py-3 px-4 border border-solid border-color-primary2 text-white font-bold transition-all duration-300 bg-color-primary2 outline-none rounded-lg mt-3">
+                        className="w-full py-3 px-4 border border-solid border-color-primary2 text-white font-bold transition-all duration-300 bg-color-accent outline-none rounded-lg mt-3">
                         Reset Password
                     </button>
                 </form>

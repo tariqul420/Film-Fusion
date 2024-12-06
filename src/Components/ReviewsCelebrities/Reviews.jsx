@@ -20,7 +20,7 @@ const Reviews = ({ reviews }) => {
 
     return (
         <div
-            className="shadow-lg border border-solid border-gray-300 p-6 rounded-xl bg-gray-700"
+            className="shadow-lg border border-solid border-gray-300 p-6 rounded-xl dark:bg-gray-700 bg-gray-300"
         >
             <div className="w-[100px] h-[100px] mx-auto">
                 <img
@@ -32,7 +32,7 @@ const Reviews = ({ reviews }) => {
             <p className="text-center mt-4 text-lg text-color-finely/80">
                 &quot;{review}&quot;
             </p>
-            <p className="text-center font-semibold mt-2 text-gray-200">
+            <p className="text-center font-semibold mt-2">
                 {movieTitle}
             </p>
             <p className="text-center text-color-finely/60">{location}</p>

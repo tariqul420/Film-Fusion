@@ -88,7 +88,7 @@ const MovieDetails = () => {
                 <img className="w-full object-cover h-[230px]" src="https://i.ibb.co.com/VCm8rS8/img.jpg" alt="" />
             </div>
 
-            <div className="w-9/12 max-sm:w-11/12 mx-auto bg-gray-700 p-8 rounded-xl my-12 flex flex-col gap-4 lg:flex-row">
+            <div className="w-9/12 max-sm:w-11/12 mx-auto dark:bg-gray-700 bg-gray-300 p-8 rounded-xl my-12 flex flex-col gap-4 lg:flex-row">
                 <div className="lg:w-[30%]">
                     <img className="rounded-lg h-full w-full" src={moviePoster} alt={movieTitle} />
                 </div>
@@ -101,14 +101,14 @@ const MovieDetails = () => {
                         <div className="flex gap-2 flex-wrap items-start my-3 max-sm:hidden">
                             {
                                 genres.map((genres, i) => <p
-                                    className="bg-gray-500 text-color-text/50 px-2 py-0 rounded-[6px] font-medium"
+                                    className="dark:bg-gray-500 bg-gray-400 dark:text-gray-200 px-2 py-0 rounded-[6px] font-medium"
                                     key={i}>
                                     {genres.name}
                                 </p>)
                             }
                         </div>
                         <div className="flex items-center gap-[5px]">
-                            <MdOutlineTimer className="text-color-text text-[1.1rem]" />
+                            <MdOutlineTimer className="text-[1.1rem]" />
                             <p className="text-[1rem] font-semibold">{duration} min</p>
                         </div>
                     </div>
@@ -139,18 +139,18 @@ const MovieDetails = () => {
                     <div className="flex max-sm:flex-col gap-4 mt-12">
                         <button
                             onClick={handelDeleteMovie}
-                            className="border-2 px-5 py-2 rounded-full border-solid border-color-accent font-semibold text-lg bg-color-accent">
+                            className="border-2 px-5 py-2 rounded-full border-solid border-color-accent font-semibold text-lg bg-color-accent text-white">
                             Delete Movie
                         </button>
 
                         <button
                             onClick={handelAddFavorite}
-                            className="border-2 px-5 py-2 rounded-full border-solid border-color-accent font-semibold text-lg bg-color-accent shadow-md hover:text-color-text">
+                            className="border-2 px-5 py-2 rounded-full border-solid border-color-accent font-semibold text-lg bg-color-accent shadow-md text-white">
                             Add to Favorite
                         </button>
                         <button
                             onClick={() => navigate(`/update-movie/${_id}`)}
-                            className="border-2 px-5 py-2 rounded-full border-solid border-color-accent font-semibold text-lg bg-color-accent shadow-md hover:text-color-text">
+                            className="border-2 px-5 py-2 rounded-full border-solid border-color-accent font-semibold text-lg bg-color-accent shadow-md text-white">
                             Update Movie
                         </button>
                     </div>

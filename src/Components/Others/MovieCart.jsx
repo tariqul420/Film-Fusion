@@ -46,7 +46,7 @@ const MovieCart = ({ movie, setFavorite, favorite }) => {
 
     return (
         <div
-            className="w-full shadow-md h-[470px] hover:scale-[1.05] transition-all duration-300 overflow-hidden rounded-md relative cursor-pointer group bg-gray-700">
+            className="w-full shadow-md h-[470px] hover:scale-[1.05] transition-all duration-300 overflow-hidden rounded-md relative cursor-pointer group dark:bg-gray-700 bg-gray-300">
 
             {/*  icons  */}
             <div
@@ -68,7 +68,7 @@ const MovieCart = ({ movie, setFavorite, favorite }) => {
                 <div className="flex gap-2 flex-wrap items-start my-1">
                     {
                         genres.map((genres, i) => <p
-                            className="bg-gray-500 text-color-text/50 px-2 py-0 rounded-[6px] font-medium"
+                            className="dark:bg-gray-500 bg-gray-400 dark:text-gray-200 px-2 py-0 rounded-[6px] font-medium"
                             key={i}>
                             {genres.name}
                         </p>)
@@ -101,7 +101,7 @@ const MovieCart = ({ movie, setFavorite, favorite }) => {
                                 className="border-2 border-solid border-color-accent px-4 py-2 rounded-full mt-3 font-bold hover:bg-color-accent text-color-text transition-all duration-300 ease-out">Delete Favorite</button>
                         ) : (<button
                             onClick={() => navigate(`/movie-details/${_id}`)}
-                            className="border-2 border-solid border-color-accent px-4 py-2 rounded-full mt-3 font-bold hover:bg-color-accent text-color-text transition-all duration-300 ease-out">See Details</button>
+                            className="border-2 border-solid border-color-accent px-4 py-2 rounded-full mt-3 font-bold hover:bg-color-accent dark:text-color-text-d text-color-text transition-all duration-300 ease-out">See Details</button>
                         )
                     }
                 </div>

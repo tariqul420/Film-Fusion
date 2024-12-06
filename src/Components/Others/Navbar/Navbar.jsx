@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import Profile from "./Profile";
 import { CiMenuFries } from "react-icons/ci";
+import ThemeToggle from "../ThemeToggle";
 
 const Navbar = () => {
     const { user } = useContext(AuthContext)
@@ -52,6 +53,7 @@ const Navbar = () => {
             </div>
 
             <div className="items-center gap-[15px] flex">
+                <ThemeToggle />
                 {
                     user ? <Profile /> : <AuthBtn />
                 }

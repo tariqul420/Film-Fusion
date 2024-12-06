@@ -8,7 +8,7 @@ const Profile = () => {
     const navigate = useNavigate()
 
     return (
-        <div className="relative w-fit h-full flex items-center justify-center lg:min-w-[260px]"
+        <div className="relative w-fit h-full flex items-center justify-center lg:mr-12"
             onMouseEnter={() => setIsProfileHovered(true)}
             onMouseLeave={() => setIsProfileHovered(false)}
         >
@@ -20,7 +20,7 @@ const Profile = () => {
 
             {/*  tooltip  */}
             <div
-                className={` ${isProfileHovered ? "opacity-100 z-20 translate-y-0" : "opacity-0 z-[-1] translate-y-[20px]"} absolute bottom-[-260px] left-[-50%] md:left-[50%] transform translate-x-[-50%] bg-gray-700 w-[250px] rounded-md p-[15px] shadow-md transition-all duration-300`}>
+                className={` ${isProfileHovered ? "opacity-100 z-20 translate-y-0" : "opacity-0 z-[-1] translate-y-[20px]"} absolute bottom-[-260px] left-[-50%] md:left-[50%] transform translate-x-[-50%] dark:bg-gray-700 bg-gray-400 w-[250px] rounded-md p-[15px] shadow-md transition-all duration-300`}>
 
                 {/*  account details  */}
                 <div className="flex items-center justify-center flex-col">
@@ -49,7 +49,7 @@ const Profile = () => {
 
                 {/*  bottom arrow  */}
                 <div
-                    className="bg-gray-700 w-[15px] h-[15px] rotate-[45deg] absolute top-[-7px] left-[50%] transform translate-x-[-50%]"></div>
+                    className="dark:bg-gray-700 bg-gray-400 w-[15px] h-[15px] rotate-[45deg] absolute top-[-7px] left-[50%] transform translate-x-[-50%]"></div>
             </div>
         </div>
     );

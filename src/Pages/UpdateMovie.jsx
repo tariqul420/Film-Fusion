@@ -146,8 +146,8 @@ const UpdateMovie = () => {
 
 
     return (
-        <section className="w-full h-auto flex items-center justify-center sm:py-12 p-6 bg-[#1F2937]">
-            <div className="w-full sm:w-[900px] sm:max-w-[1000px] bg-gray-700 shadow-md backdrop-blur-3xl rounded-lg sm:py-6 sm:px-8 p-4 flex flex-col gap-5">
+        <section className="w-full h-auto flex items-center justify-center sm:py-12 p-6 dark:bg-[#1F2937]">
+            <div className="w-full sm:w-[900px] sm:max-w-[1000px] dark:bg-gray-700 bg-gray-400 shadow-md backdrop-blur-3xl rounded-lg sm:py-6 sm:px-8 p-4 flex flex-col gap-5">
                 <form className="w-full flex flex-col gap-5" onSubmit={handleUpdateMovie}>
                     <h3 className="text-[1.8rem] font-[700] text-center text-white">
                         Update Movie: {movieTitle}
@@ -160,7 +160,7 @@ const UpdateMovie = () => {
                                 defaultValue={moviePoster}
                                 name="MoviePoster"
                                 placeholder="Movie Poster Url"
-                                className="py-3 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
+                                className="py-3 dark:bg-color-primary-d bg-gray-200 font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
                             />
 
                             {
@@ -180,7 +180,7 @@ const UpdateMovie = () => {
                                 name="MovieTitle"
                                 defaultValue={movieTitle}
                                 placeholder="Movie Title"
-                                className="py-3 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
+                                className="py-3 dark:bg-color-primary-d bg-gray-200 font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
                             />
                             {
                                 movieTitleErr && (
@@ -202,7 +202,7 @@ const UpdateMovie = () => {
                                 name="Duration"
                                 defaultValue={duration}
                                 placeholder="Duration (in minutes)"
-                                className="py-3 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
+                                className="py-3 dark:bg-color-primary-d bg-gray-200 font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
                             />
                             {
                                 durationErr && (
@@ -219,7 +219,7 @@ const UpdateMovie = () => {
                             <select
                                 name="ReleaseYear"
                                 defaultValue={releaseYear}
-                                className="py-3 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full">
+                                className="py-3 dark:bg-color-primary-d bg-gray-200 font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full">
                                 <option value="--Select Year--">--Select Year--</option>
                                 <option value="2024">2024</option>
                                 <option value="2023">2023</option>
@@ -245,7 +245,7 @@ const UpdateMovie = () => {
 
                     <div className="flex items-center justify-between gap-4 w-full mt-5 sm:flex-row flex-col">
                         <div className="w-full">
-                            <div className="rating py-1 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full">
+                            <div className="rating py-1 dark:bg-color-primary-d bg-gray-200 font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full">
                                 <Rating
                                     fillColorArray={[
                                         '#f18845',
@@ -306,7 +306,7 @@ const UpdateMovie = () => {
                             name="Summary"
                             defaultValue={summary}
                             placeholder="Please enter movie Summary / details"
-                            className="py-3 min-h-[200px] bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
+                            className="py-3 min-h-[200px] dark:bg-color-primary-d bg-gray-200 font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
                         />
                         {summaryErr && (
                             <p className="text-[0.9rem] mt-1">

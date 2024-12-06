@@ -162,12 +162,12 @@ const Home = () => {
                 {
                     topMovieData.length === 0 ? (
                         <div
-                            className="boxShadow p-6 sm:px-20 sm:py-14 flex items-center justify-center flex-col gap-[4px] rounded-xl bg-gray-700 mt-12">
+                            className="boxShadow p-6 sm:px-20 sm:py-14 flex items-center justify-center flex-col gap-[4px] rounded-xl dark:bg-gray-700 bg-gray-300 mt-12">
                             <img src="https://i.ibb.co/cgfgxGH/Illustrations.png" alt="empty/image" className="w-full sm:w-[200px]" />
 
                             <h1 className="text-[3rem] mt-6 font-[500]">Result Not Found</h1>
 
-                            <p className="text-[0.9rem] text-gray-300">Whoops ... this information is not available for a moment</p>
+                            <p className="text-[0.9rem] dark:text-gray-300 text-gray-600">Whoops ... this information is not available for a moment</p>
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-20">
@@ -179,7 +179,7 @@ const Home = () => {
                 }
 
                 <Link to='all-movies'>
-                    <button className="border-2 px-5 py-2 rounded-full border-solid border-color-accent font-semibold text-lg bg-color-accent mt-12 block mx-auto">
+                    <button className="border-2 px-5 py-2 rounded-full border-solid border-color-accent font-semibold text-lg text-color-primary bg-color-accent mt-12 block mx-auto">
                         See All Movies
                     </button>
                 </Link>
@@ -191,12 +191,12 @@ const Home = () => {
                 {
                     upcomingData.length == 0 ? (
                         <div
-                            className="boxShadow p-6 sm:px-20 sm:py-14 flex items-center justify-center flex-col gap-[4px] rounded-xl bg-gray-700 mt-12">
+                            className="boxShadow p-6 sm:px-20 sm:py-14 flex items-center justify-center flex-col gap-[4px] rounded-xl dark:bg-gray-700 bg-gray-300 mt-12">
                             <img src="https://i.ibb.co/cgfgxGH/Illustrations.png" alt="empty/image" className="w-full sm:w-[200px]" />
 
                             <h1 className="text-[3rem] mt-6 font-[500]">Result Not Found</h1>
 
-                            <p className="text-[0.9rem] text-gray-300">Whoops ... this information is not available for a moment</p>
+                            <p className="text-[0.9rem] dark:text-gray-300 text-gray-600">Whoops ... this information is not available for a moment</p>
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-20">

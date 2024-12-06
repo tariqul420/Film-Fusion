@@ -35,7 +35,7 @@ const Upcoming = ({ movie, setUpcoming, upcoming }) => {
     }
     return (
         <div
-            className="w-full shadow-md h-[470px] hover:scale-[1.05] transition-all duration-300 overflow-hidden rounded-md relative cursor-pointer group bg-gray-700">
+            className="w-full shadow-md h-[470px] hover:scale-[1.05] transition-all duration-300 overflow-hidden rounded-md relative cursor-pointer group dark:bg-gray-700 bg-gray-300">
             <img
                 src={moviePoster}
                 alt={movieName}
@@ -49,7 +49,7 @@ const Upcoming = ({ movie, setUpcoming, upcoming }) => {
                 <div>
                     <button
                         onClick={() => handelUpcomingDelete(_id)}
-                        className="border-2 border-solid border-color-accent px-4 py-2 rounded-full mt-3 font-bold hover:bg-color-accent text-color-text transition-all duration-300 ease-out">Delete Upcoming</button>
+                        className="border-2 border-solid border-color-accent px-4 py-2 rounded-full mt-3 font-bold hover:bg-color-accent dark:text-color-text-d transition-all duration-300 ease-out">Delete Upcoming</button>
                 </div>
             </div>
         </div>

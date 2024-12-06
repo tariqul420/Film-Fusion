@@ -56,7 +56,7 @@ const ReviewsCelebrities = () => {
                     <Slider {...settings}>
                         {
                             celebritiesData.map((celebrities, index) => <div key={index} className="px-2">
-                                <div className="bg-gray-700 p-4 rounded-xl flex items-center justify-center flex-col">
+                                <div className="dark:bg-gray-700 bg-gray-300 p-4 rounded-xl flex items-center justify-center flex-col">
                                     <img className="w-[200px] h-[200px] rounded-full object-cover" src={celebrities.image} alt="" />
                                     <h2 className="text-center font-semibold text-2xl mt-4">{celebrities.name}</h2>
                                 </div>
@@ -67,7 +67,7 @@ const ReviewsCelebrities = () => {
 
                 <button
                     onClick={handelCelebrities}
-                    className="border-2 px-5 py-2 rounded-full border-solid border-color-accent font-semibold text-lg bg-color-accent mt-12 block mx-auto">
+                    className="border-2 px-5 py-2 rounded-full border-solid text-color-primary  border-color-accent font-semibold text-lg bg-color-accent mt-12 block mx-auto">
                     See All Celebrities
                 </button>
             </div>

@@ -26,13 +26,13 @@ const MyFavorites = () => {
             {
                 favorite.length === 0 && (
                     <div
-                        className="boxShadow p-6 sm:px-20 sm:py-14 flex items-center justify-center flex-col gap-[4px] rounded-xl bg-gray-700 mt-12">
+                        className="boxShadow p-6 sm:px-20 sm:py-14 flex items-center justify-center flex-col gap-[4px] rounded-xl dark:bg-gray-700 bg-gray-300 mt-12">
                         <img src="https://i.ibb.co/6nSHrGp/Favorite-illustration.png" alt="empty/image"
                             className="w-full sm:w-[200px]" />
 
                         <h1 className="text-[3rem] mt-3 font-[500]">No Favorites</h1>
 
-                        <p className="text-[0.9rem] text-gray-300">You can add an item to your favorites by clicking “Add favorites button”</p>
+                        <p className="text-[0.9rem] dark:text-gray-300 text-gray-600">You can add an item to your favorites by clicking “Add favorites button”</p>
                     </div>
                 )
             }

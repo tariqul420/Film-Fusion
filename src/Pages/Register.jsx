@@ -97,8 +97,8 @@ const Register = () => {
 
     return (
         <>
-            <section className="w-full h-auto flex items-center justify-center sm:py-12 p-6 bg-[#1F2937]">
-                <div className="w-full sm:w-[900px] sm:max-w-[1000px] bg-gray-700 shadow-md backdrop-blur-3xl rounded-lg sm:py-6 sm:px-8 p-4 flex flex-col gap-5">
+            <section className="w-full h-auto flex items-center justify-center sm:py-12 p-6 dark:bg-[#1F2937]">
+                <div className="w-full sm:w-[900px] sm:max-w-[1000px] dark:bg-gray-700 bg-gray-400 shadow-md backdrop-blur-3xl rounded-lg sm:py-6 sm:px-8 p-4 flex flex-col gap-5">
                     <form onSubmit={handleRegister} className="w-full flex flex-col gap-5">
                         <h3 className="text-[1.8rem] font-[700] text-center">
                             Register
@@ -109,14 +109,14 @@ const Register = () => {
                                 type="text"
                                 name="fullName"
                                 placeholder="Full  name"
-                                className="py-3 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
+                                className="py-3 dark:bg-color-primary-d bg-gray-200 font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
                             />
                             <input
                                 required
                                 type="text"
                                 name="photoUrl"
                                 placeholder="Photo URL"
-                                className="py-3 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
+                                className="py-3 dark:bg-color-primary-d bg-gray-200 font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
                             />
                         </div>
 
@@ -125,7 +125,7 @@ const Register = () => {
                             type="email"
                             name="email"
                             placeholder="Email"
-                            className="py-3 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
+                            className="py-3 dark:bg-color-primary-d bg-gray-200 font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
                         />
 
                         <div className="w-full flex items-center gap-4 justify-between sm:flex-row flex-col">
@@ -137,7 +137,7 @@ const Register = () => {
                                     name="password"
                                     onChange={handleStrongPasswordChecker}
                                     placeholder="Password"
-                                    className="py-3 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
+                                    className="py-3 dark:bg-color-primary-d bg-gray-200 font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
                                 />
 
                                 {strongPassword !== " " && signal !== "Password is strong!" && (
@@ -170,7 +170,7 @@ const Register = () => {
                                     onChange={handelPasswordCheck}
                                     name="confirmPassword"
                                     placeholder="Confirm password"
-                                    className="py-3 bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
+                                    className="py-3 dark:bg-color-primary-d bg-gray-200 font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
                                 />
 
                                 {confirmPass !== "" && confirmPass !== strongPassword && (
@@ -205,7 +205,7 @@ const Register = () => {
                             </button>
                         </div>
                         <div className="flex items-center justify-center w-full gap-1">
-                            <span className="text-[1rem] text-gray-400 font-[500]">
+                            <span className="text-[1rem] dark:text-gray-400 font-[500]">
                                 Already have an account?{" "}
                             </span>
                             <span>
@@ -224,7 +224,7 @@ const Register = () => {
 
                     <button
                         onClick={() => { socialAuth(googleProvider) }}
-                        className="flex items-center justify-center py-2 px-4 gap-4 border border-gray-300 rounded-lg w-full text-[1rem] font-medium"
+                        className="flex items-center justify-center py-2 px-4 gap-4 border border-gray-300 bg-gray-300 dark:bg-gray-700 rounded-lg w-full text-[1rem] font-medium"
                     >
                         <FcGoogle className="text-[2rem]" />
                         Sign Up with Google
