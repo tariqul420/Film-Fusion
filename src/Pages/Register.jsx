@@ -4,8 +4,8 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import { MdErrorOutline } from "react-icons/md";
 import { GoogleAuthProvider } from "firebase/auth";
-import { toast } from "react-toastify";
 import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 
 const Register = () => {
@@ -79,20 +79,37 @@ const Register = () => {
             .then(() => {
                 updateUserProfile({ displayName: fullName, photoURL: photoUrl })
                     .then(() => {
-                        toast.success("Register Successful.")
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "Register Successful",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        navigate('/')
                     })
                     .catch(() => {
-                        toast.error("Not update Your Profile.")
+                        Swal.fire({
+                            position: "center",
+                            icon: "error",
+                            title: "Not update Your Profile.",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                     })
             })
             .catch((error) => {
                 if (error.code === "auth/email-already-in-use") {
                     navigate("/login")
-                    return toast.error("User already exists!");
+                    return Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "User already exists!",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                 }
             });
-
-        navigate("/")
     };
 
     return (
@@ -223,7 +240,7 @@ const Register = () => {
                     </div>
 
                     <button
-                        onClick={() => { socialAuth(googleProvider) }}
+                        onClick={() => { socialAuth(googleProvider), navigate('/') }}
                         className="flex items-center justify-center py-2 px-4 gap-4 border border-gray-300 bg-gray-300 dark:bg-gray-700 rounded-lg w-full text-[1rem] font-medium"
                     >
                         <FcGoogle className="text-[2rem]" />

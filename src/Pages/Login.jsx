@@ -3,15 +3,16 @@ import { useContext, useEffect, useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import { GoogleAuthProvider } from "firebase/auth";
 import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
     const location = useLocation()
     const navigate = useNavigate()
     const [active, setActive] = useState(false);
-    const { signInUser, socialAuth, setEmail, signOutUser } = useContext(AuthContext)
+    const { signInUser, socialAuth, setEmail } = useContext(AuthContext)
+    console.log(location);
 
     useEffect(() => {
         document.title = 'Login | Film Fusion';
@@ -25,37 +26,56 @@ const Login = () => {
         const password = e.target.password.value;
 
         signInUser(email, password)
-            .then((result) => {
-                if (result.user.emailVerified) {
-                    const lastSignInTime = new Date(result?.user?.metadata?.lastSignInTime).toLocaleString();
-                    const updateUser = { email, lastSignInTime }
-
-                    fetch('https://espresso-emporium-server-theta.vercel.app/users/lastSignInTime', {
-                        method: 'PATCH',
-                        headers: {
-                            'content-type': 'application/json'
-                        },
-                        body: JSON.stringify(updateUser)
-                    })
-                        .then(res => res.json())
-                        .then(() => {
-                            toast.success("Login Successful.")
-                            navigate(location.state ? location.state : '/')
-                        })
-                } else {
-                    signOutUser();
-                    toast.warning("Please verify your account.");
-                }
+            .then(() => {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Login Successful",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate(location.state ? location.state : '/')
             })
             .catch((error) => {
                 if (error.code === "auth/invalid-credential") {
-                    toast.error("Invalid email or password.");
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "Invalid email or password",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
                 }
             });
     };
 
     const handelReset = () => {
         navigate("/login/forgot-password")
+    }
+
+    const handelGoogle = (googleProvider) => {
+        socialAuth(googleProvider)
+            .then(() => {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Login Successful",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate(location.state ? location.state : '/')
+            })
+            .catch((error) => {
+                if (error.code === "auth/invalid-credential") {
+                    Swal.fire({
+                        position: "center",
+                        icon: "error",
+                        title: "Invalid email or password",
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            });
     }
 
     return (
@@ -135,7 +155,7 @@ const Login = () => {
                                 <hr className="w-[45%] bg-gray-400 h-[2px]" />
                             </div>
 
-                            <button onClick={() => { socialAuth(googleProvider) }} className="flex items-center justify-center py-2 px-4 gap-4 border border-gray-300 rounded-lg w-full text-[1rem] font-medium">
+                            <button onClick={() => handelGoogle(googleProvider)} className="flex items-center justify-center py-2 px-4 gap-4 border border-gray-300 rounded-lg w-full text-[1rem] font-medium">
                                 <FcGoogle className="text-[2rem]" />
                                 Sign In with Google
                             </button>

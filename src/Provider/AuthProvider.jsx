@@ -1,9 +1,7 @@
 import { createUserWithEmailAndPassword, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import auth from "../Firebase/Firebase";
-import { toast } from "react-toastify";
 import PropTypes from "prop-types";
-import { Navigate } from "react-router-dom";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext()
@@ -15,15 +13,7 @@ const AuthProvider = ({ children }) => {
 
     const socialAuth = async (provider) => {
         setLoading(true)
-        try {
-            await signInWithPopup(auth, provider);
-            Navigate(location.state ? location.state : '/')
-            toast.success("Login Successful.");
-        } catch (error) {
-            if (error.code === "auth/account-exists-with-different-credential") {
-                toast.error("User already exists!");
-            }
-        }
+        return signInWithPopup(auth, provider);
     }
 
     const createUser = (email, password) => {
