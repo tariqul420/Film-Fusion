@@ -14,6 +14,7 @@ import UpdateProfile from "../Pages/UpdateProfile";
 import UpdateMovie from "../Pages/UpdateMovie";
 import AddUpcoming from "../Pages/AddUpcoming";
 import ForgotPassword from "../Pages/ForgotPassword";
+import ReviewsCelebrities from "../Pages/ReviewsCelebrities";
 
 const router = createBrowserRouter([
     {
@@ -31,10 +32,7 @@ const router = createBrowserRouter([
                     const upcomingJson = await fetch('https://film-fusion-0.vercel.app/upcomingMovies')
                     const upcomingData = await upcomingJson.json()
 
-                    const userReviews = await (fetch('/UserReviews.json'))
-                    const userReviewsData = await userReviews.json()
-
-                    return { allMovieData, upcomingData, userReviewsData }
+                    return { allMovieData, upcomingData }
                 }
             },
             {
@@ -106,6 +104,11 @@ const router = createBrowserRouter([
                     <Private>
                         <AddUpcoming />
                     </Private>
+            },
+            {
+                path: '/reviews-celebrities',
+                element: <ReviewsCelebrities />,
+                loader: () => fetch('/UserReviews.json')
             }
         ]
     }

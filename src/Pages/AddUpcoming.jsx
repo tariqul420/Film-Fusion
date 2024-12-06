@@ -1,12 +1,23 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { MdErrorOutline } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const AddUpcoming = () => {
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate()
+    const [descriptionErr, setDurationErr] = useState('')
 
     const onSubmit = ({ moviePoster, movieName, releaseDate, description }) => {
+
+        setDurationErr('')
+
+        if (description.length > 75) {
+            setDurationErr('Maximum Added 75 Characters Or one Line')
+            return
+        }
+
         fetch("https://film-fusion-0.vercel.app/upcomingMovies", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -66,9 +77,19 @@ const AddUpcoming = () => {
 
                     <textarea
                         placeholder="Please enter movie details"
-                        className="py-3 min-h-[200px] bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
+                        className="py-3 min-h-[150px] bg-color-primary font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
                         {...register("description", { required: true })}
                     />
+                    {
+                        descriptionErr && (
+                            <p className="text-[0.9rem] mt-1">
+                                <span className="text-red-500 flex items-center gap-[5px]">
+                                    <MdErrorOutline className="text-[1.1rem]" />
+                                    {descriptionErr}
+                                </span>
+                            </p>
+                        )
+                    }
 
                     <div className="w-full flex items-center justify-center">
                         <button

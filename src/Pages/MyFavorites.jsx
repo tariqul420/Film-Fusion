@@ -5,7 +5,6 @@ import MovieCart from "../Components/Others/MovieCart";
 const MyFavorites = () => {
     const { user } = useContext(AuthContext)
     const [favorite, setFavorite] = useState([])
-    console.log(favorite.length);
     const email = user?.email
 
     useEffect(() => {

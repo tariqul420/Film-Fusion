@@ -10,7 +10,7 @@ const Navbar = () => {
     const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
     return (
-        <nav className="flex items-center justify-between relative boxShadow rounded-full px-[10px] py-[8px] w-11/12 mx-auto my-6">
+        <nav className="flex items-center justify-between relative boxShadow rounded-full px-[10px] py-[8px] wfu w-11/12 mx-auto my-6">
             <div>
                 <Link to='/'>
                     <h2 className="font-bold text-4xl font-Montserrat">Film Fusion</h2>
@@ -41,6 +41,11 @@ const Navbar = () => {
                     <li className="navBarLink">
                         <NavLink to='/add-upcoming'>
                             Add Upcoming
+                        </NavLink>
+                    </li>
+                    <li className="navBarLink">
+                        <NavLink to='/reviews-celebrities'>
+                            Reviews & Celebrities
                         </NavLink>
                     </li>
                 </ul>
