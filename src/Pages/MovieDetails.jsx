@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { MdOutlineTimer } from "react-icons/md";
 import { useLoaderData, useNavigate } from "react-router-dom";
@@ -11,7 +11,9 @@ const MovieDetails = () => {
     const { user } = useContext(AuthContext)
     const totalStars = 5
 
-
+    useEffect(() => {
+        document.title = 'Movie Details | Film Fusion';
+    }, [])
 
     const { _id, moviePoster, movieTitle, duration, releaseYear, rating, summary, genres } = detailsMovie
 

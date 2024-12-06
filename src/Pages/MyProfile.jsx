@@ -1,15 +1,18 @@
 
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { FaArrowRight } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 
 const MyProfile = () => {
-
     const { user } = useContext(AuthContext)
     const { displayName, email, photoURL } = user
     const navigate = useNavigate()
+
+    useEffect(() => {
+        document.title = 'My Profile | Film Fusion';
+    }, [])
 
     return (
         <div className="w-11/12 lg:w-9/12 mx-auto my-12">

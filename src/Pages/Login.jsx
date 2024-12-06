@@ -1,5 +1,5 @@
 
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
@@ -12,6 +12,10 @@ const Login = () => {
     const navigate = useNavigate()
     const [active, setActive] = useState(false);
     const { signInUser, socialAuth, setEmail, signOutUser } = useContext(AuthContext)
+
+    useEffect(() => {
+        document.title = 'Login | Film Fusion';
+    }, [])
 
     const googleProvider = new GoogleAuthProvider();
 

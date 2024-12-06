@@ -1,6 +1,6 @@
 import { MdErrorOutline } from "react-icons/md";
 import SelectGenre from "../Components/AddMovie/SelectGenre";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { Rating } from "react-simple-star-rating";
@@ -19,9 +19,17 @@ const UpdateMovie = () => {
     const [updateMovie, setUpdateMovie] = useState(movieSingleData)
     const navigate = useNavigate()
 
+    useEffect(() => {
+        document.title = 'Update Movie | Film Fusion';
+    }, [])
+
     const { _id, moviePoster, movieTitle, duration, releaseYear, genres, summary, rating: ratingNum } = updateMovie
 
     const movieUrl = new RegExp('^https?:\\/\\/.+\\.(png|jpg|jpeg|bmp|gif|webp)$', 'i');
+
+    useEffect(() => {
+        setRatingNum(ratingNum)
+    }, [ratingNum])
 
     const handleUpdateMovie = (e) => {
         e.preventDefault();
@@ -103,7 +111,7 @@ const UpdateMovie = () => {
             summary,
             genres: selectedOptions,
         };
-        console.log(updateMovie);
+
         // Post the movie data
         fetch(`https://film-fusion-0.vercel.app/movies/${_id}`, {
             method: 'PATCH',
@@ -123,7 +131,7 @@ const UpdateMovie = () => {
                         timer: 1500
                     });
                     setUpdateMovie(updateMovie)
-                    navigate('/all-movies')
+                    navigate(`/movie-details/${_id}`)
                 }
             }).catch(() => {
                 Swal.fire({

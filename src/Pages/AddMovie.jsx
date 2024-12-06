@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdErrorOutline } from "react-icons/md";
 import Swal from "sweetalert2";
 import SelectGenre from "../Components/AddMovie/SelectGenre";
@@ -16,6 +16,11 @@ const AddMovie = () => {
     const [selectedOptions, setSelectedOptions] = useState([]);
     const [rating, setRating] = useState(0);
     const navigate = useNavigate()
+
+
+    useEffect(() => {
+        document.title = 'Add Movie | Film Fusion';
+    }, [])
 
     const movieUrl = new RegExp('^https?:\\/\\/.+\\.(png|jpg|jpeg|bmp|gif|webp)$', 'i');
 

@@ -9,6 +9,10 @@ const AllMovies = () => {
     const [search, setSearch] = useState('')
 
     useEffect(() => {
+        document.title = 'All Movie | Film Fusion';
+    }, [])
+
+    useEffect(() => {
         fetch(`https://film-fusion-0.vercel.app/movies?movie=${search}`)
             .then(res => res.json())
             .then(data => {

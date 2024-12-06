@@ -1,6 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 import Reviews from "../Components/ReviewsCelebrities/Reviews";
 import Slider from "react-slick";
+import { useEffect } from "react";
 
 const ReviewsCelebrities = () => {
     const { reviewsData, celebritiesData } = useLoaderData()
@@ -38,6 +39,10 @@ const ReviewsCelebrities = () => {
             },
         ],
     };
+
+    useEffect(() => {
+        document.title = 'Reviews & Celebrities | Film Fusion';
+    }, [])
 
     const handelCelebrities = () => {
         window.open("https://www.imdb.com/chart/starmeter/?ref_=hm_mpc_sm", "_blank");

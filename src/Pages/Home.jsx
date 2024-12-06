@@ -2,12 +2,16 @@ import { Link, useLoaderData } from "react-router-dom";
 import Banner from "../Components/Home/Banner";
 import MovieCart from "../Components/Others/MovieCart";
 import Upcoming from "../Components/Home/Upcoming";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Slider from "react-slick";
 
 const Home = () => {
     const { allMovieData, upcomingData, romanceData, actionData, dramaData, comedyData, horrorData, thrillerData, mysteryData, crimeData } = useLoaderData()
     const [upcoming, setUpcoming] = useState(upcomingData)
+
+    useEffect(() => {
+        document.title = 'Film Fusion';
+    }, [])
 
     const settings = {
         dots: true,

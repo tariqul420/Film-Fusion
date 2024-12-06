@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { MdErrorOutline } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,10 @@ const AddUpcoming = () => {
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate()
     const [descriptionErr, setDurationErr] = useState('')
+
+    useEffect(() => {
+        document.title = 'Add Upcoming | Film Fusion';
+    }, [])
 
     const onSubmit = ({ moviePoster, movieName, releaseDate, description }) => {
 

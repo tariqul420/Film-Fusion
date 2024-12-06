@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../Provider/AuthProvider";
 import Swal from "sweetalert2";
@@ -6,6 +6,10 @@ import { useNavigate } from "react-router-dom";
 const UpdateProfile = () => {
     const { updateUserProfile, setUser } = useContext(AuthContext)
     const navigate = useNavigate()
+
+    useEffect(() => {
+        document.title = 'Update Profile | Film Fusion';
+    }, [])
 
     const { register, handleSubmit } = useForm();
     const onSubmit = ({ fullName, photoUrl }) => {

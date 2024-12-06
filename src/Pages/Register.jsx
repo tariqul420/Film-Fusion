@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
@@ -13,6 +13,10 @@ const Register = () => {
     const [active, setActive] = useState(false);
     const { socialAuth, createUser, updateUserProfile } = useContext(AuthContext);
     const googleProvider = new GoogleAuthProvider();
+
+    useEffect(() => {
+        document.title = 'Register | Film Fusion';
+    }, [])
 
     const [isEyeOpen, setIsEyeOpen] = useState(false);
     const [strongPassword, setStrongPassword] = useState(" ");

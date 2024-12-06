@@ -8,6 +8,9 @@ const ForgotPassword = () => {
     const { email, setEmail, resetPassword } = useContext(AuthContext)
     const navigate = useNavigate()
 
+    useEffect(() => {
+        document.title = 'Forgot Password | Film Fusion';
+    }, [])
 
     useEffect(() => {
         document.title = 'Forgot Password | Film Fusion';

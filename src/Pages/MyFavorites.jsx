@@ -8,6 +8,10 @@ const MyFavorites = () => {
     const email = user?.email
 
     useEffect(() => {
+        document.title = 'My Favorite | Film Fusion';
+    }, [])
+
+    useEffect(() => {
         fetch(`https://film-fusion-0.vercel.app/favorite?favorite=${email}`)
             .then(res => res.json())
             .then(data => {
