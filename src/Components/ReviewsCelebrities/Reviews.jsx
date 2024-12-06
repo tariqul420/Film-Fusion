@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
-const PopularCelebs = ({ celebs }) => {
-    const { userImage, review, userName, location, rating, movieTitle } = celebs;
+const Reviews = ({ reviews }) => {
+    const { userImage, review, userName, location, rating, movieTitle } = reviews;
 
     const Stars = () => {
         const stars = [];
@@ -43,8 +43,8 @@ const PopularCelebs = ({ celebs }) => {
     );
 };
 
-PopularCelebs.propTypes = {
-    celebs: PropTypes.object.isRequired,
+Reviews.propTypes = {
+    reviews: PropTypes.object.isRequired,
 };
 
-export default PopularCelebs;
+export default Reviews;

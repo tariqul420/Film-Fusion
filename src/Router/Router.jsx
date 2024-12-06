@@ -132,7 +132,15 @@ const router = createBrowserRouter([
             {
                 path: '/reviews-celebrities',
                 element: <ReviewsCelebrities />,
-                loader: () => fetch('/UserReviews.json')
+                loader: async () => {
+                    const reviews = await fetch('/UserReviews.json')
+                    const reviewsData = await reviews.json()
+
+                    const celebrities = await fetch('/celebrities.json')
+                    const celebritiesData = await celebrities.json()
+
+                    return { reviewsData, celebritiesData }
+                }
             }
         ]
     }
