@@ -32,11 +32,31 @@ const router = createBrowserRouter([
                     const upcomingJson = await fetch('https://film-fusion-0.vercel.app/upcomingMovies')
                     const upcomingData = await upcomingJson.json()
 
-                    // https://film-fusion-0.vercel.app/moviesGenres?genres=Horror
+                    const romanceRes = await fetch('https://film-fusion-0.vercel.app/moviesGenres?genres=Romance')
+                    const romanceData = await romanceRes.json()
+
+                    const actionRes = await fetch('https://film-fusion-0.vercel.app/moviesGenres?genres=Action')
+                    const actionData = await actionRes.json()
+
+                    const dramaRes = await fetch('https://film-fusion-0.vercel.app/moviesGenres?genres=Drama')
+                    const dramaData = await dramaRes.json()
+
+                    const comedyRes = await fetch('https://film-fusion-0.vercel.app/moviesGenres?genres=Comedy')
+                    const comedyData = await comedyRes.json()
+
                     const horrorRes = await fetch('https://film-fusion-0.vercel.app/moviesGenres?genres=Horror')
                     const horrorData = await horrorRes.json()
 
-                    return { allMovieData, upcomingData, horrorData }
+                    const thrillerRes = await fetch('https://film-fusion-0.vercel.app/moviesGenres?genres=Thriller')
+                    const thrillerData = await thrillerRes.json()
+
+                    const mysteryRes = await fetch('https://film-fusion-0.vercel.app/moviesGenres?genres=Mystery')
+                    const mysteryData = await mysteryRes.json()
+
+                    const crimeRes = await fetch('https://film-fusion-0.vercel.app/moviesGenres?genres=Crime')
+                    const crimeData = await crimeRes.json()
+
+                    return { allMovieData, upcomingData, romanceData, actionData, dramaData, comedyData, horrorData, thrillerData, mysteryData, crimeData }
                 }
             },
             {

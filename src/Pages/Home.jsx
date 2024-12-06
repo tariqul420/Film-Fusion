@@ -6,7 +6,7 @@ import { useState } from "react";
 import Slider from "react-slick";
 
 const Home = () => {
-    const { allMovieData, upcomingData, horrorData } = useLoaderData()
+    const { allMovieData, upcomingData, romanceData, actionData, dramaData, comedyData, horrorData, thrillerData, mysteryData, crimeData } = useLoaderData()
     const [upcoming, setUpcoming] = useState(upcomingData)
 
     const settings = {
@@ -104,12 +104,131 @@ const Home = () => {
                 <h2 className="text-6xl font-bold text-center">Movie Categories</h2>
 
                 {
-                    horrorData.length !== 0 && (
+                    romanceData.length > 2 && (
                         <div>
+                            <h3 className="text-5xl font-semibold my-6 border-l-4 border-solid border-color-accent pl-4">Romance</h3>
+                            <div className="slider-container mx-auto">
+                                <Slider {...settings}>
+                                    {romanceData.map((movie) => (
+                                        <div key={movie._id} className="px-2">
+                                            <MovieCart movie={movie} />
+                                        </div>
+                                    ))}
+                                </Slider>
+                            </div>
+                        </div>
+                    )
+                }
+
+                {
+                    actionData.length > 2 && (
+                        <div className="mt-12">
+                            <h3 className="text-5xl font-semibold my-6 border-l-4 border-solid border-color-accent pl-4">Action</h3>
+                            <div className="slider-container mx-auto">
+                                <Slider {...settings}>
+                                    {actionData.map((movie) => (
+                                        <div key={movie._id} className="px-2">
+                                            <MovieCart movie={movie} />
+                                        </div>
+                                    ))}
+                                </Slider>
+                            </div>
+                        </div>
+                    )
+                }
+
+                {
+                    dramaData.length > 2 && (
+                        <div className="mt-12">
+                            <h3 className="text-5xl font-semibold my-6 border-l-4 border-solid border-color-accent pl-4">Drama</h3>
+                            <div className="slider-container mx-auto">
+                                <Slider {...settings}>
+                                    {dramaData.map((movie) => (
+                                        <div key={movie._id} className="px-2">
+                                            <MovieCart movie={movie} />
+                                        </div>
+                                    ))}
+                                </Slider>
+                            </div>
+                        </div>
+                    )
+                }
+
+                {
+                    comedyData.length > 2 && (
+                        <div className="mt-12">
+                            <h3 className="text-5xl font-semibold my-6 border-l-4 border-solid border-color-accent pl-4">Comedy</h3>
+                            <div className="slider-container mx-auto">
+                                <Slider {...settings}>
+                                    {comedyData.map((movie) => (
+                                        <div key={movie._id} className="px-2">
+                                            <MovieCart movie={movie} />
+                                        </div>
+                                    ))}
+                                </Slider>
+                            </div>
+                        </div>
+                    )
+                }
+
+                {
+                    horrorData.length > 2 && (
+                        <div className="mt-12">
                             <h3 className="text-5xl font-semibold my-6 border-l-4 border-solid border-color-accent pl-4">Horror</h3>
                             <div className="slider-container mx-auto">
                                 <Slider {...settings}>
                                     {horrorData.map((movie) => (
+                                        <div key={movie._id} className="px-2">
+                                            <MovieCart movie={movie} />
+                                        </div>
+                                    ))}
+                                </Slider>
+                            </div>
+                        </div>
+                    )
+                }
+
+                {
+                    thrillerData.length > 2 && (
+                        <div className="mt-12">
+                            <h3 className="text-5xl font-semibold my-6 border-l-4 border-solid border-color-accent pl-4">Thriller</h3>
+                            <div className="slider-container mx-auto">
+                                <Slider {...settings}>
+                                    {horrorData.map((movie) => (
+                                        <div key={movie._id} className="px-2">
+                                            <MovieCart movie={movie} />
+                                        </div>
+                                    ))}
+                                </Slider>
+                            </div>
+                        </div>
+                    )
+                }
+
+                {
+                    mysteryData.length > 2 && (
+                        <div className="mt-12">
+                            <h3 className="text-5xl font-semibold my-6 border-l-4 border-solid border-color-accent pl-4">Mystery</h3>
+                            <div className="slider-container mx-auto">
+                                <Slider {...settings}>
+                                    {mysteryData.map((movie) => (
+                                        <div key={movie._id} className="px-2">
+                                            <MovieCart movie={movie} />
+                                        </div>
+                                    ))}
+                                </Slider>
+                            </div>
+                        </div>
+                    )
+                }
+
+                {
+                    crimeData.length > 2 && (
+                        <div className="mt-12">
+                            <h3 className="text-5xl font-semibold my-6 border-l-4 border-solid border-color-accent pl-4">Crime</h3>
+                            <div className="slider-container mx-auto">
+                                <Slider {...settings}>
+                                    {crimeData.map((movie) => (
                                         <div key={movie._id} className="px-2">
                                             <MovieCart movie={movie} />
                                         </div>
