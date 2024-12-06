@@ -1,15 +1,18 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import MovieCart from "../Components/Others/MovieCart";
+import { ScaleLoader } from "react-spinners";
 
 const MyFavorites = () => {
     const { user } = useContext(AuthContext)
     const [favorite, setFavorite] = useState([])
+    const [loading, setLoading] = useState(true)
     const email = user?.email
 
     useEffect(() => {
         document.title = 'My Favorite | Film Fusion';
-    }, [])
+        if (favorite) setLoading(false)
+    }, [favorite])
 
     useEffect(() => {
         fetch(`https://film-fusion-0.vercel.app/favorite?favorite=${email}`)
@@ -18,6 +21,14 @@ const MyFavorites = () => {
                 setFavorite(data)
             })
     }, [email])
+
+    if (loading) {
+        return (
+            <div className="min-w-screen flex items-center justify-center my-12">
+                <ScaleLoader height={60} margin={2} width={5} color="#3B82F6" />
+            </div>
+        );
+    }
 
     return (
         <div className="w-10/12 mx-auto my-12">
