@@ -26,37 +26,16 @@ const router = createBrowserRouter([
                 path: '/',
                 element: <Home />,
                 loader: async () => {
-                    const allMoviesJson = await fetch('https://film-fusion-0.vercel.app/topMovies')
-                    const allMovieData = await allMoviesJson.json()
+                    const topMoviesRes = await fetch('https://film-fusion-0.vercel.app/topMovies')
+                    const topMovieData = await topMoviesRes.json()
 
-                    const upcomingJson = await fetch('https://film-fusion-0.vercel.app/upcomingMovies')
-                    const upcomingData = await upcomingJson.json()
+                    const upcomingRes = await fetch('https://film-fusion-0.vercel.app/upcomingMovies')
+                    const upcomingData = await upcomingRes.json()
 
-                    const romanceRes = await fetch('https://film-fusion-0.vercel.app/moviesGenres?genres=Romance')
-                    const romanceData = await romanceRes.json()
+                    const allMoviesRes = await fetch('https://film-fusion-0.vercel.app/movies')
+                    const allMoviesData = await allMoviesRes.json()
 
-                    const actionRes = await fetch('https://film-fusion-0.vercel.app/moviesGenres?genres=Action')
-                    const actionData = await actionRes.json()
-
-                    const dramaRes = await fetch('https://film-fusion-0.vercel.app/moviesGenres?genres=Drama')
-                    const dramaData = await dramaRes.json()
-
-                    const comedyRes = await fetch('https://film-fusion-0.vercel.app/moviesGenres?genres=Comedy')
-                    const comedyData = await comedyRes.json()
-
-                    const horrorRes = await fetch('https://film-fusion-0.vercel.app/moviesGenres?genres=Horror')
-                    const horrorData = await horrorRes.json()
-
-                    const thrillerRes = await fetch('https://film-fusion-0.vercel.app/moviesGenres?genres=Thriller')
-                    const thrillerData = await thrillerRes.json()
-
-                    const mysteryRes = await fetch('https://film-fusion-0.vercel.app/moviesGenres?genres=Mystery')
-                    const mysteryData = await mysteryRes.json()
-
-                    const crimeRes = await fetch('https://film-fusion-0.vercel.app/moviesGenres?genres=Crime')
-                    const crimeData = await crimeRes.json()
-
-                    return { allMovieData, upcomingData, romanceData, actionData, dramaData, comedyData, horrorData, thrillerData, mysteryData, crimeData }
+                    return { topMovieData, upcomingData, allMoviesData }
                 }
             },
             {

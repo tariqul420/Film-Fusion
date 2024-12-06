@@ -2,23 +2,32 @@ import { useEffect, useState } from "react";
 import MovieCart from "../Components/Others/MovieCart";
 import { useLoaderData } from "react-router-dom";
 import { IoSearch } from "react-icons/io5";
+import { ScaleLoader } from "react-spinners";
 
 const AllMovies = () => {
     const allMovie = useLoaderData()
     const [movie, setMovie] = useState(allMovie)
     const [search, setSearch] = useState('')
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         document.title = 'All Movie | Film Fusion';
-    }, [])
+        if (movie) setLoading(false)
 
-    useEffect(() => {
         fetch(`https://film-fusion-0.vercel.app/movies?movie=${search}`)
             .then(res => res.json())
             .then(data => {
                 setMovie(data)
             })
-    }, [search])
+    }, [movie, search])
+
+    if (loading) {
+        return (
+            <div className="min-w-screen flex items-center justify-center my-12">
+                <ScaleLoader height={60} margin={2} width={5} color="#3B82F6" />
+            </div>
+        );
+    }
 
     return (
         <div className="w-10/12 mx-auto my-12">

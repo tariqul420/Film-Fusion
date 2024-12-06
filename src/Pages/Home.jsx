@@ -4,14 +4,110 @@ import MovieCart from "../Components/Others/MovieCart";
 import Upcoming from "../Components/Home/Upcoming";
 import { useEffect, useState } from "react";
 import Slider from "react-slick";
+import { ScaleLoader } from "react-spinners";
 
 const Home = () => {
-    const { allMovieData, upcomingData, romanceData, actionData, dramaData, comedyData, horrorData, thrillerData, mysteryData, crimeData } = useLoaderData()
+    const { topMovieData, upcomingData, allMoviesData } = useLoaderData()
+    const [loading, setLoading] = useState(true)
     const [upcoming, setUpcoming] = useState(upcomingData)
+
+    const [romanceData, setRomanceData] = useState([]);
+    const [actionData, setActionData] = useState([]);
+    const [dramaData, setDramaData] = useState([]);
+    const [comedyData, setComedyData] = useState([]);
+    const [horrorData, setHorrorData] = useState([]);
+    const [thrillerData, setThrillerData] = useState([]);
+    const [mysteryData, setMysteryData] = useState([]);
+    const [crimeData, setCrimeData] = useState([]);
 
     useEffect(() => {
         document.title = 'Film Fusion';
-    }, [])
+    }, []);
+
+    useEffect(() => {
+        if (allMoviesData) {
+            setRomanceData(allMoviesData.filter(movie => {
+                for (let i = 0; i < movie.genres.length; i++) {
+                    if (movie.genres[i].name === "Romance") {
+                        return movie;
+                    }
+                }
+            }));
+
+            setActionData(allMoviesData.filter(movie => {
+                for (let i = 0; i < movie.genres.length; i++) {
+                    if (movie.genres[i].name === "Action") {
+                        return movie;
+                    }
+                }
+            }));
+
+            setDramaData(allMoviesData.filter(movie => {
+                for (let i = 0; i < movie.genres.length; i++) {
+                    if (movie.genres[i].name === "Drama") {
+                        return movie;
+                    }
+                }
+            }));
+
+            setComedyData(allMoviesData.filter(movie => {
+                for (let i = 0; i < movie.genres.length; i++) {
+                    if (movie.genres[i].name === "Comedy") {
+                        return movie;
+                    }
+                }
+            }));
+
+            setHorrorData(allMoviesData.filter(movie => {
+                for (let i = 0; i < movie.genres.length; i++) {
+                    if (movie.genres[i].name === "Horror") {
+                        return movie;
+                    }
+                }
+            }));
+
+            setThrillerData(allMoviesData.filter(movie => {
+                for (let i = 0; i < movie.genres.length; i++) {
+                    if (movie.genres[i].name === "Thriller") {
+                        return movie;
+                    }
+                }
+            }));
+
+            setMysteryData(allMoviesData.filter(movie => {
+                for (let i = 0; i < movie.genres.length; i++) {
+                    if (movie.genres[i].name === "Mystery") {
+                        return movie;
+                    }
+                }
+            }));
+
+            setCrimeData(allMoviesData.filter(movie => {
+                for (let i = 0; i < movie.genres.length; i++) {
+                    if (movie.genres[i].name === "Crime") {
+                        return movie;
+                    }
+                }
+            }));
+        }
+    }, [allMoviesData])
+
+    useEffect(() => {
+        if (
+            allMoviesData &&
+            upcomingData &&
+            romanceData &&
+            actionData &&
+            dramaData &&
+            comedyData &&
+            horrorData &&
+            thrillerData &&
+            mysteryData &&
+            crimeData
+        )
+            setLoading(false);
+    }, [allMoviesData, upcomingData, romanceData, actionData, dramaData, comedyData, horrorData, thrillerData, mysteryData, crimeData]);
+
 
     const settings = {
         dots: true,
@@ -48,6 +144,14 @@ const Home = () => {
         ],
     };
 
+    if (loading) {
+        return (
+            <div className="min-w-screen flex items-center justify-center my-12">
+                <ScaleLoader height={60} margin={2} width={5} color="#3B82F6" />
+            </div>
+        );
+    }
+
     return (
         <section>
             <Banner />
@@ -56,7 +160,7 @@ const Home = () => {
                 <h2 className="text-6xl font-bold text-center">Featured Movies</h2>
 
                 {
-                    allMovieData.length === 0 ? (
+                    topMovieData.length === 0 ? (
                         <div
                             className="boxShadow p-6 sm:px-20 sm:py-14 flex items-center justify-center flex-col gap-[4px] rounded-xl bg-gray-700 mt-12">
                             <img src="https://i.ibb.co/cgfgxGH/Illustrations.png" alt="empty/image" className="w-full sm:w-[200px]" />
@@ -68,7 +172,7 @@ const Home = () => {
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-20">
                             {
-                                allMovieData.map(movie => <MovieCart key={movie._id} movie={movie} />)
+                                topMovieData.map(movie => <MovieCart key={movie._id} movie={movie} />)
                             }
                         </div>
                     )
@@ -97,7 +201,7 @@ const Home = () => {
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-20">
                             {
-                                upcoming.map(movie => <Upcoming key={movie._id} movie={movie} upcoming={upcoming} setUpcoming={setUpcoming} />)
+                                upcomingData.map(movie => <Upcoming key={movie._id} movie={movie} upcoming={upcoming} setUpcoming={setUpcoming} />)
                             }
                         </div>
                     )

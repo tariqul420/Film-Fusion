@@ -14,6 +14,7 @@ const Private = ({ children }) => {
                     height={60}
                     margin={2}
                     width={5}
+                    color="#3B82F6"
                 />
             </div>
         )
