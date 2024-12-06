@@ -90,6 +90,11 @@ const Navbar = () => {
                             Add Upcoming
                         </NavLink>
                     </li>
+                    <li className="navBarLink">
+                        <NavLink to='/reviews-celebrities'>
+                            Reviews & Celebrities
+                        </NavLink>
+                    </li>
                 </ul>
             </aside>
         </nav>
