@@ -111,7 +111,7 @@ const MovieDetails = () => {
                         </div>
                     </div>
 
-                    <h1 className="font-bold text-5xl mt-8">{movieTitle}</h1>
+                    <h1 className="font-bold text-5xl mt-8 uppercase">{movieTitle}</h1>
 
                     <div className="flex items-center gap-2 mt-2">
                         {[...Array(totalStars)].map((_, index) => {

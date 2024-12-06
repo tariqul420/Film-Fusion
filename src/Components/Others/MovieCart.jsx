@@ -64,7 +64,7 @@ const MovieCart = ({ movie, setFavorite, favorite }) => {
                 className="w-full h-[60%] object-cover group-hover:opacity-40 group-hover:h-full transition-all duration-300 ease-out" />
 
             <div className="absolute bottom-0 left-0 py-[20px]  px-[20px] w-full">
-                <h3 className="text-[1.4rem] font-bold">{movieTitle}</h3>
+                <h3 className="text-[1.4rem] font-bold uppercase">{movieTitle}</h3>
                 <div className="flex gap-2 flex-wrap items-start my-1">
                     {
                         genres.map((genres, i) => <p

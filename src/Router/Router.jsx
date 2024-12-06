@@ -32,7 +32,11 @@ const router = createBrowserRouter([
                     const upcomingJson = await fetch('https://film-fusion-0.vercel.app/upcomingMovies')
                     const upcomingData = await upcomingJson.json()
 
-                    return { allMovieData, upcomingData }
+                    // https://film-fusion-0.vercel.app/moviesGenres?genres=Horror
+                    const horrorRes = await fetch('https://film-fusion-0.vercel.app/moviesGenres?genres=Horror')
+                    const horrorData = await horrorRes.json()
+
+                    return { allMovieData, upcomingData, horrorData }
                 }
             },
             {

@@ -42,7 +42,7 @@ const Upcoming = ({ movie, setUpcoming, upcoming }) => {
                 className="w-full h-[60%] object-cover group-hover:opacity-40 group-hover:h-full transition-all duration-300 ease-out" />
 
             <div className="absolute bottom-0 left-0 py-[20px]  px-[20px] w-full">
-                <h3 className="text-[1.4rem] font-bold">{movieName}</h3>
+                <h3 className="text-[1.4rem] font-bold uppercase">{movieName}</h3>
                 <p>{releaseDate}</p>
                 <p>{description}</p>
 
