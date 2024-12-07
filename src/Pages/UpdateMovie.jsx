@@ -147,7 +147,7 @@ const UpdateMovie = () => {
 
     return (
         <section className="w-full h-auto flex items-center justify-center sm:py-12 p-6 dark:bg-[#1F2937]">
-            <div className="w-full sm:w-[900px] sm:max-w-[1000px] dark:bg-gray-700 bg-gray-400 shadow-md backdrop-blur-3xl rounded-lg sm:py-6 sm:px-8 p-4 flex flex-col gap-5">
+            <div className="w-full sm:w-[900px] sm:max-w-[1000px] dark:bg-gray-700 bg-white shadow-md backdrop-blur-3xl rounded-lg sm:py-6 sm:px-8 p-4 flex flex-col gap-5">
                 <form className="w-full flex flex-col gap-5" onSubmit={handleUpdateMovie}>
                     <h3 className="text-[1.8rem] font-[700] text-center text-white">
                         Update Movie: {movieTitle}

@@ -4,7 +4,7 @@ import { IoSend } from "react-icons/io5";
 
 const Footer = () => {
     return (
-        <div className="bg-gray-700 pt-12 text-white w-full">
+        <div className="dark:bg-gray-700 bg-[#dcfaff] pt-12 dark:text-white w-full">
             <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-10 mb-8">
                 <div className="space-y-4">
                     <h2 className="font-extrabold text-2xl">Film Fusion</h2>
@@ -17,7 +17,7 @@ const Footer = () => {
                                 placeholder='Enter Your Email'
                                 className='border bg-color-primary-d border-solid outline-none placeholder:text-white/80 border-white py-3 pl-4 pr-[50px]  w-full rounded-md' />
 
-                            <span className='absolute top-0 right-0 h-full px-5 flex items-center justify-center rounded-r-md cursor-pointer'>
+                            <span className='absolute top-0 right-0 h-full px-5 flex items-center justify-center rounded-r-md cursor-pointer text-white'>
                                 <IoSend />
                             </span>
                         </div>
@@ -48,7 +48,7 @@ const Footer = () => {
                 </div>
                 <div className="space-y-4">
                     <h2 className="font-semibold text-2xl">Download App</h2>
-                    <p className="text-color-text-d/50">Save $3 app new user only</p>
+                    <p className="dark:text-color-text-d/50 ">Save $3 app new user only</p>
                     <div className="flex gap-4">
                         <div>
                             <img className="w-full h-full" src="https://i.postimg.cc/7h3hyqZC/download.png" alt="" />
@@ -58,14 +58,14 @@ const Footer = () => {
                         </div>
                     </div>
                     <div className="flex items-center justify-between mt-10">
-                        <FaFacebookF size={25}/>
-                        <FaXTwitter size={25}/>
-                        <FaInstagram size={25}/>
-                        <FaLinkedinIn size={25}/>
+                        <FaFacebookF size={25} />
+                        <FaXTwitter size={25} />
+                        <FaInstagram size={25} />
+                        <FaLinkedinIn size={25} />
                     </div>
                 </div>
             </div>
-            <p className="text-white/70 text-center py-4 border-t border-solid">&copy; Copyright FilmFusion {new Date().getFullYear()}. All Right Reserved</p>
+            <p className="dark:text-white/70 text-center py-4 border-t border-solid border-color-primary-d dark:border-white">&copy; Copyright FilmFusion {new Date().getFullYear()}. All Right Reserved</p>
         </div>
     );
 };

@@ -143,7 +143,7 @@ const AddMovie = () => {
 
     return (
         <section className="w-full h-auto flex items-center justify-center sm:py-12 p-6 dark:bg-[#1F2937]">
-            <div className="w-full sm:w-[900px] sm:max-w-[1000px] dark:bg-gray-700 bg-gray-400 shadow-md backdrop-blur-3xl rounded-lg sm:py-6 sm:px-8 p-4 flex flex-col gap-5">
+            <div className="w-full sm:w-[900px] sm:max-w-[1000px] dark:bg-gray-700 bg-white shadow-md backdrop-blur-3xl rounded-lg sm:py-6 sm:px-8 p-4 flex flex-col gap-5">
                 <form className="w-full flex flex-col gap-5" onSubmit={handleSubmit}>
                     <h3 className="text-[1.8rem] font-[700] text-center">
                         Add Movie
@@ -155,7 +155,7 @@ const AddMovie = () => {
                                 type="text"
                                 name="MoviePoster"
                                 placeholder="Movie Poster Url"
-                                className="py-3 dark:bg-color-primary-d bg-gray-200 font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
+                                className="py-3 dark:bg-color-primary-d bg-white font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
                             />
 
                             {
@@ -174,7 +174,7 @@ const AddMovie = () => {
                                 type="text"
                                 name="MovieTitle"
                                 placeholder="Movie Title"
-                                className="py-3 dark:bg-color-primary-d bg-gray-200 font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
+                                className="py-3 dark:bg-color-primary-d bg-white font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
                             />
                             {
                                 movieTitleErr && (
@@ -195,7 +195,7 @@ const AddMovie = () => {
                                 type="text"
                                 name="Duration"
                                 placeholder="Duration (in minutes)"
-                                className="py-3 dark:bg-color-primary-d bg-gray-200 font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
+                                className="py-3 dark:bg-color-primary-d bg-white font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
                             />
                             {
                                 durationErr && (
@@ -211,7 +211,7 @@ const AddMovie = () => {
                         <div className="w-full relative">
                             <select
                                 name="ReleaseYear"
-                                className="py-3 dark:bg-color-primary-d bg-gray-200 font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full">
+                                className="py-3 dark:bg-color-primary-d bg-white font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full">
                                 <option value="--Select Year--">--Select Year--</option>
                                 <option value="2024">2024</option>
                                 <option value="2023">2023</option>
@@ -237,7 +237,7 @@ const AddMovie = () => {
 
                     <div className="flex items-center justify-between gap-4 w-full mt-5 sm:flex-row flex-col">
                         <div className="w-full">
-                            <div className="rating py-1 dark:bg-color-primary-d bg-gray-200 font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full">
+                            <div className="rating py-1 dark:bg-color-primary-d bg-white font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full">
                                 <Rating
                                     fillColorArray={[
                                         '#f18845',
@@ -295,7 +295,7 @@ const AddMovie = () => {
                         <textarea
                             name="Summary"
                             placeholder="Please enter movie details..."
-                            className="py-3 min-h-[200px] dark:bg-color-primary-d bg-gray-200 font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
+                            className="py-3 min-h-[200px] dark:bg-color-primary-d bg-white font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full"
                         />
                         {summaryErr && (
                             <p className="text-[0.9rem] mt-1">

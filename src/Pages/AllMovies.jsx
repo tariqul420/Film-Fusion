@@ -38,7 +38,7 @@ const AllMovies = () => {
                     onChange={(e) => setSearch(e.target.value)}
                     type='text'
                     placeholder='Search movie'
-                    className='border border-[#e5eaf2] py-3 pl-4 pr-[65px] outline-none w-full rounded-md dark:bg-gray-700 bg-gray-400 font-semibold' />
+                    className='border border-[#e5eaf2] py-3 pl-4 pr-[65px] outline-none w-full rounded-md dark:bg-gray-700 font-semibold' />
 
                 <span
                     className='bg-gray-300 text-gray-500 absolute top-0 right-0 h-full px-5 flex items-center justify-center rounded-r-md cursor-pointer dark:hover:bg-gray-400 group'><IoSearch
@@ -51,7 +51,7 @@ const AllMovies = () => {
             {
                 movie.length === 0 ? (
                     <div
-                        className="boxShadow p-6 sm:px-20 sm:py-14 flex items-center justify-center flex-col gap-[4px] rounded-xl dark:bg-gray-700 bg-gray-300 mt-12">
+                        className="boxShadow p-6 sm:px-20 sm:py-14 flex items-center justify-center flex-col gap-[4px] rounded-xl dark:bg-gray-700 bg-white shadow-md mt-12">
                         <img src="https://i.ibb.co/cgfgxGH/Illustrations.png" alt="empty/image" className="w-full sm:w-[200px]" />
 
                         <h1 className="text-[3rem] mt-6 font-[500]">Result Not Found</h1>

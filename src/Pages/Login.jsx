@@ -83,7 +83,7 @@ const Login = () => {
             {
                 location.pathname === '/login' ? (
                     <section className="w-full h-auto flex items-center justify-center sm:py-12 p-6">
-                        <div className="w-full lg:w-[40%] md:w-[60%] dark:bg-gray-700 bg-gray-400 rounded-lg sm:py-6 sm:px-8 p-4 flex flex-col gap-5 shadow-md">
+                        <div className="w-full lg:w-[40%] md:w-[60%] dark:bg-gray-700 bg-white rounded-lg sm:py-6 sm:px-8 p-4 flex flex-col gap-5 shadow-md">
                             <form onSubmit={handelSignIn} className="w-full flex flex-col gap-5">
                                 <h3 className="text-[1.8rem] font-[700] text-center">
                                     Login
@@ -96,7 +96,7 @@ const Login = () => {
                                         required
                                         onChange={(e) => setEmail(e.target.value)}
                                         placeholder="Email"
-                                        className="py-3 px-4 border focus:outline-blue-500 border-gray-300 rounded-lg dark:bg-color-primary-d bg-gray-200 w-full"
+                                        className="py-3 px-4 border focus:outline-blue-500 border-gray-300 rounded-lg dark:bg-color-primary-d w-full"
                                     />
                                 </div>
 
@@ -106,7 +106,7 @@ const Login = () => {
                                         placeholder="Password"
                                         required
                                         name="password"
-                                        className="py-3 px-4 border focus:outline-blue-500 border-gray-300 rounded-lg w-full dark:bg-color-primary-d bg-gray-200"
+                                        className="py-3 px-4 border focus:outline-blue-500 border-gray-300 rounded-lg w-full dark:bg-color-primary-d"
                                     />
                                     {active ? (
                                         <BsEyeSlash

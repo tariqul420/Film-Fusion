@@ -20,7 +20,7 @@ const Reviews = ({ reviews }) => {
 
     return (
         <div
-            className="shadow-lg border border-solid border-gray-300 p-6 rounded-xl dark:bg-gray-700 bg-gray-300"
+            className="shadow-lg border border-solid border-gray-300 p-6 rounded-xl dark:bg-gray-700 bg-white"
         >
             <div className="w-[100px] h-[100px] mx-auto">
                 <img

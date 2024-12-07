@@ -162,7 +162,7 @@ const Home = () => {
                 {
                     topMovieData.length === 0 ? (
                         <div
-                            className="boxShadow p-6 sm:px-20 sm:py-14 flex items-center justify-center flex-col gap-[4px] rounded-xl dark:bg-gray-700 bg-gray-300 mt-12">
+                            className="boxShadow p-6 sm:px-20 sm:py-14 flex items-center justify-center flex-col gap-[4px] rounded-xl dark:bg-gray-700 bg-white shadow-md mt-12">
                             <img src="https://i.ibb.co/cgfgxGH/Illustrations.png" alt="empty/image" className="w-full sm:w-[200px]" />
 
                             <h1 className="text-[3rem] mt-6 font-[500]">Result Not Found</h1>
@@ -191,7 +191,7 @@ const Home = () => {
                 {
                     upcomingData.length == 0 ? (
                         <div
-                            className="boxShadow p-6 sm:px-20 sm:py-14 flex items-center justify-center flex-col gap-[4px] rounded-xl dark:bg-gray-700 bg-gray-300 mt-12">
+                            className="boxShadow p-6 sm:px-20 sm:py-14 flex items-center justify-center flex-col gap-[4px] rounded-xl dark:bg-gray-700 bg-white shadow-md mt-12">
                             <img src="https://i.ibb.co/cgfgxGH/Illustrations.png" alt="empty/image" className="w-full sm:w-[200px]" />
 
                             <h1 className="text-[3rem] mt-6 font-[500]">Result Not Found</h1>

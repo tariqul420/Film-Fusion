@@ -88,7 +88,7 @@ const MovieDetails = () => {
                 <img className="w-full object-cover h-[230px]" src="https://i.ibb.co.com/VCm8rS8/img.jpg" alt="" />
             </div>
 
-            <div className="w-9/12 max-sm:w-11/12 mx-auto dark:bg-gray-700 bg-gray-300 p-8 rounded-xl my-12 flex flex-col gap-4 lg:flex-row">
+            <div className="w-9/12 max-sm:w-11/12 mx-auto dark:bg-gray-700 bg-white shadow-md p-8 rounded-xl my-12 flex flex-col gap-4 lg:flex-row">
                 <div className="lg:w-[30%]">
                     <img className="rounded-lg h-full w-full" src={moviePoster} alt={movieTitle} />
                 </div>

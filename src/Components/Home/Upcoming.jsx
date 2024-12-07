@@ -35,7 +35,7 @@ const Upcoming = ({ movie, setUpcoming, upcoming }) => {
     }
     return (
         <div
-            className="w-full shadow-md h-[470px] hover:scale-[1.05] transition-all duration-300 overflow-hidden rounded-md relative cursor-pointer group dark:bg-gray-700 bg-gray-300">
+            className="w-full shadow-md h-[470px] hover:scale-[1.05] transition-all duration-300 overflow-hidden rounded-md relative cursor-pointer group dark:bg-gray-700 bg-[#e7fbff]">
             <img
                 src={moviePoster}
                 alt={movieName}

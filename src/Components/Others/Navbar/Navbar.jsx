@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import Profile from "./Profile";
 import { CiMenuFries } from "react-icons/ci";
-import ThemeToggle from "../ThemeToggle";
+import ThemeToggle from "./ThemeToggle";
 
 const Navbar = () => {
     const { user } = useContext(AuthContext)
@@ -58,15 +58,15 @@ const Navbar = () => {
                     user ? <Profile /> : <AuthBtn />
                 }
 
-                <CiMenuFries className="text-[1.8rem] mr-1 text-color-text cursor-pointer lg:hidden flex"
+                <CiMenuFries className="text-[1.8rem] mr-1 text-color-text dark:text-white cursor-pointer lg:hidden flex"
                     onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)} />
             </div>
 
             <aside
-                className={` ${mobileSidebarOpen ? "translate-y-0 opacity-100 z-[2000]" : "translate-y-[-200px] opacity-0 z-[-1]"} lg:hidden bg-white boxShadow p-4 text-center absolute top-[65px] right-0 w-full md:w-4/12 rounded-md transition-all duration-300`}>
+                className={` ${mobileSidebarOpen ? "translate-y-0 opacity-100 z-[2000]" : "translate-y-[-200px] opacity-0 z-[-1]"} lg:hidden bg-gray-200 dark:bg-gray-700 boxShadow p-4 text-center absolute top-[65px] right-0 w-full md:w-4/12 rounded-md transition-all duration-300`}>
                 <div className="relative mb-5">
                 </div>
-                <ul className="items-center gap-[20px] text-[1rem] text-[#3E2723] lg:flex">
+                <ul className="items-center gap-[20px] text-[1rem] lg:flex">
                     <li className="navBarLink">
                         <NavLink to='/'>
                             Home

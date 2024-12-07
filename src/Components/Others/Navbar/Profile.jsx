@@ -20,7 +20,7 @@ const Profile = () => {
 
             {/*  tooltip  */}
             <div
-                className={` ${isProfileHovered ? "opacity-100 z-20 translate-y-0" : "opacity-0 z-[-1] translate-y-[20px]"} absolute bottom-[-260px] left-[-50%] md:left-[50%] transform translate-x-[-50%] dark:bg-gray-700 bg-gray-400 w-[250px] rounded-md p-[15px] shadow-md transition-all duration-300`}>
+                className={` ${isProfileHovered ? "opacity-100 z-20 translate-y-0" : "opacity-0 z-[-1] translate-y-[20px]"} absolute bottom-[-260px] left-[-50%] md:left-[50%] transform translate-x-[-50%] dark:bg-gray-700 bg-[#d5f4fa] w-[250px] rounded-md p-[15px] shadow-md transition-all duration-300`}>
 
                 {/*  account details  */}
                 <div className="flex items-center justify-center flex-col">
@@ -37,19 +37,19 @@ const Profile = () => {
 
                     <button
                         onClick={() => navigate('/my-profile')}
-                        className="border-2 px-5 py-1 hover:bg-color-accent hover:text-color-text rounded-full border-solid border-color-accent font-semibold text-lg mt-3">
+                        className="border-2 px-5 py-1 hover:bg-color-accent hover:text-white rounded-full border-solid border-color-accent font-semibold text-lg mt-3">
                         My Profile
                     </button>
                     <button
                         onClick={logoutUser}
-                        className="border-2 px-5 py-1 hover:bg-color-accent hover:text-color-text rounded-full border-solid border-color-accent font-semibold text-lg mt-3">
+                        className="border-2 px-5 py-1 hover:bg-color-accent hover:text-white rounded-full border-solid border-color-accent font-semibold text-lg mt-3">
                         Log Out
                     </button>
                 </div>
 
                 {/*  bottom arrow  */}
                 <div
-                    className="dark:bg-gray-700 bg-gray-400 w-[15px] h-[15px] rotate-[45deg] absolute top-[-7px] left-[50%] transform translate-x-[-50%]"></div>
+                    className="dark:bg-gray-700 bg-[#d5f4fa] w-[15px] h-[15px] rotate-[45deg] absolute top-[-7px] left-[50%] transform translate-x-[-50%]"></div>
             </div>
         </div>
     );

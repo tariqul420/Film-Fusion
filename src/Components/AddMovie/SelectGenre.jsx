@@ -64,7 +64,7 @@ const SelectGenre = ({ setSelectedOptions, selectedOptions, genres }) => {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 onFocus={() => setIsOpen(true)}
-                className={`py-3 dark:bg-color-primary-d bg-gray-200 font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full`}
+                className={`py-3 dark:bg-color-primary-d bg-white font-medium px-4 border focus:outline-[#3B82F6] border-gray-300 rounded-lg w-full`}
             />
 
             <IoIosArrowDown
@@ -72,7 +72,7 @@ const SelectGenre = ({ setSelectedOptions, selectedOptions, genres }) => {
 
             {/* Dropdown menu */}
             {isOpen && (
-                <div className="absolute left-0 w-full mt-1 border border-gray-200 rounded-md dark:bg-color-primary-d bg-gray-200 shadow-lg z-20">
+                <div className="absolute left-0 w-full mt-1 border border-gray-200 rounded-md dark:bg-color-primary-d bg-white shadow-lg z-20">
                     <div className="w-full overflow-auto">
                         {filteredItems.map(item => (
                             <p
