@@ -41,7 +41,7 @@ const AllMovies = () => {
                     className='border border-[#e5eaf2] py-3 pl-4 pr-[65px] outline-none w-full rounded-md dark:bg-gray-700 font-semibold' />
 
                 <span
-                    className='bg-gray-300 text-gray-500 absolute top-0 right-0 h-full px-5 flex items-center justify-center rounded-r-md cursor-pointer dark:hover:bg-gray-400 group'><IoSearch
+                    className='bg-gray-200 text-gray-500 absolute top-0 right-0 h-full px-5 flex items-center justify-center rounded-r-md cursor-pointer dark:hover:bg-gray-400 group'><IoSearch
                         className='text-[1.3rem]  dark:group-hover:text-gray-200' /></span>
             </div>
 
