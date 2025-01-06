@@ -23,45 +23,50 @@ const Navbar = () => {
                 <div className="relative">
                     <ul className="items-center gap-[20px] text-[1rem] font-semibold lg:flex hidden">
                         <li className="navBarLink">
-                            <NavLink to='/'>
-                                Home
-                            </NavLink>
+                            <NavLink to='/'>Home</NavLink>
                         </li>
                         <li className="navBarLink">
-                            <NavLink to='/all-movies'>
-                                All Movies
-                            </NavLink>
+                            <NavLink to='/all-movies'>All Movies</NavLink>
                         </li>
                         <li className="navBarLink">
-                            <NavLink to='/reviews-celebrities'>
-                                Reviews & Celebrities
-                            </NavLink>
+                            <NavLink to='/reviews-celebrities'>Reviews & Celebrities</NavLink>
                         </li>
-                        {
-                            user && (
-                                <li className="cursor-pointer navBarLink" onClick={() => setDashboardOpen(!dashboardOpen)}>
-                                    Dashboard
-                                </li>
-                            )
-                        }
+                        {user && (
+                            <li
+                                className="cursor-pointer navBarLink"
+                                onClick={() => setDashboardOpen(!dashboardOpen)}
+                            >
+                                Dashboard
+                            </li>
+                        )}
                     </ul>
-                    {
-                        dashboardOpen && (
-                            <>
-                                <div className="flex flex-col space-y-2 font-semibold bg-white p-4 rounded-md absolute right-0 top-8 md:hidden">
-                                    <NavLink to='/add-movie' className='navBarLink'>
-                                        Add Movie
-                                    </NavLink>
-                                    <NavLink to='/my-favorites' className='navBarLink'>
-                                        My Favorites
-                                    </NavLink>
-                                    <NavLink to='/add-upcoming' className='navBarLink'>
-                                        Add Upcoming
-                                    </NavLink>
-                                </div>
-                            </>
-                        )
-                    }
+                    {dashboardOpen && (
+                        <div
+                            className="flex flex-col space-y-2 font-semibold bg-white dark:bg-gray-800 p-4 rounded-md absolute right-0 top-8 shadow-lg"
+                        >
+                            <NavLink
+                                to='/add-movie'
+                                className='navBarLink'
+                                onClick={() => setDashboardOpen(false)}
+                            >
+                                Add Movie
+                            </NavLink>
+                            <NavLink
+                                to='/my-favorites'
+                                className='navBarLink'
+                                onClick={() => setDashboardOpen(false)}
+                            >
+                                My Favorites
+                            </NavLink>
+                            <NavLink
+                                to='/add-upcoming'
+                                className='navBarLink'
+                                onClick={() => setDashboardOpen(false)}
+                            >
+                                Add Upcoming
+                            </NavLink>
+                        </div>
+                    )}
                 </div>
 
                 <div className="items-center gap-[15px] flex">
@@ -97,7 +102,7 @@ const Navbar = () => {
                         {user && (
                             <li>
                                 <button
-                                    className="cursor-pointer navBarLink w-full text-left"
+                                    className="cursor-pointer navBarLink w-full text-left z-[1000]"
                                     onClick={() => {
                                         setDashboardOpen(!dashboardOpen);
                                         setMobileSidebarOpen(false);
