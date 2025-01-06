@@ -35,16 +35,16 @@ const Upcoming = ({ movie, setUpcoming, upcoming }) => {
     }
     return (
         <div
-            className="w-full shadow-md h-[470px] hover:scale-[1.05] transition-all duration-300 overflow-hidden rounded-md relative cursor-pointer group dark:bg-gray-700 bg-white">
+            className="w-full shadow-md hover:scale-[1.05] transition-all h-[350px] duration-300 overflow-hidden rounded-md relative cursor-pointer group dark:bg-gray-700 bg-white">
             <img
                 src={moviePoster}
                 alt={movieName}
-                className="w-full h-[60%] object-cover group-hover:opacity-40 group-hover:h-full transition-all duration-300 ease-out" />
+                className="w-full h-[53%] object-cover group-hover:opacity-40 group-hover:h-full transition-all duration-300 ease-out" />
 
             <div className="absolute bottom-0 left-0 py-[10px]  px-[10px] w-full">
                 <h3 className="text-[1.4rem] font-bold uppercase">{movieName?.length > 16 ? `${movieName.slice(0, 16)}...` : movieName}</h3>
                 <p>{releaseDate}</p>
-                <p>{description?.length > 60 ? `${description.slice(0, 60)}...` : description}</p>
+                <p>{description?.length > 50 ? `${description.slice(0, 50)}...` : description}</p>
 
                 <div>
                     <button
