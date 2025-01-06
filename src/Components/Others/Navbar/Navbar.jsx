@@ -9,6 +9,7 @@ import ThemeToggle from "./ThemeToggle";
 const Navbar = () => {
     const { user } = useContext(AuthContext)
     const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+    const [dashboardOpen, setDashboardOpen] = useState(false)
 
     return (
         <nav className="sticky top-0 z-[1000] backdrop-blur-3xl py-4 w-full mx-auto my-6">
@@ -18,7 +19,8 @@ const Navbar = () => {
                         <h2 className="font-bold text-4xl font-Montserrat">Film Fusion</h2>
                     </Link>
                 </div>
-                <div>
+
+                <div className="relative">
                     <ul className="items-center gap-[20px] text-[1rem] font-semibold lg:flex hidden">
                         <li className="navBarLink">
                             <NavLink to='/'>
@@ -37,26 +39,29 @@ const Navbar = () => {
                         </li>
                         {
                             user && (
-                                <>
-                                    <li className="navBarLink">
-                                        <NavLink to='/add-movie'>
-                                            Add Movie
-                                        </NavLink>
-                                    </li>
-                                    <li className="navBarLink">
-                                        <NavLink to='/my-favorites'>
-                                            My Favorites
-                                        </NavLink>
-                                    </li>
-                                    <li className="navBarLink">
-                                        <NavLink to='/add-upcoming'>
-                                            Add Upcoming
-                                        </NavLink>
-                                    </li>
-                                </>
+                                <li className="cursor-pointer navBarLink" onClick={() => setDashboardOpen(!dashboardOpen)}>
+                                    Dashboard
+                                </li>
                             )
                         }
                     </ul>
+                    {
+                        dashboardOpen && (
+                            <>
+                                <div className="flex flex-col space-y-2 font-semibold bg-white p-4 rounded-md absolute right-0 top-8 md:hidden">
+                                    <NavLink to='/add-movie' className='navBarLink'>
+                                        Add Movie
+                                    </NavLink>
+                                    <NavLink to='/my-favorites' className='navBarLink'>
+                                        My Favorites
+                                    </NavLink>
+                                    <NavLink to='/add-upcoming' className='navBarLink'>
+                                        Add Upcoming
+                                    </NavLink>
+                                </div>
+                            </>
+                        )
+                    }
                 </div>
 
                 <div className="items-center gap-[15px] flex">
@@ -70,40 +75,51 @@ const Navbar = () => {
                 </div>
 
                 <aside
-                    className={` ${mobileSidebarOpen ? "translate-y-0 opacity-100 z-[2000]" : "translate-y-[-200px] opacity-0 z-[-1]"} lg:hidden bg-gray-200 dark:bg-gray-700 boxShadow p-4 text-center absolute top-[65px] right-0 w-full md:w-4/12 rounded-md transition-all duration-300`}>
-                    <div className="relative mb-5">
-                    </div>
-                    <ul className="items-center gap-[20px] text-[1rem] lg:flex">
-                        <li className="navBarLink">
-                            <NavLink to='/'>
+                    className={`${mobileSidebarOpen ? "translate-y-0 opacity-100 z-[2000]" : "translate-y-[-200px] opacity-0 z-[-1]"
+                        } lg:hidden bg-gray-200 dark:bg-gray-700 boxShadow p-4 text-center absolute top-[65px] right-0 w-full md:w-4/12 rounded-md transition-all duration-300 flex items-center justify-center`}
+                >
+                    <ul className="flex flex-col space-y-4 text-[1rem] font-semibold items-center justify-center">
+                        <li>
+                            <NavLink to="/" className="navBarLink" onClick={() => setMobileSidebarOpen(false)}>
                                 Home
                             </NavLink>
                         </li>
-                        <li className="navBarLink">
-                            <NavLink to='/all-movies'>
+                        <li>
+                            <NavLink to="/all-movies" className="navBarLink" onClick={() => setMobileSidebarOpen(false)}>
                                 All Movies
                             </NavLink>
                         </li>
-                        <li className="navBarLink">
-                            <NavLink to='/add-movie'>
-                                Add Movie
-                            </NavLink>
-                        </li>
-                        <li className="navBarLink">
-                            <NavLink to='/my-favorites'>
-                                My Favorites
-                            </NavLink>
-                        </li>
-                        <li className="navBarLink">
-                            <NavLink to='/add-upcoming'>
-                                Add Upcoming
-                            </NavLink>
-                        </li>
-                        <li className="navBarLink">
-                            <NavLink to='/reviews-celebrities'>
+                        <li>
+                            <NavLink to="/reviews-celebrities" className="navBarLink" onClick={() => setMobileSidebarOpen(false)}>
                                 Reviews & Celebrities
                             </NavLink>
                         </li>
+                        {user && (
+                            <li>
+                                <button
+                                    className="cursor-pointer navBarLink w-full text-left"
+                                    onClick={() => {
+                                        setDashboardOpen(!dashboardOpen);
+                                        setMobileSidebarOpen(false);
+                                    }}
+                                >
+                                    Dashboard
+                                </button>
+                            </li>
+                        )}
+                        {dashboardOpen && (
+                            <div className="flex flex-col space-y-2 bg-white dark:bg-gray-800 p-4 rounded-md">
+                                <NavLink to="/add-movie" className="navBarLink" onClick={() => setMobileSidebarOpen(false)}>
+                                    Add Movie
+                                </NavLink>
+                                <NavLink to="/my-favorites" className="navBarLink" onClick={() => setMobileSidebarOpen(false)}>
+                                    My Favorites
+                                </NavLink>
+                                <NavLink to="/add-upcoming" className="navBarLink" onClick={() => setMobileSidebarOpen(false)}>
+                                    Add Upcoming
+                                </NavLink>
+                            </div>
+                        )}
                     </ul>
                 </aside>
             </div>
