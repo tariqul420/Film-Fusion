@@ -1,6 +1,7 @@
 import { FaFacebookF, FaInstagram, FaLinkedinIn } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoSend } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
@@ -33,11 +34,27 @@ const Footer = () => {
                 </div>
                 <div className="space-y-4">
                     <h2 className="font-semibold text-2xl">Support</h2>
-                    <p>My account</p>
-                    <p>Login/Register</p>
-                    <p>All movies</p>
-                    <p>Add Movies</p>
-                    <p>My Favorites</p>
+                    <p>
+                        <Link to='/'>
+                            Home
+                        </Link>
+                    </p>
+                    <p>
+                        <Link to='/login'>
+                            Login
+                        </Link>/<Link to='/register'>
+                            Register
+                        </Link></p>
+                    <p>
+                        <Link to='/all-movies'>
+                            All movies
+                        </Link>
+                    </p>
+                    <p>
+                        <Link to='/reviews-celebrities'>
+                            Reviews & Celebrities
+                        </Link>
+                    </p>
                 </div>
                 <div className="space-y-4">
                     <h2 className="font-semibold text-2xl">Quick Link</h2>
