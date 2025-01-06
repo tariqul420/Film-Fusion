@@ -65,7 +65,7 @@ const ReviewsCelebrities = () => {
                 <div className="mt-16">
                     <Slider {...settings}>
                         {
-                            celebritiesData.map((celebrities, index) => <div key={index} className="px-2">
+                            celebritiesData?.map((celebrities, index) => <div key={index} className="px-2">
                                 <div className="dark:bg-gray-700 bg-white shadow-sm hover:shadow-md p-4 rounded-xl flex items-center justify-center flex-col">
                                     <img className="w-[200px] h-[200px] rounded-full object-cover" src={celebrities.image} alt="" />
                                     <h2 className="text-center font-semibold text-2xl mt-4">{celebrities.name}</h2>
@@ -87,7 +87,7 @@ const ReviewsCelebrities = () => {
                 <h2 className="text-6xl font-bold text-center">User Reviews and Ratings</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
                     {
-                        reviewsData.map(review => <Reviews key={review.id} reviews={review} />)
+                        reviewsData?.map(review => <Reviews key={review.id} reviews={review} />)
                     }
                 </div>
             </div>
