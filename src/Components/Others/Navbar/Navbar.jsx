@@ -31,6 +31,9 @@ const Navbar = () => {
                         <li className="navBarLink">
                             <NavLink to='/reviews-celebrities'>Reviews & Celebrities</NavLink>
                         </li>
+                        <li className="navBarLink">
+                            <NavLink to='/contact-us'>Contact Us</NavLink>
+                        </li>
                         {user && (
                             <li
                                 className="cursor-pointer navBarLink"
@@ -97,6 +100,11 @@ const Navbar = () => {
                         <li>
                             <NavLink to="/reviews-celebrities" className="navBarLink" onClick={() => setMobileSidebarOpen(false)}>
                                 Reviews & Celebrities
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/contact-us" className="navBarLink" onClick={() => setMobileSidebarOpen(false)}>
+                                Contact Us
                             </NavLink>
                         </li>
                         {user && (

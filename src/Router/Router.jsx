@@ -15,6 +15,7 @@ import UpdateMovie from "../Pages/UpdateMovie";
 import AddUpcoming from "../Pages/AddUpcoming";
 import ForgotPassword from "../Pages/ForgotPassword";
 import ReviewsCelebrities from "../Pages/ReviewsCelebrities";
+import ContactUs from "../Pages/ContactUs";
 
 const router = createBrowserRouter([
     {
@@ -95,6 +96,10 @@ const router = createBrowserRouter([
             {
                 path: '/reviews-celebrities',
                 element: <ReviewsCelebrities />
+            },
+            {
+                path: '/contact-us',
+                element: <ContactUs />
             }
         ]
     }

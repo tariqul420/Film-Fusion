@@ -96,7 +96,7 @@ const MovieDetails = () => {
                 <div className="lg:w-[30%] flex flex-col items-center justify-start">
                     <img className="rounded-lg w-full" src={moviePoster} alt={movieTitle} />
 
-                    <div className="flex max-sm:flex-col gap-4 mt-12 flex-wrap">
+                    <div className="flex gap-4 mt-12 max-sm:my-5 flex-wrap">
                         <button
                             onClick={handelDeleteMovie}
                             className="w-[40px] flex items-center justify-center h-[40px] rounded-full bg-red-500 text-white text-2xl">
