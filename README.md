@@ -11,13 +11,13 @@
 
 ## 🚀 Live Link To The Deployed Project
 
-**Github Client Repo Link :** [_github/tariqul420/client_](https://github.com/programming-hero-web-course2/b10-a10-client-side-tariqul420.git)
+**Github Client Repo Link :** [_github/tariqul420/client_](https://github.com/tariqul420/Film-Fusion.git)
 
-**Github Server Repo Link :** [_github/tariqul420/server_](https://github.com/programming-hero-web-course2/b10-a10-server-side-tariqul420.git)
+**Github Server Repo Link :** [_github/tariqul420/server_](https://github.com/tariqul420/Film-Fusion-Server.git)
 
-**Live Site Link:** [_Film-Fusion.com_](https://greenquest-adventures.web.app/)
+**Live Site Link:** [_Film-Fusion.com_](https://film-fusion-0.web.app)
 
-**Live Site Link-2:** [_Film-Fusion-2.com_](https://greenquest-adventures.firebaseapp.com/)
+**Live Site Link-2:** [_Film-Fusion-2.com_](https://film-fusion-0.firebaseapp.com)
 
 ## 🔍 React Concepts Used
 
