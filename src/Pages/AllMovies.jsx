@@ -1,25 +1,23 @@
 import { useEffect, useState } from "react";
 import MovieCart from "../Components/Others/MovieCart";
-import { useLoaderData } from "react-router-dom";
 import { IoSearch } from "react-icons/io5";
 import { ScaleLoader } from "react-spinners";
 
 const AllMovies = () => {
-    const allMovie = useLoaderData()
-    const [movie, setMovie] = useState(allMovie)
+    const [movie, setMovie] = useState([])
     const [search, setSearch] = useState('')
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         document.title = 'All Movie | Film Fusion';
-        if (movie) setLoading(false)
-    }, [movie, search])
+    }, [])
 
     useEffect(() => {
         fetch(`https://film-fusion-0.vercel.app/movies?movie=${search}`)
             .then(res => res.json())
             .then(data => {
                 setMovie(data)
+                setLoading(false)
             })
     }, [search])
 

@@ -1,4 +1,4 @@
-import { Link, useLoaderData } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Banner from "../Components/Home/Banner";
 import MovieCart from "../Components/Others/MovieCart";
 import Upcoming from "../Components/Home/Upcoming";
@@ -7,9 +7,12 @@ import Slider from "react-slick";
 import { ScaleLoader } from "react-spinners";
 
 const Home = () => {
-    const { topMovieData, upcomingData, allMoviesData } = useLoaderData()
+    // const { topMovieData, upcomingData, allMoviesData } = useLoaderData()
     const [loading, setLoading] = useState(true)
-    const [upcoming, setUpcoming] = useState(upcomingData)
+
+    const [topMovieData, setTopMovieData] = useState([])
+    const [upcoming, setUpcoming] = useState([])
+    const [allMoviesData, setAllMoviesData] = useState([])
 
     const [romanceData, setRomanceData] = useState([]);
     const [actionData, setActionData] = useState([]);
@@ -23,6 +26,30 @@ const Home = () => {
     useEffect(() => {
         document.title = 'Film Fusion';
     }, []);
+
+
+    useEffect(() => {
+        fetch('https://film-fusion-0.vercel.app/topMovies')
+            .then(res => res.json())
+            .then(data => {
+                setTopMovieData(data)
+                setLoading(false)
+            })
+
+        fetch('https://film-fusion-0.vercel.app/upcomingMovies')
+            .then(res => res.json())
+            .then(data => {
+                setUpcoming(data)
+                setLoading(false)
+            })
+
+        fetch('https://film-fusion-0.vercel.app/movies')
+            .then(res => res.json())
+            .then(data => {
+                setAllMoviesData(data)
+                setLoading(false)
+            })
+    }, [])
 
     useEffect(() => {
         if (allMoviesData) {
@@ -91,23 +118,6 @@ const Home = () => {
             }));
         }
     }, [allMoviesData])
-
-    useEffect(() => {
-        if (
-            allMoviesData &&
-            upcomingData &&
-            romanceData &&
-            actionData &&
-            dramaData &&
-            comedyData &&
-            horrorData &&
-            thrillerData &&
-            mysteryData &&
-            crimeData
-        )
-            setLoading(false);
-    }, [allMoviesData, upcomingData, romanceData, actionData, dramaData, comedyData, horrorData, thrillerData, mysteryData, crimeData]);
-
 
     const settings = {
         dots: true,
@@ -189,7 +199,7 @@ const Home = () => {
             <div className="w-10/12 mx-auto mb-20">
                 <h2 className="text-6xl font-bold text-center">Upcoming Movies</h2>
                 {
-                    upcomingData.length == 0 ? (
+                    upcoming.length == 0 ? (
                         <div
                             className="boxShadow p-6 sm:px-20 sm:py-14 flex items-center justify-center flex-col gap-[4px] rounded-xl dark:bg-gray-700 bg-white shadow-md mt-12">
                             <img src="https://i.ibb.co/cgfgxGH/Illustrations.png" alt="empty/image" className="w-full sm:w-[200px]" />
@@ -201,7 +211,7 @@ const Home = () => {
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-20">
                             {
-                                upcomingData.map(movie => <Upcoming key={movie._id} movie={movie} upcoming={upcoming} setUpcoming={setUpcoming} />)
+                                upcoming.map(movie => <Upcoming key={movie._id} movie={movie} upcoming={upcoming} setUpcoming={setUpcoming} />)
                             }
                         </div>
                     )

@@ -4,7 +4,7 @@ import Navbar from "../Components/Others/Navbar/Navbar";
 
 const Root = () => {
     return (
-        <div className="min-h-screen flex flex-col font-Open-Sans dark:bg-color-primary-d bg-[#e9f8fe] dark:text-color-text-d text-color-text">
+        <div className="min-h-screen flex flex-col font-Open-Sans dark:bg-color-primary-d bg-gray-50 dark:text-color-text-d text-color-text">
             <Navbar />
             <div className="flex-grow">
                 <Outlet />

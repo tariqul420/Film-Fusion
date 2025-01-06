@@ -24,24 +24,11 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Home />,
-                loader: async () => {
-                    const topMoviesRes = await fetch('https://film-fusion-0.vercel.app/topMovies')
-                    const topMovieData = await topMoviesRes.json()
-
-                    const upcomingRes = await fetch('https://film-fusion-0.vercel.app/upcomingMovies')
-                    const upcomingData = await upcomingRes.json()
-
-                    const allMoviesRes = await fetch('https://film-fusion-0.vercel.app/movies')
-                    const allMoviesData = await allMoviesRes.json()
-
-                    return { topMovieData, upcomingData, allMoviesData }
-                }
+                element: <Home />
             },
             {
                 path: '/all-movies',
                 element: <AllMovies />,
-                loader: () => fetch('https://film-fusion-0.vercel.app/movies')
             },
             {
                 path: '/add-movie',
@@ -110,16 +97,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/reviews-celebrities',
-                element: <ReviewsCelebrities />,
-                loader: async () => {
-                    const reviews = await fetch('/UserReviews.json')
-                    const reviewsData = await reviews.json()
-
-                    const celebrities = await fetch('/celebrities.json')
-                    const celebritiesData = await celebrities.json()
-
-                    return { reviewsData, celebritiesData }
-                }
+                element: <ReviewsCelebrities />
             }
         ]
     }

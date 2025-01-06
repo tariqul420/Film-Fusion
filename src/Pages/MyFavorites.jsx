@@ -11,14 +11,14 @@ const MyFavorites = () => {
 
     useEffect(() => {
         document.title = 'My Favorite | Film Fusion';
-        if (favorite) setLoading(false)
-    }, [favorite])
+    }, [])
 
     useEffect(() => {
         fetch(`https://film-fusion-0.vercel.app/favorite?favorite=${email}`)
             .then(res => res.json())
             .then(data => {
                 setFavorite(data)
+                setLoading(false)
             })
     }, [email])
 

@@ -46,7 +46,7 @@ const MovieCart = ({ movie, setFavorite, favorite }) => {
 
     return (
         <div
-            className="w-full shadow-md h-[470px] hover:scale-[1.05] transition-all duration-300 overflow-hidden rounded-md relative cursor-pointer group dark:bg-gray-700 bg-[#e7fbff]">
+            className="w-full shadow-md h-[470px] hover:scale-[1.05] transition-all duration-300 overflow-hidden rounded-md relative cursor-pointer group dark:bg-gray-700 bg-white">
 
             {/*  icons  */}
             <div

@@ -1,10 +1,10 @@
-import { useLoaderData } from "react-router-dom";
 import Reviews from "../Components/ReviewsCelebrities/Reviews";
 import Slider from "react-slick";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const ReviewsCelebrities = () => {
-    const { reviewsData, celebritiesData } = useLoaderData()
+    const [reviewsData, setReviewsData] = useState([])
+    const [celebritiesData, setCelebritiesData] = useState([])
     const settings = {
         dots: true,
         infinite: true,
@@ -42,6 +42,16 @@ const ReviewsCelebrities = () => {
 
     useEffect(() => {
         document.title = 'Reviews & Celebrities | Film Fusion';
+    }, [])
+
+    useEffect(() => {
+        fetch('/UserReviews.json')
+            .then(res => res.json())
+            .then(data => setReviewsData(data))
+
+        fetch('/celebrities.json')
+            .then(res => res.json())
+            .then(data => setCelebritiesData(data))
     }, [])
 
     const handelCelebrities = () => {
