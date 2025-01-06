@@ -13,7 +13,7 @@ const Navbar = () => {
 
     return (
         <nav className="sticky top-0 z-[1000] backdrop-blur-3xl py-4 w-full mx-auto my-6">
-            <div className="w-11/12 mx-auto flex items-center justify-between">
+            <div className="lg:w-10/12 w-11/12 mx-auto flex items-center justify-between">
                 <div>
                     <Link to='/'>
                         <h2 className="font-bold text-4xl font-Montserrat">Film Fusion</h2>
