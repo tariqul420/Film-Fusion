@@ -4,8 +4,9 @@ import { MdDelete } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
 const TableRow = ({ movieDetails, handelDelete }) => {
-    const { _id, moviePoster, movieTitle, genres, duration, releaseYear, rating } = movieDetails
+    const { _id, moviePoster, movieTitle, genres, duration, releaseYear, rating, movieId } = movieDetails
     const navigate = useNavigate()
+    console.log(movieDetails);
 
     const totalStars = 5
 
@@ -74,7 +75,7 @@ const TableRow = ({ movieDetails, handelDelete }) => {
             <td className="border border-gray-300 dark:border-gray-700 px-4 py-2 text-2xl">
                 <button
                     className="mr-2"
-                    onClick={() => navigate(`/movie-details/${_id}`)}>
+                    onClick={() => navigate(`/movie-details/${movieId}`)}>
                     <FaRegEye />
                 </button>
                 <button

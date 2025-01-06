@@ -1,9 +1,11 @@
 import { useContext, useEffect } from "react";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
-import { MdOutlineTimer } from "react-icons/md";
+import { MdFavorite, MdOutlineTimer } from "react-icons/md";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../Provider/AuthProvider";
+import { RiDeleteBinFill } from "react-icons/ri";
+import { FaPenToSquare } from "react-icons/fa6";
 
 const MovieDetails = () => {
     const detailsMovie = useLoaderData()
@@ -20,12 +22,12 @@ const MovieDetails = () => {
     const handelDeleteMovie = () => {
         Swal.fire({
             title: "Are you sure?",
-            text: "You won't be able to revert this!",
+            text: "Permanent delete this movie!",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
+            confirmButtonText: "Yes, Delete"
         }).then((result) => {
             if (result.isConfirmed) {
                 fetch(`https://film-fusion-0.vercel.app/movies/${_id}`, {
@@ -50,6 +52,7 @@ const MovieDetails = () => {
 
     const favoriteMovie = {
         moviePoster,
+        movieId: _id,
         movieTitle,
         duration,
         releaseYear,
@@ -78,6 +81,7 @@ const MovieDetails = () => {
                         showConfirmButton: false,
                         timer: 1500
                     });
+                    navigate('/my-favorites')
                 }
             })
     }
@@ -89,8 +93,27 @@ const MovieDetails = () => {
             </div>
 
             <div className="w-9/12 max-sm:w-11/12 mx-auto dark:bg-gray-700 bg-white shadow-md p-8 rounded-xl my-12 flex flex-col gap-4 lg:flex-row">
-                <div className="lg:w-[30%]">
-                    <img className="rounded-lg h-full w-full" src={moviePoster} alt={movieTitle} />
+                <div className="lg:w-[30%] flex flex-col items-center justify-start">
+                    <img className="rounded-lg w-full" src={moviePoster} alt={movieTitle} />
+
+                    <div className="flex max-sm:flex-col gap-4 mt-12 flex-wrap">
+                        <button
+                            onClick={handelDeleteMovie}
+                            className="w-[40px] flex items-center justify-center h-[40px] rounded-full bg-red-500 text-white text-2xl">
+                            <RiDeleteBinFill />
+                        </button>
+
+                        <button
+                            onClick={handelAddFavorite}
+                            className="w-[40px] flex items-center justify-center h-[40px] rounded-full bg-green-500 text-white text-2xl">
+                            <MdFavorite />
+                        </button>
+                        <button
+                            onClick={() => navigate(`/update-movie/${_id}`)}
+                            className="w-[40px] flex items-center justify-center h-[40px] rounded-full bg-color-accent-d text-white text-2xl">
+                            <FaPenToSquare />
+                        </button>
+                    </div>
                 </div>
                 <div className="border-2 border-solid border-color-accent"></div>
                 <div className="flex-grow lg:w-[70%]">
@@ -134,26 +157,9 @@ const MovieDetails = () => {
                         <span className="ml-2 text-lg font-bold">{rating} / 5</span>
                     </div>
 
-                    <p className="mt-4">{summary}</p>
-
-                    <div className="flex max-sm:flex-col gap-4 mt-12">
-                        <button
-                            onClick={handelDeleteMovie}
-                            className="border-2 px-5 py-2 rounded-full border-solid border-color-accent font-semibold text-lg bg-color-accent text-white">
-                            Delete Movie
-                        </button>
-
-                        <button
-                            onClick={handelAddFavorite}
-                            className="border-2 px-5 py-2 rounded-full border-solid border-color-accent font-semibold text-lg bg-color-accent shadow-md text-white">
-                            Add to Favorite
-                        </button>
-                        <button
-                            onClick={() => navigate(`/update-movie/${_id}`)}
-                            className="border-2 px-5 py-2 rounded-full border-solid border-color-accent font-semibold text-lg bg-color-accent shadow-md text-white">
-                            Update Movie
-                        </button>
-                    </div>
+                    <pre
+                        style={{ whiteSpace: 'pre-wrap' }}
+                        className="mt-4">{summary}</pre>
                 </div>
             </div>
         </div>
