@@ -60,10 +60,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/movie-details/:id',
-                element:
-                    <Private>
-                        <MovieDetails />
-                    </Private>,
+                element: <MovieDetails />,
                 loader: ({ params }) => fetch(`https://film-fusion-0.vercel.app/movies/${params.id}`)
             },
             {

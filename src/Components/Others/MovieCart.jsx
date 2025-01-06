@@ -2,9 +2,8 @@ import PropTypes from "prop-types";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { MdOutlineTimer } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
 
-const MovieCart = ({ movie, setFavorite, favorite }) => {
+const MovieCart = ({ movie }) => {
     const { _id, moviePoster, movieTitle, genres, duration, releaseYear, rating } = movie
     console.log(genres);
 
@@ -12,37 +11,6 @@ const MovieCart = ({ movie, setFavorite, favorite }) => {
 
     const totalStars = 5
 
-    const handelFavoriteDelete = (id) => {
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                fetch(`https://film-fusion-0.vercel.app/favorite/${id}`, {
-                    method: "DELETE"
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data.deletedCount) {
-                            Swal.fire({
-                                position: "center",
-                                icon: "success",
-                                title: "Successful delete movie",
-                                showConfirmButton: false,
-                                timer: 1500
-                            });
-                        }
-                        const remaining = favorite.filter(favorite => favorite._id !== id)
-                        setFavorite(remaining)
-                    })
-            }
-        })
-    }
 
     return (
         <div
@@ -96,7 +64,7 @@ const MovieCart = ({ movie, setFavorite, favorite }) => {
                 <div>
                     <button
                         onClick={() => navigate(`/movie-details/${_id}`)}
-                        className="border-2 border-solid border-color-accent px-2 py-1 rounded-full mt-1 font-bold hover:bg-color-accent dark:text-white transition-all duration-300 ease-out">See Details</button>
+                        className="border-2 border-solid border-color-accent px-2 py-1 rounded-full mt-1 font-bold hover:bg-color-accent dark:text-white hover:text-white transition-all duration-300 ease-out">See Details</button>
                 </div>
             </div>
         </div>

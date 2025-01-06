@@ -100,8 +100,8 @@ const MovieDetails = () => {
 
                         <div className="flex gap-2 flex-wrap items-start my-3 max-sm:hidden">
                             {
-                                genres.map((genres, i) => <p
-                                    className="dark:bg-gray-500 bg-gray-400 dark:text-gray-200 px-2 py-0 rounded-[6px] font-medium"
+                                genres?.map((genres, i) => <p
+                                    className="dark:bg-gray-500 bg-color-accent-d/30 dark:text-gray-200 px-2 py-0 rounded-[6px] font-medium"
                                     key={i}>
                                     {genres.name}
                                 </p>)
@@ -116,7 +116,7 @@ const MovieDetails = () => {
                     <h1 className="font-bold text-5xl mt-8 uppercase">{movieTitle}</h1>
 
                     <div className="flex items-center gap-2 mt-2">
-                        {[...Array(totalStars)].map((_, index) => {
+                        {[...Array(totalStars)]?.map((_, index) => {
                             const starValue = index + 1;
 
                             return (

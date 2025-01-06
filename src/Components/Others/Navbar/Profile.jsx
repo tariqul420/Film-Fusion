@@ -3,14 +3,13 @@ import { AuthContext } from "../../../Provider/AuthProvider";
 import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
-    const [isProfileHovered, setIsProfileHovered] = useState(false);
+    const [isProfileOpen, setIsProfileOpen] = useState(false);
     const { user, logoutUser } = useContext(AuthContext)
     const navigate = useNavigate()
 
     return (
         <div className="relative w-fit h-full flex items-center justify-center lg:mr-12"
-            onMouseEnter={() => setIsProfileHovered(true)}
-            onMouseLeave={() => setIsProfileHovered(false)}
+            onClick={() => setIsProfileOpen(!isProfileOpen)}
         >
             {/*  initial profile picture  */}
             <img
@@ -20,7 +19,7 @@ const Profile = () => {
 
             {/*  tooltip  */}
             <div
-                className={` ${isProfileHovered ? "opacity-100 z-20 translate-y-0" : "opacity-0 z-[-1] translate-y-[20px]"} absolute bottom-[-260px] left-[-50%] md:left-[50%] transform translate-x-[-50%] dark:bg-gray-700 bg-white w-[250px] rounded-md p-[15px] shadow-md transition-all duration-300`}>
+                className={` ${isProfileOpen ? "opacity-100 z-20 translate-y-0" : "opacity-0 z-[-1] translate-y-[20px] hidden"} absolute bottom-[-260px] left-[-50%] md:left-[50%] transform translate-x-[-50%] dark:bg-gray-700 bg-white w-[250px] rounded-md p-[15px] shadow-md transition-all duration-300`}>
 
                 {/*  account details  */}
                 <div className="flex items-center justify-center flex-col">
