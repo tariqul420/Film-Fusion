@@ -170,7 +170,7 @@ const Home = () => {
                 <h2 className="text-6xl font-bold text-center">Featured Movies</h2>
 
                 {
-                    topMovieData.length === 0 ? (
+                    topMovieData?.length === 0 ? (
                         <div
                             className="boxShadow p-6 sm:px-20 sm:py-14 flex items-center justify-center flex-col gap-[4px] rounded-xl dark:bg-gray-700 bg-white shadow-md mt-12">
                             <img src="https://i.ibb.co/cgfgxGH/Illustrations.png" alt="empty/image" className="w-full sm:w-[200px]" />
@@ -180,7 +180,7 @@ const Home = () => {
                             <p className="text-[0.9rem] dark:text-gray-300 text-gray-600">Whoops ... this information is not available for a moment</p>
                         </div>
                     ) : (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-20">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-20">
                             {
                                 topMovieData.map(movie => <MovieCart key={movie._id} movie={movie} />)
                             }

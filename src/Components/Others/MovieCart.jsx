@@ -1,14 +1,14 @@
 import PropTypes from "prop-types";
 import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { MdOutlineTimer } from "react-icons/md";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const MovieCart = ({ movie, setFavorite, favorite }) => {
     const { _id, moviePoster, movieTitle, genres, duration, releaseYear, rating } = movie
+    console.log(genres);
 
     const navigate = useNavigate()
-    const { pathname } = useLocation()
 
     const totalStars = 5
 
@@ -46,14 +46,14 @@ const MovieCart = ({ movie, setFavorite, favorite }) => {
 
     return (
         <div
-            className="w-full shadow-md h-[470px] hover:scale-[1.05] transition-all duration-300 overflow-hidden rounded-md relative cursor-pointer group dark:bg-gray-700 bg-white">
+            className="w-full shadow-md hover:scale-[1.05] transition-all h-[350px] duration-300 overflow-hidden rounded-md relative cursor-pointer group dark:bg-gray-700 bg-white">
 
             {/*  icons  */}
             <div
                 className="absolute top-0 left-0 opacity-100 z-[-1] group-hover:opacity-100 group-hover:z-[1] ease-out transition-all duration-300 flex items-center justify-between w-full p-[15px]">
                 <span className="font-semibold">{releaseYear}</span>
                 <div className="flex items-center gap-[5px]">
-                    <MdOutlineTimer className="text-color-text text-[1.1rem]" />
+                    <MdOutlineTimer className="text-color-text dark:text-white text-[1.1rem]" />
                     <p className="text-[1rem] font-semibold">{duration} min</p>
                 </div>
             </div>
@@ -63,14 +63,14 @@ const MovieCart = ({ movie, setFavorite, favorite }) => {
                 alt={movieTitle}
                 className="w-full h-[60%] object-cover group-hover:opacity-40 group-hover:h-full transition-all duration-300 ease-out" />
 
-            <div className="absolute bottom-0 left-0 py-[20px]  px-[20px] w-full">
-                <h3 className="text-[1.4rem] font-bold uppercase">{movieTitle}</h3>
-                <div className="flex gap-2 flex-wrap items-start my-1">
+            <div className="absolute bottom-0 left-0 py-[10px]  px-[10px] w-full">
+                <h3 className="text-[1.2rem] font-bold uppercase"> {movieTitle?.length > 16 ? `${movieTitle.slice(0, 16)}...` : movieTitle}</h3>
+                <div className="flex gap-2 flex-wrap items-start">
                     {
-                        genres.map((genres, i) => <p
+                        genres?.slice(0, 2)?.map((genres, i) => <p
                             className="dark:bg-gray-500 bg-[#d5f4fa] dark:text-gray-200 px-2 py-0 rounded-[6px] font-medium"
                             key={i}>
-                            {genres.name}
+                            {genres?.name}
                         </p>)
                     }
                 </div>
@@ -94,16 +94,9 @@ const MovieCart = ({ movie, setFavorite, favorite }) => {
                 </div>
 
                 <div>
-                    {
-                        pathname === '/my-favorites' ? (
-                            <button
-                                onClick={() => handelFavoriteDelete(_id)}
-                                className="border-2 border-solid border-color-accent px-4 py-2 rounded-full mt-3 font-bold hover:bg-color-accent dark:text-white transition-all duration-300 ease-out">Delete Favorite</button>
-                        ) : (<button
-                            onClick={() => navigate(`/movie-details/${_id}`)}
-                            className="border-2 border-solid border-color-accent px-4 py-2 rounded-full mt-3 font-bold hover:bg-color-accent dark:text-white transition-all duration-300 ease-out">See Details</button>
-                        )
-                    }
+                    <button
+                        onClick={() => navigate(`/movie-details/${_id}`)}
+                        className="border-2 border-solid border-color-accent px-2 py-1 rounded-full mt-1 font-bold hover:bg-color-accent dark:text-white transition-all duration-300 ease-out">See Details</button>
                 </div>
             </div>
         </div>
