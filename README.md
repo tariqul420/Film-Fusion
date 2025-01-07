@@ -79,32 +79,55 @@
 - **react-slick**
 - **react-simple-star-rating**
 
+## 🐞 **Known Issues**
+
+1. **Limited Movie Data**: Some movie data (like detailed descriptions) may not be available due to API restrictions.
+2. **Responsive Issues**: A few elements might not be perfectly aligned on smaller screens (currently under review).
+3. **Search Filter**: The search filter doesn’t fully reset after a search is completed. This will be fixed in the next release.
+4. **Favorites Sync**: The favorite movies list may not always persist after a browser refresh. This will be improved in the next update.
+
 ## 💡 **How to Run Locally**
 
 1. **Clone the repository**:
+
    ```bash
    git clone https://github.com/tariqul420/Film-Fusion.git
 
+   ```
+
 2. **Navigate to the project directory**:
+
    ```bash
    git clone Film-Fusion
 
+   ```
+
 3. **Install dependencies**:
+
    ```bash
    npm install
+
+   ```
 
 4. **Start the development server**:
    ```bash
    npm run dev
-
+   ```
 
 ## 📸 Screenshots
 
 ### Home Page
-![Home Page](https://i.ibb.co/r7jWXGq/image-2.png)
+
+![Home Page](https://github.com/tariqul420/Film-Fusion/blob/main/src/assets/Images/Screenshot%202025-01-07%20232920.png)
 
 ### Movie Details Page
-![Movie Details Page](https://via.placeholder.com/800x400)
 
-### Watchlist Page
-![Watchlist Page](https://via.placeholder.com/800x400)
+![Movie Details Page](https://github.com/tariqul420/Film-Fusion/blob/main/src/assets/Images/Screenshot%202025-01-07%20232819.png)
+
+### Contact Us Page
+
+![Contact us Page](https://github.com/tariqul420/Film-Fusion/blob/main/src/assets/Images/Screenshot%202025-01-07%20232635.png)
+
+### Reviews & Celebrities Page
+
+![Reviews & Celebrities Page](https://github.com/tariqul420/Film-Fusion/blob/main/src/assets/Images/Screenshot%202025-01-07%20232652.png)
