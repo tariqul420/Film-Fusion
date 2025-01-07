@@ -116,18 +116,18 @@
 
 ## 📸 Screenshots
 
-### Home Page
+### 1. Home Page
 
 ![Home Page](https://github.com/tariqul420/Film-Fusion/blob/main/src/assets/Images/Screenshot%202025-01-07%20232920.png)
 
-### Movie Details Page
+### 2. Movie Details Page
 
 ![Movie Details Page](https://github.com/tariqul420/Film-Fusion/blob/main/src/assets/Images/Screenshot%202025-01-07%20232819.png)
 
-### Contact Us Page
+### 3. Contact Us Page
 
 ![Contact us Page](https://github.com/tariqul420/Film-Fusion/blob/main/src/assets/Images/Screenshot%202025-01-07%20232635.png)
 
-### Reviews & Celebrities Page
+### 4. Reviews & Celebrities Page
 
 ![Reviews & Celebrities Page](https://github.com/tariqul420/Film-Fusion/blob/main/src/assets/Images/Screenshot%202025-01-07%20232652.png)
