@@ -78,3 +78,33 @@
 - **slick-carousel**
 - **react-slick**
 - **react-simple-star-rating**
+
+## 💡 **How to Run Locally**
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/tariqul420/Film-Fusion.git
+
+2. **Navigate to the project directory**:
+   ```bash
+   git clone Film-Fusion
+
+3. **Install dependencies**:
+   ```bash
+   npm install
+
+4. **Start the development server**:
+   ```bash
+   npm run dev
+
+
+## 📸 Screenshots
+
+### Home Page
+![Home Page](https://i.ibb.co/r7jWXGq/image-2.png)
+
+### Movie Details Page
+![Movie Details Page](https://via.placeholder.com/800x400)
+
+### Watchlist Page
+![Watchlist Page](https://via.placeholder.com/800x400)
