@@ -46,7 +46,7 @@ const AddMovie = () => {
             setMoviePosterErr("Movie Poster is required");
             return false;
         } else if (!movieUrl.test(moviePoster)) {
-            setMoviePosterErr("Invalid Movie Poster URL");
+            setMoviePosterErr("only support (png|jpg|jpeg|bmp|gif|webp) format");
             return false;
         }
 
@@ -82,9 +82,9 @@ const AddMovie = () => {
         if (!summary) {
             setSummaryErr('Summary is required.');
             return;
-        } else if (summary > 10) {
-            setSummaryErr('Summary must be 10 characters')
-            return
+        } else if (summary.length < 10) {
+            setSummaryErr('Summary must be at least 10 characters.');
+            return;
         }
 
         if (selectedOptions.length < 1) {
